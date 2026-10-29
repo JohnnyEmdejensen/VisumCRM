@@ -10,5 +10,6 @@ namespace VisumCRM.Entity
         public long Created { get; set; }
         public long? Updated { get; set; }
         public bool IsDeleted { get; set; }
+        public Guid LicenseKey { get; set; }
     }
 }
