@@ -33,5 +33,6 @@ namespace VisumCRM.Data
         public DbSet<Entity.Location> Locations { get; set; }
         public DbSet<Entity.User> Users { get; set; }
         public DbSet<Entity.License> Licenses { get; set; }
+        public DbSet<Entity.Company> Companies { get; set; }
     }
 }
