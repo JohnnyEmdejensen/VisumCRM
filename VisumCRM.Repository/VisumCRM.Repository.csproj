@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VisumCRM.Data\VisumCRM.Data.csproj" />
+    <ProjectReference Include="..\VisumCRM.Entity\VisumCRM.Entity.csproj" />
+    <ProjectReference Include="..\VisumCRM\VisumCRM.csproj" />
+  </ItemGroup>
+
+</Project>

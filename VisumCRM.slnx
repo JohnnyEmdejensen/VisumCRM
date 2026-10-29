@@ -1,3 +1,6 @@
 <Solution>
+  <Project Path="VisumCRM.Data/VisumCRM.Data.csproj" />
+  <Project Path="VisumCRM.Entity/VisumCRM.Entity.csproj" />
+  <Project Path="VisumCRM.Repository/VisumCRM.Repository.csproj" />
   <Project Path="VisumCRM/VisumCRM.csproj" />
 </Solution>
