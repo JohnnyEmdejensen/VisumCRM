@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace VisumCRM.Wpf.Client
+namespace VisumCRM.Client.Wpf
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -19,11 +19,6 @@ namespace VisumCRM.Wpf.Client
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void mnuCreateUser_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void txtTitle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -53,31 +48,6 @@ namespace VisumCRM.Wpf.Client
         private void imgCls_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             App.Current.Shutdown();
-        }
-
-        private void cmdCreateCompany_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void mnuCreateCompany_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void mnuCreateContantperson_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void mnuExit_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void cmdSettingsDataLocations_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

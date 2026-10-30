@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace VisumCRM.Wpf.Client
+namespace VisumCRM.Client.Wpf
 {
     /// <summary>
     /// Interaction logic for App.xaml

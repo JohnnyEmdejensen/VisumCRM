@@ -104,10 +104,6 @@
     <None Remove="Images\paste_24.png" />
     <None Remove="Images\paste_32.png" />
     <None Remove="Images\paste_48.png" />
-    <None Remove="Images\pilot1_16.png" />
-    <None Remove="Images\pilot1_24.png" />
-    <None Remove="Images\pilot1_32.png" />
-    <None Remove="Images\pilot1_48.png" />
     <None Remove="Images\proff_16.png" />
     <None Remove="Images\proff_24.png" />
     <None Remove="Images\proff_32.png" />
@@ -118,20 +114,10 @@
     <None Remove="Images\telephone_24.png" />
     <None Remove="Images\telephone_32.png" />
     <None Remove="Images\telephone_48.png" />
-    <None Remove="Images\users2_16.png" />
-    <None Remove="Images\users2_24.png" />
-    <None Remove="Images\users2_32.png" />
-    <None Remove="Images\users2_48.png" />
     <None Remove="Images\view_16.png" />
     <None Remove="Images\view_24.png" />
     <None Remove="Images\view_32.png" />
     <None Remove="Images\view_48.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\VisumCRM.Entity\VisumCRM.Entity.csproj" />
-    <ProjectReference Include="..\VisumCRM.Repository\VisumCRM.Repository.csproj" />
-    <ProjectReference Include="..\VisumCRM\VisumCRM.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -230,10 +216,6 @@
     <Resource Include="Images\paste_24.png" />
     <Resource Include="Images\paste_32.png" />
     <Resource Include="Images\paste_48.png" />
-    <Resource Include="Images\pilot1_16.png" />
-    <Resource Include="Images\pilot1_24.png" />
-    <Resource Include="Images\pilot1_32.png" />
-    <Resource Include="Images\pilot1_48.png" />
     <Resource Include="Images\proff_16.png" />
     <Resource Include="Images\proff_24.png" />
     <Resource Include="Images\proff_32.png" />
@@ -244,10 +226,6 @@
     <Resource Include="Images\telephone_24.png" />
     <Resource Include="Images\telephone_32.png" />
     <Resource Include="Images\telephone_48.png" />
-    <Resource Include="Images\users2_16.png" />
-    <Resource Include="Images\users2_24.png" />
-    <Resource Include="Images\users2_32.png" />
-    <Resource Include="Images\users2_48.png" />
     <Resource Include="Images\view_16.png" />
     <Resource Include="Images\view_24.png" />
     <Resource Include="Images\view_32.png" />
