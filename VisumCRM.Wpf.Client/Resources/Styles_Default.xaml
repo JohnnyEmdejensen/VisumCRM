@@ -8,4 +8,9 @@
         <Setter Property="Padding" Value="8 0"></Setter>
     </Style>
 
+ 
+    <Style TargetType="{x:Type StackPanel}">
+        <Setter Property="Orientation" Value="Horizontal"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
 </ResourceDictionary>

@@ -37,6 +37,7 @@
                     <Label Width="8"></Label>
                 </StackPanel>
             </Grid>
+            <Label Grid.Row="1"></Label>
             <Ribbon Grid.Row="2">
                 <RibbonTab Header="{DynamicResource desktop.ribbon.tab.header.home}" IsSelected="True">
                     <RibbonGroup Header="{DynamicResource desktop.ribbon.home.header.creations}">
