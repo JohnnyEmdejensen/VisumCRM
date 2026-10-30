@@ -1,0 +1,61 @@
+﻿<Window x:Class="VisumCRM.Wpf.Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VisumCRM.Wpf.Client"
+        mc:Ignorable="d"
+        Tag="Desktop" ResizeMode="CanResizeWithGrip" MinHeight="1000" Height="1000" MinWidth="1600" Width="1600" WindowStyle="None" AllowsTransparency="True" Background="Transparent" Icon="/Images/pilot1_48.png">
+    <Border BorderThickness="3" BorderBrush="{DynamicResource desktop.bordercolor}" Background="{DynamicResource desktop.background}" CornerRadius="16">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32"></RowDefinition>
+                <RowDefinition Height="3"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="3"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="8"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="txtTitle" MouseLeftButtonDown="txtTitle_MouseLeftButtonDown" Grid.Column="0" Style="{DynamicResource dialog.titlebar.text}" Text="{DynamicResource desktop.header.title}" VerticalAlignment="Center">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Gray" Direction="340" ShadowDepth="3" BlurRadius="5"></DropShadowEffect>
+                    </TextBlock.Effect>
+                </TextBlock>
+                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Image x:Name="imgMin" MouseLeftButtonDown="imgMin_MouseLeftButtonDown" Source="/Images/minimize.png" Cursor="Hand"></Image>
+                    <Label Width="8"></Label>
+                    <Image x:Name="imgMax" MouseLeftButtonDown="imgMax_MouseLeftButtonDown" Source="/Images/maximize.png" Cursor="Hand"></Image>
+                    <Image x:Name="imgRes" MouseLeftButtonDown="imgRes_MouseLeftButtonDown" Source="/Images/restore.png" Cursor="Hand" Visibility="Collapsed"></Image>
+                    <Label Width="8"></Label>
+                    <Image x:Name="imgCls" MouseLeftButtonDown="imgCls_MouseLeftButtonDown" Source="/Images/close.png" Cursor="Hand"></Image>
+                    <Label Width="8"></Label>
+                </StackPanel>
+            </Grid>
+            <Ribbon Grid.Row="2">
+                <RibbonTab Header="{DynamicResource desktop.ribbon.tab.header.home}" IsSelected="True">
+                    <RibbonGroup Header="{DynamicResource desktop.ribbon.home.header.creations}">
+                        <RibbonMenuButton Label="{DynamicResource desktop.ribbon.home.creation.new}" LargeImageSource="/Images/document_new_32.png" SmallImageSource="/Images/document_new_16.png">
+                            <RibbonMenuItem x:Name="mnuCreateCompany" Click="mnuCreateCompany_Click" Header="{DynamicResource desktop.ribbon.home.creation.new.company}" ImageSource="/Images/factory_new_16.png" Height="24"></RibbonMenuItem>
+                            <RibbonMenuItem x:Name="mnuCreateContantperson" Click="mnuCreateContantperson_Click" Header="{DynamicResource desktop.ribbon.home.creation.new.contactperson}" ImageSource="/Images/businessmen_24.png" Height="24"></RibbonMenuItem>
+                            <RibbonMenuItem x:Name="mnuCreateUser" Click="mnuCreateUser_Click" Header="{DynamicResource desktop.ribbon.home.creation.new.user}" ImageSource="/Images/users2_24.png" Height="24"></RibbonMenuItem>
+                        </RibbonMenuButton>
+                        <RibbonButton x:Name="cmdCreateCompany" Click="cmdCreateCompany_Click" Label="{DynamicResource desktop.ribbon.home.creatios.header.company}" ToolTip="{DynamicResource desktop.ribbon.home.creatios.tooltip.company}" LargeImageSource="/Images/factory_new_32.png" SmallImageSource="/Images/factory_new_16.png">
+                            
+                        </RibbonButton>
+                    </RibbonGroup>
+                </RibbonTab>
+                <RibbonTab Header="{DynamicResource desktop.ribbon.tab.header.settings}">
+                    <RibbonGroup Header="{DynamicResource desktop.ribbon.settings.header.systemdata}">
+                        <RibbonButton x:Name="cmdSettingsDataLocations" Click="cmdSettingsDataLocations_Click" LargeImageSource="/Images/earth_location_32.png" SmallImageSource="/Images/earth_location_16.png" Label="{DynamicResource desktop.ribbon.settings.systemdata.header.locations}"></RibbonButton>
+                    </RibbonGroup>
+                </RibbonTab>
+            </Ribbon>
+        </Grid>
+    </Border>
+</Window>
