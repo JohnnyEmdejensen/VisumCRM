@@ -121,6 +121,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VisumCRM.Entity\VisumCRM.Entity.csproj" />
+    <ProjectReference Include="..\VisumCRM.Repository\VisumCRM.Repository.csproj" />
+    <ProjectReference Include="..\VisumCRM\VisumCRM.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\add_16.png" />
     <Resource Include="Images\add_24.png" />
     <Resource Include="Images\add_32.png" />

@@ -16,9 +16,30 @@ namespace VisumCRM.Client.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Internals.FormSettingsClass _settings;
         public MainWindow()
         {
             InitializeComponent();
+            _settings = new Internals.FormSettingsClass(this);
+            ContentRendered += MainWindow_ContentRendered;
+            KeyDown += MainWindow_KeyDown;
+            Closing += MainWindow_Closing;
+            _settings.Load();
+        }
+
+        private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _settings.Save();
+        }
+
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void MainWindow_ContentRendered(object? sender, EventArgs e)
+        {
+
         }
 
         private void txtTitle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
