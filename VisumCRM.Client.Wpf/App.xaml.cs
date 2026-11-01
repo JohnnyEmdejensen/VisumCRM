@@ -12,6 +12,7 @@ namespace VisumCRM.Client.Wpf
 /// </summary>
 public partial class App : Application
     {
+        public static EventHelper EventHelper = new();
         public static Internals.LicenseInMemory? LicenseInMemory = null;
         public static AppShare AppShare = new();
         public static ToolsHelper ToolsHelper = new();

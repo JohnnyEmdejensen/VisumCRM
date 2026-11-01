@@ -213,6 +213,10 @@ namespace VisumCRM.Data.Migrations
                     b.Property<Guid>("LicenseKey")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Licensename")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<long>("LocationId")
                         .HasColumnType("bigint");
 

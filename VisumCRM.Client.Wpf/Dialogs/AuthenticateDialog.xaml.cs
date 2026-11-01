@@ -71,5 +71,39 @@ namespace VisumCRM.Client.Wpf.Dialogs
         {
             Close();
         }
+
+        private void btnOk_Click(object sender, RoutedEventArgs e)
+        {
+            var license = App.Repositories.LicenseRepository.GetByName(txtLicense.Text);
+            if (license != null)
+            {
+                App.Repositories = new Repository.Repositories(license.LicenseKey);
+                var user = App.Repositories.UserRepository.GetByLogin(txtLogin.Text);
+                if (user != null)
+                {
+                    user.SetFullName();
+                    if (txtPassword.Password.Equals(user.Password, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        App.AppShare.CurrentUser = user;
+                        App.EventHelper.RaiseAuthenticationSuccess();
+                        Close();
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+
+                }
+            }   
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            App.EventHelper.RaiseAuthenticationCancled();
+            Close();
+        }
     }
 }

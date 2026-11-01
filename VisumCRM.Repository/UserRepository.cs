@@ -20,6 +20,11 @@ namespace VisumCRM.Repository
             if (_context == null) return null;
             return _context.Users.FirstOrDefault(x => x.Id == Id && !x.IsDeleted && x.LicenseKey == _license);
         }
+        public Entity.User? GetByLogin(string Login)
+        {
+            if (_context == null) return null;
+            return _context.Users.FirstOrDefault(x => x.Login == Login && !x.IsDeleted && x.LicenseKey == _license);
+        }
         public List<Entity.User>? GetAll()
         {
             if (_context == null) return null;

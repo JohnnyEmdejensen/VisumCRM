@@ -15,5 +15,16 @@ namespace VisumCRM.Entity
         public long? TimeUsed { get; set; }
         public int SecurityLevel { get; set; }
         public bool IsInactive { get; set; }
+
+        public void SetFullName()
+        {
+            var name = Firstname;
+            if (!string.IsNullOrEmpty(Middlename))
+            {
+                name += " " + Middlename;
+            }
+            name += " " + Surname;
+            Fullname = name;
+        }
     }
 }

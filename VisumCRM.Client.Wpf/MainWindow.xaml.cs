@@ -30,6 +30,8 @@ namespace VisumCRM.Client.Wpf
             ContentRendered += MainWindow_ContentRendered;
             KeyDown += MainWindow_KeyDown;
             Closing += MainWindow_Closing;
+            App.EventHelper.AuthenticationCancled += EventHelper_AuthenticationCancled;
+            App.EventHelper.AuthenticationSuccess += EventHelper_AuthenticationSuccess;
             _settings.Load();
         }
 
@@ -50,6 +52,7 @@ namespace VisumCRM.Client.Wpf
                     LicenseKey = App.LicenseInMemory.Key,
                     Phone = App.LicenseInMemory.Phone,
                     Name = App.LicenseInMemory.Company,
+                    Licensename = App.LicenseInMemory.Name
                 };
                 var locationid = App.ToolsHelper.ParseLocation(App.LicenseInMemory.Country, App.LicenseInMemory.Zipcode, App.LicenseInMemory.City, App.LicenseInMemory.Street, App.LicenseInMemory.House, App.LicenseInMemory.Floor, App.LicenseInMemory.Door, null);
                 if (locationid.HasValue)
@@ -130,6 +133,18 @@ namespace VisumCRM.Client.Wpf
         {
             Entity.User usr = new();
             App.DialogHelper.ShowUser(usr);
+        }
+        private void EventHelper_AuthenticationCancled(object? sender, EventArgs e)
+        {
+            App.Current.Shutdown();
+        }
+
+        private void EventHelper_AuthenticationSuccess(object? sender, EventArgs e)
+        {
+            if (App.AppShare.CurrentUser != null)
+            {
+                lblUser.Content = App.AppShare.CurrentUser.Fullname;
+            }
         }
     }
 }

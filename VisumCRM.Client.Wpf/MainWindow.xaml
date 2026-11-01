@@ -296,6 +296,22 @@
                         </Grid.RowDefinitions>
                         <Label Grid.Row="1" Grid.Column="1" Background="{DynamicResource desktop.bordercolor}"></Label>
                     </Grid>
+                    <Label Content="User: "></Label>
+                    <Label x:Name="lblUser" Content=""></Label>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8"></ColumnDefinition>
+                            <ColumnDefinition Width="3"></ColumnDefinition>
+                            <ColumnDefinition Width="8"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="2"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="1" Grid.Column="1" Background="{DynamicResource desktop.bordercolor}"></Label>
+                    </Grid>
                     <Label Content="Company: "></Label>
                     <Label x:Name="lblActiveCompany"></Label>
                     <Grid>

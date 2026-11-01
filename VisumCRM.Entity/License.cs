@@ -9,6 +9,7 @@ namespace VisumCRM.Entity
     public class License : BaseCompany
     {
         public bool IsInactive { get; set; }
+        public string Licensename { get; set; } = "";
 
         [NotMapped]
         public string Street { get; set; } = "";
