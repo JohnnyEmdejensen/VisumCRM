@@ -91,8 +91,8 @@
                     <ColumnDefinition Width="75"></ColumnDefinition>
                     <ColumnDefinition Width="16"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="btnOk" Click="btnOk_Click" Grid.Column="1" Content="{DynamicResource authenticate.button.ok}" Grid.Row="1"></Button>
-                <Button x:Name="btnCancel" Click="btnCancel_Click" Grid.Column="3" Content="{DynamicResource authenticate.button.cancel}" Grid.Row="1"></Button>
+                <Button x:Name="btnOk" IsDefault="True" Click="btnOk_Click" Grid.Column="1" Content="{DynamicResource authenticate.button.ok}" Grid.Row="1"></Button>
+                <Button x:Name="btnCancel" IsCancel="True" Click="btnCancel_Click" Grid.Column="3" Content="{DynamicResource authenticate.button.cancel}" Grid.Row="1"></Button>
             </Grid>
         </Grid>
     </Border>

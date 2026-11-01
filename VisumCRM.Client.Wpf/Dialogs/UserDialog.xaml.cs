@@ -74,6 +74,7 @@ namespace VisumCRM.Client.Wpf.Dialogs
                     door = txtDoor.Text;
                 }
                 var locationId = App.ToolsHelper.ParseLocation(CountryName, txtZipcode.Text, txtCity.Text, txtStreet.Text, txtHouse.Text, floor, door);
+                _user.Password = txtPassword.Password;
                 if (_user.Id == 0)
                 {
                     _user = App.Repositories.UserRepository.Create(_user);

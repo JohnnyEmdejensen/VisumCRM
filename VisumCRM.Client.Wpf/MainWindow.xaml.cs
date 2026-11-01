@@ -52,7 +52,7 @@ namespace VisumCRM.Client.Wpf
                     LicenseKey = App.LicenseInMemory.Key,
                     Phone = App.LicenseInMemory.Phone,
                     Name = App.LicenseInMemory.Company,
-                    Licensename = App.LicenseInMemory.Name
+                    Licensename = App.LicenseInMemory.Name                  
                 };
                 var locationid = App.ToolsHelper.ParseLocation(App.LicenseInMemory.Country, App.LicenseInMemory.Zipcode, App.LicenseInMemory.City, App.LicenseInMemory.Street, App.LicenseInMemory.House, App.LicenseInMemory.Floor, App.LicenseInMemory.Door, null);
                 if (locationid.HasValue)
@@ -144,6 +144,22 @@ namespace VisumCRM.Client.Wpf
             if (App.AppShare.CurrentUser != null)
             {
                 lblUser.Content = App.AppShare.CurrentUser.Fullname;
+                if (App.AppShare.CurrentUser.SecurityLevel == 999)
+                {
+                    var allUsers = App.Repositories.UserRepository.GetAll();
+                    if (allUsers == null || allUsers.Count == 0 )
+                    {
+                        string? message = App.Current.Resources["messagebox.message.nousersexists"].ToString();
+                        if (message != null)
+                            message = message.Replace("|", "\n");
+                        MessageBox.Show(message, App.Current.Resources["messagebox.title.nousersexists"].ToString(), MessageBoxButton.OK, MessageBoxImage.Information);
+                        Entity.User usr = new()
+                        {
+                            SecurityLevel = 9
+                        };
+                        App.DialogHelper.ShowUser(usr);
+                    }
+                }
             }
         }
     }

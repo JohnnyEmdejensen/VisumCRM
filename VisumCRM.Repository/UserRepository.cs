@@ -28,7 +28,7 @@ namespace VisumCRM.Repository
         public List<Entity.User>? GetAll()
         {
             if (_context == null) return null;
-            return _context.Users.Where(x => !x.IsDeleted && x.LicenseKey == _license).ToList();
+            return _context.Users.Where(x => !x.IsDeleted && x.LicenseKey == _license && x.SecurityLevel != 999).ToList();
         }
         public Entity.User? Create(Entity.User? Source)
         {
