@@ -114,6 +114,10 @@
     <None Remove="Images\telephone_24.png" />
     <None Remove="Images\telephone_32.png" />
     <None Remove="Images\telephone_48.png" />
+    <None Remove="Images\users1_16.png" />
+    <None Remove="Images\users1_24.png" />
+    <None Remove="Images\users1_32.png" />
+    <None Remove="Images\users1_48.png" />
     <None Remove="Images\view_16.png" />
     <None Remove="Images\view_24.png" />
     <None Remove="Images\view_32.png" />
@@ -236,6 +240,10 @@
     <Resource Include="Images\telephone_24.png" />
     <Resource Include="Images\telephone_32.png" />
     <Resource Include="Images\telephone_48.png" />
+    <Resource Include="Images\users1_16.png" />
+    <Resource Include="Images\users1_24.png" />
+    <Resource Include="Images\users1_32.png" />
+    <Resource Include="Images\users1_48.png" />
     <Resource Include="Images\view_16.png" />
     <Resource Include="Images\view_24.png" />
     <Resource Include="Images\view_32.png" />

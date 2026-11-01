@@ -40,6 +40,7 @@
                         <RibbonMenuButton Label="Create New..." LargeImageSource="/Images/document_new_32.png" SmallImageSource="/Images/document_new_16.png">
                             <RibbonMenuItem Header="Company" ImageSource="/Images/factory_24.png" Height="24"></RibbonMenuItem>
                             <RibbonMenuItem Header="Contactperson" ImageSource="/Images/businessmen_24.png" Height="24"></RibbonMenuItem>
+                            <RibbonMenuItem x:Name="mnuCreateUser" Click="mnuCreateUser_Click" Header="User" ImageSource="/Images/users1_24.png" Height="24"></RibbonMenuItem>
                         </RibbonMenuButton>
                         <RibbonButton Label="Create company" LargeImageSource="/Images/factory_new_32.png" SmallImageSource="/Images/factory_new_16.png"></RibbonButton>
                     </RibbonGroup>
@@ -65,7 +66,8 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            
+                            <Label Width="2"></Label>
+                            <Label Content="{DynamicResource desktop.panel.header.favorites}" Style="{StaticResource panel.header}"></Label>
                         </StackPanel>
                         <Label Grid.Row="1" Background="{DynamicResource desktop.bordercolor}"></Label>
                     </Grid>
@@ -77,7 +79,6 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-
                         </StackPanel>
                         <Label Grid.Row="1" Background="{DynamicResource desktop.bordercolor}"></Label>
                     </Grid>
@@ -108,13 +109,18 @@
                                             <RowDefinition Height="25"></RowDefinition>
                                         </Grid.RowDefinitions>
                                         <Label Grid.Row="0" Background="{DynamicResource desktop.bordercolor}"></Label>
-                                        <StackPanel Grid.Row="1" Orientation="Horizontal"></StackPanel>
+                                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                            <Label Width="2"></Label>
+                                            <Label Content="{DynamicResource desktop.panel.header.output}" Style="{StaticResource panel.header}"></Label>
+
+                                        </StackPanel>
                                         <Label Grid.Row="2" Background="{DynamicResource desktop.bordercolor}"></Label>
                                         <Grid Grid.Row="3">
                                             
                                         </Grid>
                                         <Label Grid.Row="4" Background="{DynamicResource desktop.bordercolor}"></Label>
-                                        <StackPanel Grid.Row="5" Orientation="Horizontal"></StackPanel>
+                                        <StackPanel Grid.Row="5" Orientation="Horizontal">
+                                        </StackPanel>
                                     </Grid>
                                 </TabItem>
                                 <TabItem Header="{DynamicResource desktop.output.header.companies}">
@@ -128,7 +134,11 @@
                                             <RowDefinition Height="25"></RowDefinition>
                                         </Grid.RowDefinitions>
                                         <Label Grid.Row="0" Background="{DynamicResource desktop.bordercolor}"></Label>
-                                        <StackPanel Grid.Row="1" Orientation="Horizontal"></StackPanel>
+                                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                            <Label Width="2"></Label>
+                                            <Label Content="{DynamicResource desktop.panel.header.output}" Style="{StaticResource panel.header}"></Label>
+
+                                        </StackPanel>
                                         <Label Grid.Row="2" Background="{DynamicResource desktop.bordercolor}"></Label>
                                         <Grid Grid.Row="3">
 
@@ -148,7 +158,11 @@
                                             <RowDefinition Height="25"></RowDefinition>
                                         </Grid.RowDefinitions>
                                         <Label Grid.Row="0" Background="{DynamicResource desktop.bordercolor}"></Label>
-                                        <StackPanel Grid.Row="1" Orientation="Horizontal"></StackPanel>
+                                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                            <Label Width="2"></Label>
+                                            <Label Content="{DynamicResource desktop.panel.header.output}" Style="{StaticResource panel.header}"></Label>
+
+                                        </StackPanel>
                                         <Label Grid.Row="2" Background="{DynamicResource desktop.bordercolor}"></Label>
                                         <Grid Grid.Row="3">
 
@@ -171,7 +185,8 @@
                                             <RowDefinition Height="1"></RowDefinition>
                                         </Grid.RowDefinitions>
                                         <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                            
+                                            <Label Width="2"></Label>
+                                            <Label Content="{DynamicResource desktop.panel.header.relations}" Style="{StaticResource panel.header}"></Label>
                                         </StackPanel>
                                         <Label Grid.Row="1" Background="{DynamicResource desktop.bordercolor}"></Label>
                                         <Grid Grid.Row="2">
@@ -189,6 +204,8 @@
                                             <RowDefinition Height="1"></RowDefinition>
                                         </Grid.RowDefinitions>
                                         <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                            <Label Width="2"></Label>
+                                            <Label Content="{DynamicResource desktop.panel.header.relations}" Style="{StaticResource panel.header}"></Label>
 
                                         </StackPanel>
                                         <Label Grid.Row="1" Background="{DynamicResource desktop.bordercolor}"></Label>
@@ -215,7 +232,8 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-
+                                <Label Width="2"></Label>
+                                <Label Content="{DynamicResource desktop.panel.header.groupware}" Style="{StaticResource panel.header}"></Label>
                             </StackPanel>
                             <Label Grid.Row="1" Background="{DynamicResource desktop.bordercolor}"></Label>
 
@@ -228,7 +246,8 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-
+                                <Label Width="2"></Label>
+                                <Label Content="{DynamicResource desktop.panel.header.tasks}" Style="{StaticResource panel.header}"></Label>
                             </StackPanel>
                             <Label Grid.Row="1" Background="{DynamicResource desktop.bordercolor}"></Label>
 
@@ -247,10 +266,77 @@
                     <ColumnDefinition Width="16"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Orientation="Horizontal">
-                    
+                    <Label Width="4"></Label>
+                    <Label x:Name="lblClock" Content="01-01-2000 12:00"></Label>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8"></ColumnDefinition>
+                            <ColumnDefinition Width="3"></ColumnDefinition>
+                            <ColumnDefinition Width="8"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="2"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="1" Grid.Column="1" Background="{DynamicResource desktop.bordercolor}"></Label>
+                    </Grid>
+                    <Label Content="Database: "></Label>
+                    <Label x:Name="lblDatabase" Content=""></Label>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8"></ColumnDefinition>
+                            <ColumnDefinition Width="3"></ColumnDefinition>
+                            <ColumnDefinition Width="8"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="2"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="1" Grid.Column="1" Background="{DynamicResource desktop.bordercolor}"></Label>
+                    </Grid>
+                    <Label Content="Company: "></Label>
+                    <Label x:Name="lblActiveCompany"></Label>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8"></ColumnDefinition>
+                            <ColumnDefinition Width="3"></ColumnDefinition>
+                            <ColumnDefinition Width="8"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="2"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="1" Grid.Column="1" Background="{DynamicResource desktop.bordercolor}"></Label>
+                    </Grid>
+                    <Label Content="Contactperson: "></Label>
+                    <Label x:Name="lblActiveContactperson"></Label>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8"></ColumnDefinition>
+                            <ColumnDefinition Width="3"></ColumnDefinition>
+                            <ColumnDefinition Width="8"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="2"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="1" Grid.Column="1" Background="{DynamicResource desktop.bordercolor}"></Label>
+                    </Grid>
                 </StackPanel>
-                <ProgressBar Grid.Column="2" Width="180" Visibility="Collapsed"></ProgressBar>
-                <Label Grid.Column="4" VerticalAlignment="Center" Padding="0" Content="©2000 Emdesoft Developments A/S"></Label>
+                <Grid x:Name="grdProgressContainer" Visibility="Collapsed" Grid.Column="2" Width="240">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="48"></ColumnDefinition>
+                        <ColumnDefinition Width="8"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Status:"></Label>
+                    <ProgressBar Grid.Column="2"></ProgressBar>
+                </Grid>
+                <Label Grid.Column="4" VerticalAlignment="Center" Padding="0" Foreground="{DynamicResource desktop.panel.headercolor}" Content="©2000 Emdesoft Developments A/S"></Label>
             </Grid>
         </Grid>
     </Border>

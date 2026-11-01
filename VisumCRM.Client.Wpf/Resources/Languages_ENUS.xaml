@@ -3,10 +3,43 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <system:String x:Key="desktop.header.title">VisumCRM</system:String>
+    <system:String x:Key="desktop.panel.header.favorites">FAVORITES</system:String>
+    <system:String x:Key="desktop.panel.header.groupware">GROUPWARE</system:String>
+    <system:String x:Key="desktop.panel.header.relations">RELATIONS</system:String>
+    <system:String x:Key="desktop.panel.header.output">OUTPUT</system:String>
+    <system:String x:Key="desktop.panel.header.tasks">TASKS</system:String>
     <system:String x:Key="desktop.output.header.dashboard">Dashboard</system:String>
     <system:String x:Key="desktop.output.header.companies">Companies</system:String>
     <system:String x:Key="desktop.output.header.activities">Activities</system:String>
     <system:String x:Key="desktop.relations.header.contactpersons">Contactpersons</system:String>
     <system:String x:Key="desktop.relations.header.activities">Activities</system:String>
+
+    <system:String x:Key="user.header.title">User Informations</system:String>
+    <system:String x:Key="user.tab.header.user">User</system:String>
+    <system:String x:Key="user.tab.header.log">Log</system:String>
+    <system:String x:Key="user.header.firstname">FIRSTNAME</system:String>
+    <system:String x:Key="user.header.middlename">MIDDLENAME</system:String>
+    <system:String x:Key="user.header.surname">SURNAME</system:String>
+    <system:String x:Key="user.header.phone">PHONE</system:String>
+    <system:String x:Key="user.header.mobile">MOBILE</system:String>
+    <system:String x:Key="user.header.email">EMAIL</system:String>
+    <system:String x:Key="user.header.login">LOGIN</system:String>
+    <system:String x:Key="user.header.password">PASSWORD</system:String>
+    <system:String x:Key="user.header.street">STREET</system:String>
+    <system:String x:Key="user.header.house">HOUSE</system:String>
+    <system:String x:Key="user.header.floor">FLOOR</system:String>
+    <system:String x:Key="user.header.door">DOOR</system:String>
+    <system:String x:Key="user.header.zipcode">ZIPCODE</system:String>
+    <system:String x:Key="user.header.city">CITY</system:String>
+    <system:String x:Key="user.header.country">COUNTRY</system:String>
+    <system:String x:Key="user.header.birthday">BIRTHDAY</system:String>
+    <system:String x:Key="user.header.lastvisit">LAST VISIT</system:String>
+    <system:String x:Key="user.header.securitylevel">SECURITY LEVEL</system:String>
+    <system:String x:Key="user.header.inactive">INACTIVE</system:String>
+    <system:String x:Key="user.header.timeused">TIME USED</system:String>
+    <system:String x:Key="user.header.userlog">USERLOG</system:String>
+    <system:String x:Key="user.log.column.header.occurrence">Occurrence</system:String>
+    <system:String x:Key="user.log.column.header.message">Message</system:String>
+
 
 </ResourceDictionary>

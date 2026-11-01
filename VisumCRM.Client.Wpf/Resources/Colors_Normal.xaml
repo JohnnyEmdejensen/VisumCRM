@@ -3,8 +3,12 @@
 
     <SolidColorBrush x:Key="desktop.background" Color="#FFDFE9F5"></SolidColorBrush>
     <SolidColorBrush x:Key="desktop.bordercolor" Color="#FFB9C9DA"></SolidColorBrush>
+    <SolidColorBrush x:Key="desktop.panel.headercolor" Color="#FF3C75B1"></SolidColorBrush>
 
-    <SolidColorBrush x:Key="dialog.background" Color="#FFDFE9F5"></SolidColorBrush>
-    <SolidColorBrush x:Key="dialog.bordercolor" Color="#FFB9C9DA"></SolidColorBrush>
+    <SolidColorBrush x:Key="dialog.background" Color="#FFBCD4E6"></SolidColorBrush>
+    <SolidColorBrush x:Key="dialog.bordercolor" Color="#FF8FACC4"></SolidColorBrush>
+    <SolidColorBrush x:Key="dialog.top.information.background" Color="WhiteSmoke"></SolidColorBrush>
+
+    <SolidColorBrush x:Key="datagrid.hover.color" Color="#FFC661"></SolidColorBrush>
 
 </ResourceDictionary>
