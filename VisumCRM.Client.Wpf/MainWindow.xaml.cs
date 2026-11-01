@@ -35,6 +35,14 @@ namespace VisumCRM.Client.Wpf
             _settings.Load();
         }
 
+        private void FetchAllData() 
+        {
+            using (new Internals.WorkhandlerContainer("FetchAllData"))
+            {
+
+            }
+        }
+
         private void SetClock()
         {
             Dispatcher.Invoke(new Action(() => {
@@ -158,6 +166,13 @@ namespace VisumCRM.Client.Wpf
                             SecurityLevel = 9
                         };
                         App.DialogHelper.ShowUser(usr);
+                    }
+                }
+                else
+                {
+                    using (new Internals.WorkhandlerContainer("Authenticated"))
+                    {
+                        FetchAllData();
                     }
                 }
             }

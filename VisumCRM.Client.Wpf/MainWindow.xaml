@@ -97,7 +97,16 @@
                             <RowDefinition Height="240"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
-                            <TabControl>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25"></RowDefinition>
+                                <RowDefinition Height="3"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <Label Width="2"></Label>
+                                <Label Content="{DynamicResource desktop.panel.header.output}" Style="{StaticResource panel.header}"></Label>
+                            </StackPanel>
+                            <TabControl Grid.Row="2">
                                 <TabItem Header="{DynamicResource desktop.output.header.dashboard}">
                                     <Grid>
                                         <Grid.RowDefinitions>
@@ -110,9 +119,7 @@
                                         </Grid.RowDefinitions>
                                         <Label Grid.Row="0" Background="{DynamicResource desktop.bordercolor}"></Label>
                                         <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                            <Label Width="2"></Label>
-                                            <Label Content="{DynamicResource desktop.panel.header.output}" Style="{StaticResource panel.header}"></Label>
-
+                                            
                                         </StackPanel>
                                         <Label Grid.Row="2" Background="{DynamicResource desktop.bordercolor}"></Label>
                                         <Grid Grid.Row="3">
@@ -136,7 +143,6 @@
                                         <Label Grid.Row="0" Background="{DynamicResource desktop.bordercolor}"></Label>
                                         <StackPanel Grid.Row="1" Orientation="Horizontal">
                                             <Label Width="2"></Label>
-                                            <Label Content="{DynamicResource desktop.panel.header.output}" Style="{StaticResource panel.header}"></Label>
 
                                         </StackPanel>
                                         <Label Grid.Row="2" Background="{DynamicResource desktop.bordercolor}"></Label>
@@ -160,7 +166,6 @@
                                         <Label Grid.Row="0" Background="{DynamicResource desktop.bordercolor}"></Label>
                                         <StackPanel Grid.Row="1" Orientation="Horizontal">
                                             <Label Width="2"></Label>
-                                            <Label Content="{DynamicResource desktop.panel.header.output}" Style="{StaticResource panel.header}"></Label>
 
                                         </StackPanel>
                                         <Label Grid.Row="2" Background="{DynamicResource desktop.bordercolor}"></Label>

@@ -26,6 +26,9 @@ namespace VisumCRM.Client.Wpf.Dialogs
             Closing += AuthenticateDialog_Closing;
             KeyDown += AuthenticateDialog_KeyDown;
             _settings.Load();
+            txtLicense.Text = "ESD";
+            txtLogin.Text = "JEJ";
+            txtPassword.Password = "1Lillegris";
         }
 
         private void AuthenticateDialog_KeyDown(object sender, KeyEventArgs e)
