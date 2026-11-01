@@ -14,6 +14,13 @@
     <system:String x:Key="desktop.relations.header.contactpersons">Contactpersons</system:String>
     <system:String x:Key="desktop.relations.header.activities">Activities</system:String>
 
+    <system:String x:Key="authenticate.header.title">Authenticate</system:String>
+    <system:String x:Key="authenticate.header.license">LICENSE</system:String>
+    <system:String x:Key="authenticate.header.login">LOGIN</system:String>
+    <system:String x:Key="authenticate.header.password">PASSWORD</system:String>
+    <system:String x:Key="authenticate.button.ok">OK</system:String>
+    <system:String x:Key="authenticate.button.cancel">Cancel</system:String>
+
     <system:String x:Key="user.header.title">User Informations</system:String>
     <system:String x:Key="user.tab.header.user">User</system:String>
     <system:String x:Key="user.tab.header.log">Log</system:String>

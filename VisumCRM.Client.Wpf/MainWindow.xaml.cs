@@ -39,6 +39,37 @@ namespace VisumCRM.Client.Wpf
                 lblClock.Content = DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString();
             }));
         }
+
+        private void StartFirstTimeGuide()
+        {
+            if (App.LicenseInMemory != null)
+            {                
+                Entity.License? lic = new Entity.License()
+                {
+                    Email = App.LicenseInMemory.Email,
+                    LicenseKey = App.LicenseInMemory.Key,
+                    Phone = App.LicenseInMemory.Phone,
+                    Name = App.LicenseInMemory.Company,
+                };
+                var locationid = App.ToolsHelper.ParseLocation(App.LicenseInMemory.Country, App.LicenseInMemory.Zipcode, App.LicenseInMemory.City, App.LicenseInMemory.Street, App.LicenseInMemory.House, App.LicenseInMemory.Floor, App.LicenseInMemory.Door, null);
+                if (locationid.HasValue)
+                    lic.LocationId = locationid.Value;
+                lic = App.Repositories.LicenseRepository.Create(lic);
+                if (lic != null)
+                    App.Repositories = new Repository.Repositories(lic.LicenseKey);
+                Entity.User? usr = new Entity.User()
+                {
+                    Firstname = "Master",
+                    Login = "MA",
+                    Password = "master",
+                    SecurityLevel = 999,
+                    Surname = "Login",
+                };
+                usr = App.Repositories.UserRepository.Create(usr);
+               
+            }
+        }
+
         private void _clock_Elapsed(object? sender, System.Timers.ElapsedEventArgs e)
         {
             _clock.Enabled = false;
@@ -59,7 +90,11 @@ namespace VisumCRM.Client.Wpf
 
         private void MainWindow_ContentRendered(object? sender, EventArgs e)
         {
-
+            StartFirstTimeGuide();
+            if (App.AppShare.CurrentUser == null)
+            {
+                App.DialogHelper.ShowAuthenticate();
+            }
         }
 
         private void txtTitle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

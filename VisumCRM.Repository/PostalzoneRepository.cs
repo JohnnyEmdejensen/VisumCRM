@@ -20,6 +20,18 @@ namespace VisumCRM.Repository
             if (_context == null) return null;
             return _context.Postalzones.FirstOrDefault(x => x.Id == Id && !x.IsDeleted && x.LicenseKey == _license);
         }
+        public Entity.Postalzone? GetByCountryZipcodeCityState(long CountryId, string Zipcode, string City, string? State = null)
+        {
+            if (_context == null) return null;
+            if (State == null)
+            {
+                return _context.Postalzones.FirstOrDefault(x => !x.IsDeleted && x.LicenseKey == _license && x.CountryId == CountryId && x.Zipcode == Zipcode);
+            }
+            else
+            {
+                return _context.Postalzones.FirstOrDefault(x => !x.IsDeleted && x.LicenseKey == _license && x.CountryId == CountryId && x.Zipcode == Zipcode && x.State == State);
+            }
+        }
         public List<Entity.Postalzone>? GetAll()
         {
             if (_context == null) return null;

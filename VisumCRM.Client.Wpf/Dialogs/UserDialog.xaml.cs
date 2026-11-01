@@ -31,16 +31,49 @@ namespace VisumCRM.Client.Wpf.Dialogs
             dgUserLog.SizeChanged += DgUserLog_SizeChanged;
         }
 
+        private void DoAdd()
+        {
+            _user = new Entity.User();
+            DataContext = _user;
+            SetGui();
+        }   
         private void DoClose()
         {
             Close();
+        }
+        private void DoDelete()
+        {
+
         }
         private void DoSave(bool CloseAfter)
         {
             _user = DataContext as Entity.User;
             if (_user != null)
             {
-
+                string CountryName = "";
+                if (cboCountry.SelectedItem != null)
+                {
+                    var item = cboCountry.SelectedItem as Entity.Country;
+                    if (item != null)
+                    {
+                        CountryName = item.Name;
+                    }
+                }
+                else
+                {
+                    CountryName = cboCountry.Text;
+                }
+                string? floor = null;
+                string? door = null;
+                if (!string.IsNullOrEmpty(txtFloor.Text))
+                {
+                    floor = txtFloor.Text;
+                }
+                if (!string.IsNullOrEmpty(txtDoor.Text))
+                {
+                    door = txtDoor.Text;
+                }
+                var locationId = App.ToolsHelper.ParseLocation(CountryName, txtZipcode.Text, txtCity.Text, txtStreet.Text, txtHouse.Text, floor, door);
                 if (_user.Id == 0)
                 {
                     _user = App.Repositories.UserRepository.Create(_user);
@@ -95,12 +128,14 @@ namespace VisumCRM.Client.Wpf.Dialogs
         {
             if (e.Key == Key.Escape)
             {
+                e.Handled = true;
                 DoClose();
             }
             if (Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
             {
                 if (e.Key == Key.S)
                 {
+                    e.Handled = true;
                     DoSave(false);
                 }
             }
@@ -108,6 +143,7 @@ namespace VisumCRM.Client.Wpf.Dialogs
             {
                 if (e.Key == Key.S)
                 {
+                    e.Handled = true;
                     DoSave(true);
                 }
             }
@@ -157,6 +193,26 @@ namespace VisumCRM.Client.Wpf.Dialogs
         {
             var width = dgUserLog.ActualWidth;
             dgUserLog.Columns[2].Width = width - 120;
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            DoAdd();
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            DoDelete();
+        }
+
+        private void btnSaveClose_Click(object sender, RoutedEventArgs e)
+        {
+            DoSave(true);
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            DoSave(false);
         }
     }
 }

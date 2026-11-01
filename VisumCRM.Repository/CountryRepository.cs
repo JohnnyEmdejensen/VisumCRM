@@ -20,6 +20,12 @@ namespace VisumCRM.Repository
             if (_context == null) return null;
             return _context.Countries.FirstOrDefault(x => x.Id == Id && !x.IsDeleted && x.LicenseKey == _license);
         }
+        public Entity.Country? GetCountryByName(string Name)
+        {
+            if (_context == null) return null;
+            var country = _context.Countries.FirstOrDefault(x => x.Name == Name && !x.IsDeleted && x.LicenseKey == _license);
+            return country;
+        }
         public List<Entity.Country>? GetAll()
         {
             if (_context == null) return null;

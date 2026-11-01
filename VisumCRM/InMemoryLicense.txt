@@ -1,0 +1,11 @@
+{
+  "Type": "VisumCRM License",
+  "Name": "ESD",
+  "Company": "Emdesoft Developments A/S",
+  "Street": "Rørmosen", "House": "63", "Floor": "1", "Door": "tv",
+  "Zipcode": 4000, "City": "Roskilde",
+  "Country": "Danmark",
+  "Phone": "46369401",
+  "Email": "info@emdesoft.dk",
+  "Key": "1da3130f-f317-40fa-ae81-9f6a56567535"
+}

@@ -50,15 +50,15 @@
             <Label Grid.Row="3" Background="{DynamicResource dialog.bordercolor}"></Label>
             <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center">
                 <Label Width="8"></Label>
-                <Button x:Name="btnAdd" Style="{StaticResource ToolbarButton}" IsEnabled="False">
+                <Button x:Name="btnAdd" Click="btnAdd_Click" Style="{StaticResource ToolbarButton}" IsEnabled="False">
                     <Image Source="/Images/add_24.png" Cursor="Hand"></Image>
                 </Button>
                 <Label Width="8"></Label>
-                <Button x:Name="btnSave" Style="{StaticResource ToolbarButton}" IsEnabled="False">
+                <Button x:Name="btnSave" Click="btnSave_Click" Style="{StaticResource ToolbarButton}" IsEnabled="False">
                     <Image Source="/Images/disk_blue_24.png" Cursor="Hand"></Image>
                 </Button>
                 <Label Width="8"></Label>
-                <Button x:Name="btnSaveClose" Style="{StaticResource ToolbarButton}" IsEnabled="False">
+                <Button x:Name="btnSaveClose" Click="btnSaveClose_Click" Style="{StaticResource ToolbarButton}" IsEnabled="False">
                     <Image Source="/Images/disk_green_24.png" Cursor="Hand"></Image>
                 </Button>
                 <Grid>
@@ -74,7 +74,7 @@
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="1" Grid.Row="1" Background="{DynamicResource dialog.bordercolor}"></Label>
                 </Grid>
-                <Button x:Name="btnDelete" Style="{StaticResource ToolbarButton}" IsEnabled="False">
+                <Button x:Name="btnDelete" Click="btnDelete_Click" Style="{StaticResource ToolbarButton}" IsEnabled="False">
                     <Image Source="/Images/delete_24.png" Cursor="Hand"></Image>
                 </Button>
             </StackPanel>

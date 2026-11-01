@@ -20,6 +20,11 @@ namespace VisumCRM.Repository
             if (_context == null) return null;
             return _context.Locations.FirstOrDefault(x => x.Id == Id && !x.IsDeleted && x.LicenseKey == _license);
         }
+        public Entity.Location? GetByPostalzoneStreetHouse(long PostalzoneId, string Street, string House, string? Floor, string? Door)
+        {
+            if (_context == null) return null;
+            return _context.Locations.FirstOrDefault(x => x.PostalzoneId == PostalzoneId && x.Street == Street && x.House == House && x.Floor == Floor && x.Door == Door && !x.IsDeleted && x.LicenseKey == _license);
+        }
         public List<Entity.Location>? GetAll()
         {
             if (_context == null) return null;

@@ -33,7 +33,7 @@ namespace VisumCRM.Repository
             _context.SaveChanges();
             return Source;
         }
-        public Entity.User? Update(long Id, Entity.User? Source)
+        public Entity.User? Update(Entity.User? Source)
         {
             if (_context == null || Source == null) return null;
             var record = Get(Source.Id);
