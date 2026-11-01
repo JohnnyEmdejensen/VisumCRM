@@ -37,6 +37,19 @@ namespace VisumCRM.Client.Wpf.Dialogs
         }
         private void DoSave(bool CloseAfter)
         {
+            _user = DataContext as Entity.User;
+            if (_user != null)
+            {
+
+                if (_user.Id == 0)
+                {
+                    _user = App.Repositories.UserRepository.Create(_user);
+                }
+                else
+                {
+                    _user = App.Repositories.UserRepository.Update(_user);
+                }
+            }
             if (CloseAfter)
             {
                 DoClose();

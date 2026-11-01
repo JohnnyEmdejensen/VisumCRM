@@ -13,8 +13,14 @@ namespace VisumCRM.Repository
             _context = factory.CreateDbContext(null);
 
             UserRepository = new UserRepository(_context, LicenseKey);
+            CountryRepository = new CountryRepository(_context, LicenseKey);
+            PostalzoneRepository = new PostalzoneRepository(_context, LicenseKey);
+            LocationRepository = new LocationRepository(_context, LicenseKey);
         }
 
         public UserRepository UserRepository { get; private set; }
+        public CountryRepository CountryRepository { get; private set; }
+        public PostalzoneRepository PostalzoneRepository { get; private set; }
+        public LocationRepository LocationRepository { get; private set; }
     }
 }
