@@ -8,6 +8,7 @@ namespace VisumCRM.Client.Wpf.Models
 {
     public class LocationModel
     {
+        public long Id { get; set; }
         public string Street { get; set; } = "";
         public string House { get; set; } = "";
         public string? Floor { get; set; }

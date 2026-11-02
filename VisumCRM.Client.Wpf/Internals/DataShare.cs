@@ -11,13 +11,61 @@ namespace VisumCRM.Client.Wpf.Internals
         public List<Entity.Country>? CountryCollection { get; set; }
         public List<Entity.Postalzone>? PostalzoneCollection { get; set; }
         public List<Entity.Location>? LocationCollection { get; set; }
+        public List<Entity.Branche>? BrancheCollection { get; set; }
+        public List<Entity.Targetgroup>? TargetgroupCollection { get; set; }
         public List<Models.LocationModel>? LocationModelCollection { get; set; }
-
+        public List<Models.KeyValueModel>? BrancheModelCollection { get; set; }
+        public List<Models.KeyValueModel>? TargetgroupModelCollection { get; set; }
+        
         public DataShare()
         {
 
         }
 
+        private void BuildBrancheModel()
+        {
+            if (BrancheCollection == null || BrancheCollection.Count == 0) return;
+            using (new Internals.WorkhandlerContainer("BuildBrancheModel"))
+            {
+                BrancheModelCollection = new();
+                foreach (var branche in BrancheCollection)
+                {
+                    var b = new Models.KeyValueModel
+                    {
+                        Id = branche.Id,
+                        Key = branche.Key,
+                        Value = branche.Value
+                    };
+                    BrancheModelCollection.Add(b);
+                }
+                if (BrancheModelCollection != null && BrancheModelCollection.Count > 0)
+                {
+                    BrancheModelCollection = BrancheModelCollection.OrderBy(x => x.Value).ToList();
+                }
+            }
+        }
+        private void BuildTargetgroupModel()
+        {
+            if (TargetgroupCollection == null || TargetgroupCollection.Count == 0) return;
+            using (new Internals.WorkhandlerContainer("BuildTargetgroupModel"))
+            {
+                TargetgroupModelCollection = new();
+                foreach (var targetgroup in TargetgroupCollection)
+                {
+                    var t = new Models.KeyValueModel
+                    {
+                        Id = targetgroup.Id,
+                        Key = targetgroup.Key,
+                        Value = targetgroup.Value
+                    };
+                    TargetgroupModelCollection.Add(t);
+                }
+                if (TargetgroupModelCollection != null && TargetgroupModelCollection.Count > 0)
+                {
+                    TargetgroupModelCollection = TargetgroupModelCollection.OrderBy(x => x.Value).ToList();
+                }
+            }
+        }
         private void BuildLocationModel()
         {
             if (CountryCollection == null || CountryCollection.Count == 0) return;
@@ -30,6 +78,7 @@ namespace VisumCRM.Client.Wpf.Internals
                 {
                     Models.LocationModel model = new Models.LocationModel
                     {
+                        Id = location.Id,
                         Street = location.Street,
                         House = location.House,
                         Floor = location.Floor,
@@ -68,6 +117,8 @@ namespace VisumCRM.Client.Wpf.Internals
                 GetCountries();
                 GetPostalzones();
                 GetLocations();
+                GetBranches();
+                GetTargetgroups();
                 GetCompanies();
                 GetContactpersons();
             }
@@ -94,6 +145,23 @@ namespace VisumCRM.Client.Wpf.Internals
             {
                 LocationCollection = App.Repositories.LocationRepository.GetAll();
                 App.EventHelper.RaiseLocationCollectionChangedEvent();
+            }
+        }
+        public void GetBranches()
+        {
+            using (new Internals.WorkhandlerContainer("GetBranches"))
+            {
+                BrancheCollection = App.Repositories.BrancheRepository.GetAll();
+                App.EventHelper.RaiseBrancheCollectionChangedEvent();
+            }
+        }
+
+        public void GetTargetgroups()
+        {
+            using (new Internals.WorkhandlerContainer("GetTargetgroups"))
+            {
+                TargetgroupCollection = App.Repositories.TargetgroupRepossitory.GetAll();
+                App.EventHelper.RaiseTargetgroupCollectionChangedEvent();
             }
         }
         public void GetCompanies()
@@ -133,11 +201,60 @@ namespace VisumCRM.Client.Wpf.Internals
             App.Repositories.ContactpersonRepository.ContactpersonCreated += ContactpersonRepository_ContactpersonCreated;
             App.Repositories.ContactpersonRepository.ContactpersonDeleted += ContactpersonRepository_ContactpersonDeleted;
             App.Repositories.ContactpersonRepository.ContactpersonUpdated += ContactpersonRepository_ContactpersonUpdated;
+            App.Repositories.BrancheRepository.BrancheUpdate += BrancheRepository_BrancheUpdate;
+            App.Repositories.BrancheRepository.BrancheCreated += BrancheRepository_BrancheCreated;
+            App.Repositories.BrancheRepository.BrancheDelete += BrancheRepository_BrancheDelete;
+            App.Repositories.TargetgroupRepossitory.TargetgroupCreated += TargetgroupRepossitory_TargetgroupCreated;
+            App.Repositories.TargetgroupRepossitory.TargetgroupDeleted += TargetgroupRepossitory_TargetgroupDeleted;
+            App.Repositories.TargetgroupRepossitory.TargetgroupUpdated += TargetgroupRepossitory_TargetgroupUpdated;
+
             App.EventHelper.CountryCollectionChanged += EventHelper_CountryCollectionChanged;
             App.EventHelper.PostalzoneColloectionChanged += EventHelper_PostalzoneColloectionChanged;
             App.EventHelper.LocationCollectionChanged += EventHelper_LocationCollectionChanged;
             App.EventHelper.CompanyCollectionChanged += EventHelper_CompanyCollectionChanged;
             App.EventHelper.ContactpersonCollectionChanged += EventHelper_ContactpersonCollectionChanged;
+            App.EventHelper.BrancheCollectionChanged += EventHelper_BrancheCollectionChanged;
+            App.EventHelper.TargetgroupCollectionChanged += EventHelper_TargetgroupCollectionChanged;
+        }
+
+        private void EventHelper_TargetgroupCollectionChanged(object? sender, EventArgs e)
+        {
+            BuildTargetgroupModel();
+        }
+
+        private void EventHelper_BrancheCollectionChanged(object? sender, EventArgs e)
+        {
+            BuildBrancheModel();
+        }
+
+        private void TargetgroupRepossitory_TargetgroupUpdated(object sender, Repository.TargetgroupEventArgs e)
+        {
+
+        }
+
+        private void TargetgroupRepossitory_TargetgroupDeleted(object sender, Repository.TargetgroupEventArgs e)
+        {
+
+        }
+
+        private void TargetgroupRepossitory_TargetgroupCreated(object sender, Repository.TargetgroupEventArgs e)
+        {
+
+        }
+
+        private void BrancheRepository_BrancheDelete(object sender, Repository.BrancheEventArgs e)
+        {
+
+        }
+
+        private void BrancheRepository_BrancheCreated(object sender, Repository.BrancheEventArgs e)
+        {
+
+        }
+
+        private void BrancheRepository_BrancheUpdate(object sender, Repository.BrancheEventArgs e)
+        {
+
         }
 
         private void EventHelper_ContactpersonCollectionChanged(object? sender, EventArgs e)
