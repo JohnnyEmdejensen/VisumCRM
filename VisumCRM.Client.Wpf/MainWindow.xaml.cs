@@ -179,5 +179,10 @@ namespace VisumCRM.Client.Wpf
                 }
             }
         }
+
+        private void mnuCreateCompany_Click(object sender, RoutedEventArgs e)
+        {
+            App.DialogHelper.ShowCompany(new Entity.Company());
+        }
     }
 }

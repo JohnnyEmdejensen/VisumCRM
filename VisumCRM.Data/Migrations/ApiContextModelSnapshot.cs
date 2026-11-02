@@ -71,6 +71,9 @@ namespace VisumCRM.Data.Migrations
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");
 
+                    b.Property<long>("SalespersonId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Taxnumber")
                         .IsRequired()
                         .HasMaxLength(24)

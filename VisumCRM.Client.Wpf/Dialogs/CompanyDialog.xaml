@@ -1,0 +1,309 @@
+﻿<Window x:Class="VisumCRM.Client.Wpf.Dialogs.CompanyDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VisumCRM.Client.Wpf.Dialogs"
+        mc:Ignorable="d"
+        Tag="Company" ResizeMode="CanResizeWithGrip" MinHeight="600" Height="600" MinWidth="800" Width="800" WindowStyle="None" AllowsTransparency="True" Background="Transparent" Icon="/Images/factory_48.png">
+    <Border CornerRadius="16" BorderThickness="3" BorderBrush="{DynamicResource dialog.bordercolor}" Background="{DynamicResource dialog.background}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="3"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="3"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="3"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="3"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="8"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="txtTitle" MouseLeftButtonDown="txtTitle_MouseLeftButtonDown" Grid.Column="0" Style="{DynamicResource dialog.titlebar.text}" Text="{DynamicResource company.header.title}" VerticalAlignment="Center"></TextBlock>
+                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Image x:Name="imgMin" MouseLeftButtonDown="imgMin_MouseLeftButtonDown" Source="/Images/minimize.png" Cursor="Hand"></Image>
+                    <Label Width="8" Visibility="Collapsed"></Label>
+                    <Image x:Name="imgMax" MouseLeftButtonDown="imgMax_MouseLeftButtonDown" Source="/Images/maximize.png" Cursor="Hand" Visibility="Collapsed"></Image>
+                    <Image x:Name="imgRes" MouseLeftButtonDown="imgRes_MouseLeftButtonDown" Source="/Images/restore.png" Cursor="Hand" Visibility="Collapsed"></Image>
+                    <Label Width="8"></Label>
+                    <Image x:Name="imgCls" MouseLeftButtonDown="imgCls_MouseLeftButtonDown" Source="/Images/close.png" Cursor="Hand"></Image>
+                    <Label Width="8"></Label>
+                </StackPanel>
+            </Grid>
+            <Label Grid.Row="1" Background="{DynamicResource dialog.bordercolor}"></Label>
+            <Grid Grid.Row="2" Background="{DynamicResource dialog.top.information.background}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="60"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+
+                </Grid>
+                <Canvas Grid.Column="2" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Canvas.Left>0</Canvas.Left>
+                    <Canvas.Top>0</Canvas.Top>
+                    <Image x:Name="imgDialog" Source="/Images/factory_48.png" Width="48" Height="48" Stretch="Fill" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                    <Image x:Name="imgDialogState" Source="/Images/add_24.png" Width="24" Height="24" Stretch="Fill" Canvas.Left="0" Canvas.Top="0" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                </Canvas>
+            </Grid>
+            <Label Grid.Row="3" Background="{DynamicResource dialog.bordercolor}"></Label>
+            <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center">
+                <Label Width="8"></Label>
+                <Button x:Name="btnAdd" Click="btnAdd_Click" Style="{StaticResource ToolbarButton}" IsEnabled="False">
+                    <Image Source="/Images/add_24.png" Cursor="Hand"></Image>
+                </Button>
+                <Label Width="8"></Label>
+                <Button x:Name="btnSave" Click="btnSave_Click" Style="{StaticResource ToolbarButton}" IsEnabled="False">
+                    <Image Source="/Images/disk_blue_24.png" Cursor="Hand"></Image>
+                </Button>
+                <Label Width="8"></Label>
+                <Button x:Name="btnSaveClose" Click="btnSaveClose_Click" Style="{StaticResource ToolbarButton}" IsEnabled="False">
+                    <Image Source="/Images/disk_green_24.png" Cursor="Hand"></Image>
+                </Button>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="2"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8"></ColumnDefinition>
+                        <ColumnDefinition Width="2"></ColumnDefinition>
+                        <ColumnDefinition Width="8"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="1" Grid.Row="1" Background="{DynamicResource dialog.bordercolor}"></Label>
+                </Grid>
+                <Button x:Name="btnDelete" Click="btnDelete_Click" Style="{StaticResource ToolbarButton}" IsEnabled="False">
+                    <Image Source="/Images/delete_24.png" Cursor="Hand"></Image>
+                </Button>
+            </StackPanel>
+            <Label Grid.Row="5" Background="{DynamicResource dialog.bordercolor}"></Label>
+            <Grid Grid.Row="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="4"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Margin="8 8 4 8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="36"></RowDefinition>
+                        <RowDefinition Height="8"></RowDefinition>
+                        <RowDefinition Height="36"></RowDefinition>
+                        <RowDefinition Height="8"></RowDefinition>
+                        <RowDefinition Height="36"></RowDefinition>
+                        <RowDefinition Height="8"></RowDefinition>
+                        <RowDefinition Height="36"></RowDefinition>
+                        <RowDefinition Height="8"></RowDefinition>
+                        <RowDefinition Height="36"></RowDefinition>
+                        <RowDefinition Height="8"></RowDefinition>
+                        <RowDefinition Height="36"></RowDefinition>
+                        <RowDefinition Height="8"></RowDefinition>
+                        <RowDefinition Height="36"></RowDefinition>
+                        <RowDefinition Height="8"></RowDefinition>
+                        <RowDefinition Height="36"></RowDefinition>
+                        <RowDefinition Height="8"></RowDefinition>
+                        <RowDefinition Height="36"></RowDefinition>
+                        <RowDefinition Height="8"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="8"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="16"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Content="{DynamicResource company.header.number}" Style="{StaticResource HeaderLabel}"></Label>
+                            <TextBox x:Name="txtNumber" Grid.Row="1" Text="{Binding Number}" MaxLength="24"></TextBox>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="16"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Content="{DynamicResource company.header.taxnumber}" Style="{StaticResource HeaderLabel}"></Label>
+                            <TextBox Grid.Row="1" Text="{Binding Taxnumber}" MaxLength="24"></TextBox>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="16"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Content="{DynamicResource company.header.name}" Style="{StaticResource HeaderLabel}"></Label>
+                        <TextBox Grid.Row="1" Text="{Binding Name}" MaxLength="24"></TextBox>
+                    </Grid>
+                    <Grid Grid.Row="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="16"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Content="{DynamicResource company.header.nickname}" Style="{StaticResource HeaderLabel}"></Label>
+                        <TextBox Grid.Row="1" Text="{Binding Nickname}" MaxLength="24"></TextBox>
+                    </Grid>
+
+                    <Grid Grid.Row="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="8"></ColumnDefinition>
+                            <ColumnDefinition Width="56"></ColumnDefinition>
+                            <ColumnDefinition Width="8"></ColumnDefinition>
+                            <ColumnDefinition Width="48"></ColumnDefinition>
+                            <ColumnDefinition Width="8"></ColumnDefinition>
+                            <ColumnDefinition Width="48"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="16"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Content="{DynamicResource user.header.street}" Style="{StaticResource HeaderLabel}"></Label>
+                            <TextBox x:Name="txtStreet" Grid.Row="1" MaxLength="128" ></TextBox>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="16"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Content="{DynamicResource user.header.house}" Style="{StaticResource HeaderLabel}"></Label>
+                            <TextBox x:Name="txtHouse" Grid.Row="1" MaxLength="16" ></TextBox>
+                        </Grid>
+                        <Grid Grid.Column="4">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="16"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Content="{DynamicResource user.header.floor}" Style="{StaticResource HeaderLabel}"></Label>
+                            <TextBox x:Name="txtFloor" Grid.Row="1" MaxLength="8" ></TextBox>
+                        </Grid>
+                        <Grid Grid.Column="6">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="16"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Content="{DynamicResource user.header.door}" Style="{StaticResource HeaderLabel}"></Label>
+                            <TextBox x:Name="txtDoor" Grid.Row="1" MaxLength="8" ></TextBox>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="64"></ColumnDefinition>
+                            <ColumnDefinition Width="8"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="16"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Content="{DynamicResource user.header.zipcode}" Style="{StaticResource HeaderLabel}"></Label>
+                            <TextBox x:Name="txtZipcode" Grid.Row="1" MaxLength="24" ></TextBox>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="16"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Content="{DynamicResource user.header.city}" Style="{StaticResource HeaderLabel}"></Label>
+                            <TextBox x:Name="txtCity" Grid.Row="1" MaxLength="128" ></TextBox>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="16"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Content="{DynamicResource user.header.country}" Style="{StaticResource HeaderLabel}"></Label>
+                        <ComboBox x:Name="cboCountry" Grid.Row="1"></ComboBox>
+                    </Grid>
+
+                    <Grid Grid.Row="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="8"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="16"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Content="{DynamicResource company.header.phone}" Style="{StaticResource HeaderLabel}"></Label>
+                            <TextBox Grid.Row="1" Text="{Binding Phone}" MaxLength="16"></TextBox>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="16"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Content="{DynamicResource company.header.phone2}" Style="{StaticResource HeaderLabel}"></Label>
+                            <TextBox Grid.Row="1" Text="{Binding Phone2}" MaxLength="16"></TextBox>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="14">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="16"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Content="{DynamicResource company.header.email}" Style="{StaticResource HeaderLabel}"></Label>
+                        <TextBox Grid.Row="1" Text="{Binding Nickname}" MaxLength="512"></TextBox>
+                    </Grid>
+                    <Grid Grid.Row="16">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="16"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Content="{DynamicResource company.header.website}" Style="{StaticResource HeaderLabel}"></Label>
+                        <TextBox Grid.Row="1" Text="{Binding Nickname}" MaxLength="1024"></TextBox>
+                    </Grid>
+                </Grid>
+                <GridSplitter Grid.Column="1"></GridSplitter>
+                <TabControl Grid.Column="2">
+                    <TabItem Header="{DynamicResource company.tab.header.company}">
+                        <Grid Margin="4 8 8 8">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="36"></RowDefinition>
+                                <RowDefinition Height="8"></RowDefinition>
+                                <RowDefinition Height="36"></RowDefinition>
+                                <RowDefinition Height="8"></RowDefinition>
+                                <RowDefinition Height="36"></RowDefinition>
+                                <RowDefinition Height="8"></RowDefinition>
+                                <RowDefinition Height="36"></RowDefinition>
+                                <RowDefinition Height="8"></RowDefinition>
+                                <RowDefinition Height="36"></RowDefinition>
+                                <RowDefinition Height="8"></RowDefinition>
+                                <RowDefinition Height="36"></RowDefinition>
+                                <RowDefinition Height="8"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="16"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Label Content="{DynamicResource company.header.salesperson}" Style="{StaticResource HeaderLabel}"></Label>
+                                <ComboBox Grid.Row="1" x:Name="cboSalespersons"></ComboBox>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="{DynamicResource company.tab.header.logos}"></TabItem>
+                    <TabItem Header="{DynamicResource company.tab.header.log}"></TabItem>
+                </TabControl>
+            </Grid>
+            <Label Grid.Row="7" Background="{DynamicResource dialog.bordercolor}"></Label>
+            <StackPanel Grid.Row="8" Orientation="Horizontal" VerticalAlignment="Center">
+                
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

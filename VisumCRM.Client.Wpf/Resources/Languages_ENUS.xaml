@@ -48,6 +48,21 @@
     <system:String x:Key="user.log.column.header.occurrence">Occurrence</system:String>
     <system:String x:Key="user.log.column.header.message">Message</system:String>
 
+    <system:String x:Key="company.header.title">Company Informations</system:String>
+    <system:String x:Key="company.tab.header.company">Company</system:String>
+    <system:String x:Key="company.tab.header.logos">Logos</system:String>
+    <system:String x:Key="company.tab.header.log">Log</system:String>
+    <system:String x:Key="company.header.number">NUMBER</system:String>
+    <system:String x:Key="company.header.taxnumber">TAXNUMBER</system:String>
+    <system:String x:Key="company.header.name">NAME</system:String>
+    <system:String x:Key="company.header.nickname">NICKNAME</system:String>
+    <system:String x:Key="company.header.phone">PHONE</system:String>
+    <system:String x:Key="company.header.phone2">PHONE</system:String>
+    <system:String x:Key="company.header.email">EMAIL</system:String>
+    <system:String x:Key="company.header.website">WEBSITE</system:String>
+    <system:String x:Key="company.header.salesperson">SALESPERSON</system:String>
+
+
     <system:String x:Key="text.translate.floor">floor</system:String>
 
     <system:String x:Key="messagebox.message.nousersexists">First, create a new user.|The user should have highest privileges (9).</system:String>

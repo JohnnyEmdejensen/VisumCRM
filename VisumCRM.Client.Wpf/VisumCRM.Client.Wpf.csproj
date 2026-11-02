@@ -71,6 +71,7 @@
     <None Remove="Images\factory_24.png" />
     <None Remove="Images\factory_32.png" />
     <None Remove="Images\factory_48.png" />
+    <None Remove="Images\factory_add_48.png" />
     <None Remove="Images\factory_new_16.png" />
     <None Remove="Images\factory_new_32.png" />
     <None Remove="Images\factory_view_32.png" />
@@ -197,6 +198,7 @@
     <Resource Include="Images\factory_24.png" />
     <Resource Include="Images\factory_32.png" />
     <Resource Include="Images\factory_48.png" />
+    <Resource Include="Images\factory_add_48.png" />
     <Resource Include="Images\factory_new_16.png" />
     <Resource Include="Images\factory_new_32.png" />
     <Resource Include="Images\factory_view_32.png" />

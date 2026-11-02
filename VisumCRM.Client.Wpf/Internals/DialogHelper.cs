@@ -6,6 +6,14 @@ namespace VisumCRM.Client.Wpf.Internals
 {
     public class DialogHelper
     {
+        public void ShowCompany(Entity.Company? Company)
+        {
+            Dialogs.CompanyDialog frm = new Dialogs.CompanyDialog
+            {
+                DataContext = Company,
+            };
+            frm.Show();
+        }
         public void ShowAuthenticate()
         {
             Dialogs.AuthenticateDialog frm = new Dialogs.AuthenticateDialog();
