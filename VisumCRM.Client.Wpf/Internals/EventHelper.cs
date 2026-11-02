@@ -10,12 +10,36 @@ namespace VisumCRM.Client.Wpf.Internals
 
         public event DefaultHandler? AuthenticationSuccess;
         public event DefaultHandler? AuthenticationCancled;
+        public event DefaultHandler? CountryCollectionChanged;
+        public event DefaultHandler? PostalzoneColloectionChanged;
+        public event DefaultHandler? LocationCollectionChanged;
+        public event DefaultHandler? CompanyCollectionChanged;
+        public event DefaultHandler? ContactpersonCollectionChanged;
 
+        public void RaiseContactpersonCollectionChangedEvent()
+        {
+            ContactpersonCollectionChanged?.Invoke(this, EventArgs.Empty);
+        }
+        public void RaiseCompanyCollectionChangedEvent()
+        {
+            CompanyCollectionChanged?.Invoke(this, EventArgs.Empty);
+        }
+        public void RaiseLocationCollectionChangedEvent()
+        {
+            LocationCollectionChanged?.Invoke(this, EventArgs.Empty);
+        }
+        public void RaisePostalzoneColloectionChangedEvent()
+        {
+            PostalzoneColloectionChanged?.Invoke(this, EventArgs.Empty);
+        }
+        public void RaiseCountryCollectionChangedEvent()
+        {
+            CountryCollectionChanged?.Invoke(this, EventArgs.Empty);
+        }
         public void RaiseAuthenticationSuccess()
         {
-            AuthenticationSuccess?.Invoke( this, EventArgs.Empty);
-        }   
-
+            AuthenticationSuccess?.Invoke(this, EventArgs.Empty);
+        }
         public void RaiseAuthenticationCancled()
         {
             AuthenticationCancled?.Invoke(this, EventArgs.Empty);

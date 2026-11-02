@@ -32,35 +32,40 @@ namespace VisumCRM.Client.Wpf.Internals
         {
             using (new Internals.WorkhandlerContainer("GetCountries"))
             {
-                var countries = App.Repositories.CountryRepository.GetAll();
+                CountryCollection = App.Repositories.CountryRepository.GetAll();
+                App.EventHelper.RaiseCountryCollectionChangedEvent();
             }
         }
         public void GetPostalzones()
         {
             using (new Internals.WorkhandlerContainer("GetPostalzones"))
             {
-                var postalzones = App.Repositories.PostalzoneRepository.GetAll();
+                PostalzoneCollection = App.Repositories.PostalzoneRepository.GetAll();
+                App.EventHelper.RaisePostalzoneColloectionChangedEvent();
             }
         }
         public void GetLocations()
         {
             using (new Internals.WorkhandlerContainer("GetLocations"))
             {
-                var loctions = App.Repositories.LocationRepository.GetAll();
+                LocationCollection = App.Repositories.LocationRepository.GetAll();
+                App.EventHelper.RaiseLocationCollectionChangedEvent();
             }
         }
         public void GetCompanies()
         {
             using (new Internals.WorkhandlerContainer("GetCompanies"))
             {
-                
+                CompanyCollection = App.Repositories.CompanyRepository.GetAll();
+                App.EventHelper.RaiseCompanyCollectionChangedEvent();
             }
         }
         public void GetContactpersons()
         {
             using (new Internals.WorkhandlerContainer("GetContactpersons"))
             {
-
+                ContactpersonCollection = App.Repositories.ContactpersonRepository.GetAll();
+                App.EventHelper.RaiseContactpersonCollectionChangedEvent();
             }
         }
 
@@ -81,6 +86,54 @@ namespace VisumCRM.Client.Wpf.Internals
             App.Repositories.CompanyRepository.CompanyCreated += CompanyRepository_CompanyCreated;
             App.Repositories.CompanyRepository.CompanyDeleted += CompanyRepository_CompanyDeleted;
             App.Repositories.CompanyRepository.CompanyUpdated += CompanyRepository_CompanyUpdated;
+            App.Repositories.ContactpersonRepository.ContactpersonCreated += ContactpersonRepository_ContactpersonCreated;
+            App.Repositories.ContactpersonRepository.ContactpersonDeleted += ContactpersonRepository_ContactpersonDeleted;
+            App.Repositories.ContactpersonRepository.ContactpersonUpdated += ContactpersonRepository_ContactpersonUpdated;
+            App.EventHelper.CountryCollectionChanged += EventHelper_CountryCollectionChanged;
+            App.EventHelper.PostalzoneColloectionChanged += EventHelper_PostalzoneColloectionChanged;
+            App.EventHelper.LocationCollectionChanged += EventHelper_LocationCollectionChanged;
+            App.EventHelper.CompanyCollectionChanged += EventHelper_CompanyCollectionChanged;
+            App.EventHelper.ContactpersonCollectionChanged += EventHelper_ContactpersonCollectionChanged;
+        }
+
+        private void EventHelper_ContactpersonCollectionChanged(object? sender, EventArgs e)
+        {
+
+        }
+
+        private void EventHelper_CompanyCollectionChanged(object? sender, EventArgs e)
+        {
+
+        }
+
+        private void EventHelper_LocationCollectionChanged(object? sender, EventArgs e)
+        {
+
+        }
+
+        private void EventHelper_PostalzoneColloectionChanged(object? sender, EventArgs e)
+        {
+
+        }
+
+        private void EventHelper_CountryCollectionChanged(object? sender, EventArgs e)
+        {
+
+        }
+
+        private void ContactpersonRepository_ContactpersonUpdated(object sender, Repository.ContactpersonEventArgs e)
+        {
+
+        }
+
+        private void ContactpersonRepository_ContactpersonDeleted(object sender, Repository.ContactpersonEventArgs e)
+        {
+
+        }
+
+        private void ContactpersonRepository_ContactpersonCreated(object sender, Repository.ContactpersonEventArgs e)
+        {
+
         }
 
         private void CompanyRepository_CompanyUpdated(object sender, Repository.CompanyEventArgs e)
