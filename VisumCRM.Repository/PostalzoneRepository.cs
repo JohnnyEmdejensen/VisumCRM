@@ -7,6 +7,11 @@ namespace VisumCRM.Repository
 {
     public class PostalzoneRepository
     {
+        public delegate void PostalzoneEventHandler(object sender, PostalzoneEventArgs e);
+        public event PostalzoneEventHandler? PostalzoneCreated;
+        public event PostalzoneEventHandler? PostalzoneUpdated;
+        public event PostalzoneEventHandler? PostalzoneDeleted;
+
         private Data.ApiContext _context;
         private Guid _license;
         public PostalzoneRepository(ApiContext Context, Guid license)
@@ -43,6 +48,7 @@ namespace VisumCRM.Repository
             Source.LicenseKey = _license;
             _context.Postalzones.Add(Source);
             _context.SaveChanges();
+            PostalzoneCreated?.Invoke(this, new PostalzoneEventArgs(Source));
             return Source;
         }
 
@@ -56,6 +62,7 @@ namespace VisumCRM.Repository
             record.State = Source.State;
             record.Zipcode = Source.Zipcode;
             _context.SaveChanges();
+            PostalzoneUpdated?.Invoke(this, new PostalzoneEventArgs(record));
             return record;
         }
         public Entity.Postalzone? Delete(long Id)
@@ -64,7 +71,17 @@ namespace VisumCRM.Repository
             if (_context == null || record == null) return null;
             record.IsDeleted = true;
             _context.SaveChanges();
+            PostalzoneDeleted?.Invoke(this, new PostalzoneEventArgs(record));
             return record;
+        }
+    }
+
+    public class PostalzoneEventArgs
+    {
+        public Entity.Postalzone? Postalzone { get; set; }
+        public PostalzoneEventArgs(Entity.Postalzone? postalzone)
+        {
+            Postalzone = postalzone;
         }
     }
 }

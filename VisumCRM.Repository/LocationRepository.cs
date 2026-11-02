@@ -7,6 +7,10 @@ namespace VisumCRM.Repository
 {
     public class LocationRepository
     {
+        public delegate void LocationEventHandler(object sender, LocationEventArgs e);
+        public event LocationEventHandler? LocationCreated;
+        public event LocationEventHandler? LocationUpdated;
+        public event LocationEventHandler? LocationDeleted;
         private Data.ApiContext _context;
         private Guid _license;
         public LocationRepository(ApiContext Context, Guid license)
@@ -36,6 +40,7 @@ namespace VisumCRM.Repository
             Source.LicenseKey = _license;
             _context.Locations.Add(Source);
             _context.SaveChanges();
+            LocationCreated?.Invoke(this, new LocationEventArgs(Source));
             return Source;
         }
         public Entity.Location? Update(Entity.Location? Source)
@@ -51,6 +56,7 @@ namespace VisumCRM.Repository
             record.PostalzoneId = Source.PostalzoneId;
             record.Street = Source.Street;
             _context.SaveChanges();
+            LocationUpdated?.Invoke(this, new LocationEventArgs(record));
             return record;
         }
         public Entity.Location? Delete(long Id)
@@ -59,7 +65,17 @@ namespace VisumCRM.Repository
             if (_context == null || record == null) return null;
             record.IsDeleted = true;
             _context.SaveChanges();
+            LocationDeleted?.Invoke(this, new LocationEventArgs(record));
             return record;
+        }
+    }
+
+    public class LocationEventArgs
+    {
+        public Entity.Location? Location { get; set; }
+        public LocationEventArgs(Entity.Location? location)
+        {
+            Location = location;
         }
     }
 }

@@ -9,6 +9,11 @@ namespace VisumCRM.Repository
     {
         private Data.ApiContext _context;
         private Guid _license;
+        public delegate void CountryEventHandler(object sender, CountryEventArgs e);
+        public event CountryEventHandler? CountryCreated;
+        public event CountryEventHandler? CountryUpdated;
+        public event CountryEventHandler? CountryDeleted;
+
         public CountryRepository(ApiContext Context, Guid license)
         {
             _context = Context;
@@ -37,6 +42,7 @@ namespace VisumCRM.Repository
             Source.LicenseKey = _license;
             _context.Countries.Add(Source);
             _context.SaveChanges();
+            CountryCreated?.Invoke(this, new CountryEventArgs(Source));
             return Source;
         }
         public Entity.Country? Update(Entity.Country? Source)
@@ -49,6 +55,7 @@ namespace VisumCRM.Repository
             record.Name = Source.Name;
             record.Number = Source.Number;
             _context.SaveChanges();
+            CountryUpdated?.Invoke(this, new CountryEventArgs(record));
             return record;
         }
         public Entity.Country? Delete(long Id)
@@ -57,7 +64,17 @@ namespace VisumCRM.Repository
             if (_context == null || record == null) return null;
             record.IsDeleted = true;
             _context.SaveChanges();
+            CountryDeleted?.Invoke(this, new CountryEventArgs(record));
             return record;
+        }
+    }
+
+    public class CountryEventArgs
+    {
+        public Entity.Country? Country { get; set; }
+        public CountryEventArgs(Entity.Country? country)
+        {
+            Country = country;
         }
     }
 }

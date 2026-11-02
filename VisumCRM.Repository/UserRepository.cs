@@ -7,6 +7,11 @@ namespace VisumCRM.Repository
 {
     public class UserRepository
     {
+        public delegate void UserEventHandler(object sender, UserEventArgs e);
+        public event UserEventHandler? UserCreated;
+        public event UserEventHandler? UserUpdated;
+        public event UserEventHandler? UserDeleted;
+
         private Data.ApiContext _context;
         private Guid _license;
         public UserRepository(ApiContext Context, Guid license)
@@ -36,6 +41,7 @@ namespace VisumCRM.Repository
             Source.LicenseKey = _license;
             _context.Users.Add(Source);
             _context.SaveChanges();
+            UserCreated?.Invoke(this, new UserEventArgs(Source));
             return Source;
         }
         public Entity.User? Update(Entity.User? Source)
@@ -59,6 +65,7 @@ namespace VisumCRM.Repository
             record.SecurityLevel = Source.SecurityLevel;
             record.IsInactive = Source.IsInactive;
             _context.SaveChanges();
+            UserUpdated?.Invoke(this, new UserEventArgs(record));
             return record;
         }
         public Entity.User? Delete(long Id)
@@ -67,7 +74,17 @@ namespace VisumCRM.Repository
             if (_context == null || record == null) return null;
             record.IsDeleted = true;
             _context.SaveChanges();
+            UserDeleted?.Invoke(this, new UserEventArgs(record));
             return record;
+        }
+    }
+
+    public class UserEventArgs
+    {
+        public Entity.User? User { get; set; }
+        public UserEventArgs(Entity.User? user)
+        {
+            User = user;
         }
     }
 }
