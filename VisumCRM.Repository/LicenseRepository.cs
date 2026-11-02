@@ -52,7 +52,7 @@ namespace VisumCRM.Repository
             record.Taxnumber = Source.Taxnumber;
             _context.SaveChanges();
             LicenseUpdated?.Invoke(this, new LicenseEventArgs(record));
-            return record);
+            return record;
         }
     }
     public class LicenseEventArgs

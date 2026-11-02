@@ -67,7 +67,9 @@ namespace VisumCRM.Client.Wpf
                     lic.LocationId = locationid.Value;
                 lic = App.Repositories.LicenseRepository.Create(lic);
                 if (lic != null)
+                {
                     App.Repositories = new Repository.Repositories(lic.LicenseKey);
+                }
                 Entity.User? usr = new Entity.User()
                 {
                     Firstname = "Master",

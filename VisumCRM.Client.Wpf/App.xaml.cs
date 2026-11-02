@@ -18,9 +18,11 @@ public partial class App : Application
         public static ToolsHelper ToolsHelper = new();
         public static DialogHelper DialogHelper = new();
         public static Repository.Repositories Repositories = new(Guid.Empty);
+        public static Internals.DataShare DataShare = new();
 
         public App()
         {
+            DataShare.ResumeEvents();
             if (Clipboard.ContainsText())
             {
                 var firsttimeLicense = Clipboard.GetText();

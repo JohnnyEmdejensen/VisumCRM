@@ -17,6 +17,8 @@ namespace VisumCRM.Repository
             PostalzoneRepository = new PostalzoneRepository(_context, LicenseKey);
             LocationRepository = new LocationRepository(_context, LicenseKey);
             LicenseRepository = new LicenseRepository(_context, LicenseKey);
+            CompanyRepository = new CompanyRepository(_context, LicenseKey);
+            ContactpersonRepository = new ContactpersonRepository(_context, LicenseKey);
         }
 
         public UserRepository UserRepository { get; private set; }
@@ -24,5 +26,7 @@ namespace VisumCRM.Repository
         public PostalzoneRepository PostalzoneRepository { get; private set; }
         public LocationRepository LocationRepository { get; private set; }
         public LicenseRepository LicenseRepository { get; private set; }
+        public CompanyRepository CompanyRepository { get; private set; }
+        public ContactpersonRepository ContactpersonRepository { get; private set; }
     }
 }
