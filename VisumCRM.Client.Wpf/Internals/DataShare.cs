@@ -11,12 +11,56 @@ namespace VisumCRM.Client.Wpf.Internals
         public List<Entity.Country>? CountryCollection { get; set; }
         public List<Entity.Postalzone>? PostalzoneCollection { get; set; }
         public List<Entity.Location>? LocationCollection { get; set; }
+        public List<Models.LocationModel>? LocationModelCollection { get; set; }
 
         public DataShare()
         {
 
         }
 
+        private void BuildLocationModel()
+        {
+            if (CountryCollection == null || CountryCollection.Count == 0) return;
+            if (PostalzoneCollection == null || PostalzoneCollection.Count == 0) return;
+            if (LocationCollection == null || LocationCollection.Count == 0) return;
+            using (new Internals.WorkhandlerContainer("BuildLocationModel"))
+            {
+                LocationModelCollection = new();
+                foreach (var location in LocationCollection)
+                {
+                    Models.LocationModel model = new Models.LocationModel
+                    {
+                        Street = location.Street,
+                        House = location.House,
+                        Floor = location.Floor,
+                        Door = location.Door,
+                        PostalzoneId = location.PostalzoneId,
+                    };
+                    var postalzone = PostalzoneCollection.FirstOrDefault(x => x.Id == location.PostalzoneId);
+                    if (postalzone != null)
+                    {
+                        model.City = postalzone.City;
+                        model.Zipcode = postalzone.Zipcode;
+                        model.State = postalzone.State;
+                        model.CountryId = postalzone.CountryId;
+                        var country = CountryCollection.FirstOrDefault(x => x.Id == postalzone.CountryId);
+                        if (country != null)
+                        {
+                            model.CountryName = country.Name;
+                            model.CountryNumber = country.Number;
+                            model.CountryIsoCode = country.IsoCode;
+                        }
+                    }
+                    model.SetAddress();
+                    LocationModelCollection.Add(model);
+                }
+            }
+            if (LocationModelCollection != null && LocationModelCollection.Count > 0)
+            {
+                LocationModelCollection = LocationModelCollection.OrderBy(x => x.CountryName).ThenBy(x => x.Zipcode).ThenBy(x => x.Street).ThenBy(x => x.House).ToList();
+                App.EventHelper.RaiseLocationModelCollectionChangedEvent();
+            }
+        }
         public void GetAllData()
         {
             using (new Internals.WorkhandlerContainer("GetAllData"))
@@ -108,17 +152,17 @@ namespace VisumCRM.Client.Wpf.Internals
 
         private void EventHelper_LocationCollectionChanged(object? sender, EventArgs e)
         {
-
+            BuildLocationModel();
         }
 
         private void EventHelper_PostalzoneColloectionChanged(object? sender, EventArgs e)
         {
-
+            BuildLocationModel();
         }
 
         private void EventHelper_CountryCollectionChanged(object? sender, EventArgs e)
         {
-
+            BuildLocationModel();
         }
 
         private void ContactpersonRepository_ContactpersonUpdated(object sender, Repository.ContactpersonEventArgs e)

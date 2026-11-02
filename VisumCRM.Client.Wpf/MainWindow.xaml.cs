@@ -39,7 +39,7 @@ namespace VisumCRM.Client.Wpf
         {
             using (new Internals.WorkhandlerContainer("FetchAllData"))
             {
-
+                App.DataShare.GetAllData();
             }
         }
 

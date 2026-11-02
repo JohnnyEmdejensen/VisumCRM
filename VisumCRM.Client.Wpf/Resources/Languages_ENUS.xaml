@@ -48,6 +48,7 @@
     <system:String x:Key="user.log.column.header.occurrence">Occurrence</system:String>
     <system:String x:Key="user.log.column.header.message">Message</system:String>
 
+    <system:String x:Key="text.translate.floor">floor</system:String>
 
     <system:String x:Key="messagebox.message.nousersexists">First, create a new user.|The user should have highest privileges (9).</system:String>
     <system:String x:Key="messagebox.title.nousersexists">No users found.</system:String>
