@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace VisumCRM.Client.Wpf.Internals
@@ -17,6 +18,7 @@ namespace VisumCRM.Client.Wpf.Internals
         public List<Models.LocationModel>? LocationModelCollection { get; set; }
         public List<Models.KeyValueModel>? BrancheModelCollection { get; set; }
         public List<Models.KeyValueModel>? TargetgroupModelCollection { get; set; }
+        public List<Models.CompanyModel>? CompanyModelCollection { get; set; }
         
         public DataShare()
         {
@@ -64,6 +66,69 @@ namespace VisumCRM.Client.Wpf.Internals
                 if (TargetgroupModelCollection != null && TargetgroupModelCollection.Count > 0)
                 {
                     TargetgroupModelCollection = TargetgroupModelCollection.OrderBy(x => x.Value).ToList();
+                }
+            }
+        }
+        private void BuildCompanyModel()
+        {
+            if (CompanyCollection == null || CompanyCollection.Count == 0) return;
+
+            using (new Internals.WorkhandlerContainer("BuildCompanyModel"))
+            {
+                CompanyModelCollection = new();
+                foreach (var company in CompanyCollection)
+                {
+                    var c = new Models.CompanyModel
+                    {
+                        BrancheId = company.BrancheId,
+                        Email = company.Email,
+                        Id = company.Id,
+                        LocationId = company.LocationId,
+                        Logo = company.Logo,
+                        Name = company.Name,
+                        Nickname = company.Nickname,
+                        Phone = company.Phone,
+                        Number = company.Number,
+                        Phone2 = company.Phone2,
+                        SalespersonId = company.SalespersonId,
+                        TargetgroupId = company.TargetgroupId,
+                        Taxnumber = company.Taxnumber,
+                        Website = company.Website,                        
+                    };
+                    if (App.DataShare.LocationModelCollection != null)
+                    {
+                        var location = App.DataShare.LocationModelCollection.FirstOrDefault(x => x.Id == company.LocationId);
+                        if (location != null)
+                        {
+                            location.SetAddress();
+                            c.Address = location.Address;
+                            c.Zipcode = location.Zipcode;
+                            c.City = location.City;
+                            c.Country = location.CountryName;
+                        }
+                        CompanyModelCollection.Add(c);
+                    }
+                    if (App.DataShare.BrancheCollection != null && App.DataShare.BrancheCollection.Count > 0)
+                    {
+                        var branche = App.DataShare.BrancheCollection.FirstOrDefault(x => x.Id == company.BrancheId);
+                        if (branche != null)
+                        {
+                            c.Branche = branche.Value;
+                        }
+                    }
+                    if (App.DataShare.TargetgroupCollection != null && App.DataShare.TargetgroupCollection.Count > 0)
+                    {
+                        var targetgroup = App.DataShare.TargetgroupCollection.FirstOrDefault(x => x.Id == company.TargetgroupId);
+                        if (targetgroup != null)
+                        {
+                            c.Targetgroup = targetgroup.Value;
+                        }
+                    }
+                }
+                if (CompanyModelCollection != null && CompanyModelCollection.Count > 0)
+                {
+                    CompanyModelCollection = CompanyModelCollection.OrderBy(x => x.Name).ToList();
+                    App.EventHelper.RaiseCompanyModelCollectionChangedEvent();
                 }
             }
         }
@@ -280,7 +345,7 @@ namespace VisumCRM.Client.Wpf.Internals
 
         private void EventHelper_CompanyCollectionChanged(object? sender, EventArgs e)
         {
-
+            BuildCompanyModel();
         }
 
         private void EventHelper_LocationCollectionChanged(object? sender, EventArgs e)

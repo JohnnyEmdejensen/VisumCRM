@@ -14,6 +14,16 @@
     <system:String x:Key="desktop.relations.header.contactpersons">Contactpersons</system:String>
     <system:String x:Key="desktop.relations.header.activities">Activities</system:String>
 
+    <system:String x:Key="grid.companies.column.header.number">Number</system:String>
+    <system:String x:Key="grid.companies.column.header.name">Name</system:String>
+    <system:String x:Key="grid.companies.column.header.address">Address</system:String>
+    <system:String x:Key="grid.companies.column.header.zipcode">Zipcode</system:String>
+    <system:String x:Key="grid.companies.column.header.city">City</system:String>
+    <system:String x:Key="grid.companies.column.header.country">Country</system:String>
+    <system:String x:Key="grid.companies.column.header.phone">Phone</system:String>
+    <system:String x:Key="grid.companies.column.header.branche">Branche</system:String>
+    <system:String x:Key="grid.companies.column.header.targetgroup">Targetgroup</system:String>
+
     <system:String x:Key="authenticate.header.title">Authenticate</system:String>
     <system:String x:Key="authenticate.header.license">LICENSE</system:String>
     <system:String x:Key="authenticate.header.login">LOGIN</system:String>

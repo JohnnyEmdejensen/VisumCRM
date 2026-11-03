@@ -32,8 +32,11 @@ namespace VisumCRM.Client.Wpf
             Closing += MainWindow_Closing;
             App.EventHelper.AuthenticationCancled += EventHelper_AuthenticationCancled;
             App.EventHelper.AuthenticationSuccess += EventHelper_AuthenticationSuccess;
+            App.EventHelper.CompanyModelCollectionChanged += EventHelper_CompanyModelCollectionChanged;
+            dgCompanies.SizeChanged += DgCompanies_SizeChanged;
             _settings.Load();
         }
+
 
         private void FetchAllData() 
         {
@@ -185,6 +188,20 @@ namespace VisumCRM.Client.Wpf
         private void mnuCreateCompany_Click(object sender, RoutedEventArgs e)
         {
             App.DialogHelper.ShowCompany(new Entity.Company());
+        }
+        private void EventHelper_CompanyModelCollectionChanged(object? sender, EventArgs e)
+        {
+            using (new Internals.WorkhandlerContainer("EventHelper_CompanyModelCollectionChanged"))
+            {
+                dgCompanies.BeginInit();
+                dgCompanies.ItemsSource = App.DataShare.CompanyModelCollection;
+                dgCompanies.EndInit();
+            }
+        }
+        private void DgCompanies_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var width = dgCompanies.ActualWidth;
+            dgCompanies.Columns[2].Width = width - 100 - 120 - 54 - 120 - 120 - 80 - 80 - 80 - 32;
         }
     }
 }

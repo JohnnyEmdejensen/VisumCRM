@@ -146,9 +146,20 @@
 
                                         </StackPanel>
                                         <Label Grid.Row="2" Background="{DynamicResource desktop.bordercolor}"></Label>
-                                        <Grid Grid.Row="3">
-
-                                        </Grid>
+                                        <DataGrid x:Name="dgCompanies" Grid.Row="3">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Visibility="Collapsed"></DataGridTextColumn>
+                                                <DataGridTextColumn Width="100" Header="{DynamicResource grid.companies.column.header.number}" Binding="{Binding Number}"></DataGridTextColumn>
+                                                <DataGridTextColumn Header="{DynamicResource grid.companies.column.header.name}" Binding="{Binding Name}"></DataGridTextColumn>
+                                                <DataGridTextColumn Width="120" Header="{DynamicResource grid.companies.column.header.address}" Binding="{Binding Address}"></DataGridTextColumn>
+                                                <DataGridTextColumn Width="54" Header="{DynamicResource grid.companies.column.header.zipcode}" Binding="{Binding Zipcode}"></DataGridTextColumn>
+                                                <DataGridTextColumn Width="120" Header="{DynamicResource grid.companies.column.header.city}" Binding="{Binding City}"></DataGridTextColumn>
+                                                <DataGridTextColumn Width="120" Header="{DynamicResource grid.companies.column.header.country}" Binding="{Binding Country}"></DataGridTextColumn>
+                                                <DataGridTextColumn Width="80" Header="{DynamicResource grid.companies.column.header.phone}" Binding="{Binding Phone}"></DataGridTextColumn>
+                                                <DataGridTextColumn Width="80" Header="{DynamicResource grid.companies.column.header.branche}" Binding="{Binding Branche}"></DataGridTextColumn>
+                                                <DataGridTextColumn Width="80" Header="{DynamicResource grid.companies.column.header.targetgroup}" Binding="{Binding Targetgroup}"></DataGridTextColumn>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
                                         <Label Grid.Row="4" Background="{DynamicResource desktop.bordercolor}"></Label>
                                         <StackPanel Grid.Row="5" Orientation="Horizontal"></StackPanel>
                                     </Grid>

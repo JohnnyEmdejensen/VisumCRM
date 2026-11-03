@@ -41,8 +41,10 @@ namespace VisumCRM.Client.Wpf.Models
             }
             else
             {
-                a += App.Current.Resources["text.translate.floor"].ToString();
+                if (!string.IsNullOrEmpty(Floor))
+                    a += " " + App.Current.Resources["text.translate.floor"].ToString();
             }
+            Address = a;
         }
 
     }
