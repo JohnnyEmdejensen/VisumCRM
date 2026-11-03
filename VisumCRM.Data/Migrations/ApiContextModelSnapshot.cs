@@ -65,6 +65,9 @@ namespace VisumCRM.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<long>("BrancheId")
+                        .HasColumnType("bigint");
+
                     b.Property<long>("Created")
                         .HasColumnType("bigint");
 
@@ -107,6 +110,9 @@ namespace VisumCRM.Data.Migrations
                         .HasColumnType("nvarchar(16)");
 
                     b.Property<long>("SalespersonId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("TargetgroupId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Taxnumber")

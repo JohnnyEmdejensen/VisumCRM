@@ -154,6 +154,8 @@ namespace VisumCRM.Client.Wpf
             if (App.AppShare.CurrentUser != null)
             {
                 lblUser.Content = App.AppShare.CurrentUser.Fullname;
+                App.AppShare.CurrentDatabase = App.Repositories.Databasename;
+                lblDatabase.Content = App.AppShare.CurrentDatabase;
                 if (App.AppShare.CurrentUser.SecurityLevel == 999)
                 {
                     var allUsers = App.Repositories.UserRepository.GetAll();

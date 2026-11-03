@@ -18,7 +18,12 @@ namespace VisumCRM.Client.Wpf.Internals
         public event DefaultHandler? LocationModelCollectionChanged;
         public event DefaultHandler? BrancheCollectionChanged;
         public event DefaultHandler? TargetgroupCollectionChanged;
+        public event DefaultHandler? UserCollectionChanged;
 
+        public void RaiseUserCollectionChangedEvent()
+        {
+            UserCollectionChanged?.Invoke(this, EventArgs.Empty);
+        }
         public void RaiseTargetgroupCollectionChangedEvent()
         {
             TargetgroupCollectionChanged?.Invoke(this, EventArgs.Empty);

@@ -13,6 +13,7 @@ namespace VisumCRM.Client.Wpf.Internals
         public List<Entity.Location>? LocationCollection { get; set; }
         public List<Entity.Branche>? BrancheCollection { get; set; }
         public List<Entity.Targetgroup>? TargetgroupCollection { get; set; }
+        public List<Entity.User>? UserCollection { get; set; }
         public List<Models.LocationModel>? LocationModelCollection { get; set; }
         public List<Models.KeyValueModel>? BrancheModelCollection { get; set; }
         public List<Models.KeyValueModel>? TargetgroupModelCollection { get; set; }
@@ -117,6 +118,7 @@ namespace VisumCRM.Client.Wpf.Internals
                 GetCountries();
                 GetPostalzones();
                 GetLocations();
+                GetUsers();
                 GetBranches();
                 GetTargetgroups();
                 GetCompanies();
@@ -145,6 +147,14 @@ namespace VisumCRM.Client.Wpf.Internals
             {
                 LocationCollection = App.Repositories.LocationRepository.GetAll();
                 App.EventHelper.RaiseLocationCollectionChangedEvent();
+            }
+        }
+        public void GetUsers()
+        {
+            using (new Internals.WorkhandlerContainer("GetUsers"))
+            {
+                UserCollection = App.Repositories.UserRepository.GetAll();
+                App.EventHelper.RaiseUserCollectionChangedEvent();
             }
         }
         public void GetBranches()
@@ -215,6 +225,12 @@ namespace VisumCRM.Client.Wpf.Internals
             App.EventHelper.ContactpersonCollectionChanged += EventHelper_ContactpersonCollectionChanged;
             App.EventHelper.BrancheCollectionChanged += EventHelper_BrancheCollectionChanged;
             App.EventHelper.TargetgroupCollectionChanged += EventHelper_TargetgroupCollectionChanged;
+            App.EventHelper.UserCollectionChanged += EventHelper_UserCollectionChanged;
+        }
+
+        private void EventHelper_UserCollectionChanged(object? sender, EventArgs e)
+        {
+
         }
 
         private void EventHelper_TargetgroupCollectionChanged(object? sender, EventArgs e)

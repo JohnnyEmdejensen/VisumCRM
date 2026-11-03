@@ -256,7 +256,7 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <Label Content="{DynamicResource company.header.email}" Style="{StaticResource HeaderLabel}"></Label>
-                        <TextBox Grid.Row="1" Text="{Binding Nickname}" MaxLength="512"></TextBox>
+                        <TextBox Grid.Row="1" Text="{Binding Email}" MaxLength="512"></TextBox>
                     </Grid>
                     <Grid Grid.Row="16">
                         <Grid.RowDefinitions>
@@ -264,7 +264,7 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <Label Content="{DynamicResource company.header.website}" Style="{StaticResource HeaderLabel}"></Label>
-                        <TextBox Grid.Row="1" Text="{Binding Nickname}" MaxLength="1024"></TextBox>
+                        <TextBox Grid.Row="1" Text="{Binding Website}" MaxLength="1024"></TextBox>
                     </Grid>
                 </Grid>
                 <GridSplitter Grid.Column="1"></GridSplitter>
@@ -292,12 +292,97 @@
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <Label Content="{DynamicResource company.header.salesperson}" Style="{StaticResource HeaderLabel}"></Label>
-                                <ComboBox Grid.Row="1" x:Name="cboSalespersons"></ComboBox>
+                                <ComboBox Grid.Row="1" x:Name="cboSalespersons" SelectedValue="{Binding SalespersonId}"></ComboBox>
+                            </Grid>
+                            <Grid Grid.Row="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="16"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Label Content="{DynamicResource company.header.branches}" Style="{StaticResource HeaderLabel}"></Label>
+                                <ComboBox Grid.Row="1" x:Name="cboBranches" SelectedValue="{Binding BrancheId}"></ComboBox>
+                            </Grid>
+                            <Grid Grid.Row="4">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="16"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Label Content="{DynamicResource company.header.targetgroups}" Style="{StaticResource HeaderLabel}"></Label>
+                                <ComboBox Grid.Row="1" x:Name="cboTargetgroups" SelectedValue="{Binding TargetgroupId}"></ComboBox>
                             </Grid>
                         </Grid>
                     </TabItem>
-                    <TabItem Header="{DynamicResource company.tab.header.logos}"></TabItem>
-                    <TabItem Header="{DynamicResource company.tab.header.log}"></TabItem>
+                    <TabItem Header="{DynamicResource company.tab.header.logos}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25"></RowDefinition>
+                                <RowDefinition Height="3"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="3"></RowDefinition>
+                                <RowDefinition Height="64"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                
+                            </StackPanel>
+                            <Label Grid.Row="1" Background="{DynamicResource dialog.bordercolor}"></Label>
+                            <Grid Grid.Row="2">
+                                
+                            </Grid>
+                            <Label Grid.Row="3" Background="{DynamicResource dialog.bordercolor}"></Label>
+                            <Grid x:Name="grdLogosContainer" Grid.Row="4">
+                                
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="{DynamicResource company.tab.header.log}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Background="{DynamicResource dialog.bordercolor}"></Label>
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="36"></RowDefinition>
+                                    <RowDefinition Height="8"></RowDefinition>
+                                    <RowDefinition Height="16"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition Height="8"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition Width="8"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="16"></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Label Content="{DynamicResource company.log.header.lastactivity}" Style="{StaticResource HeaderLabel}"></Label>
+                                        <TextBox Grid.Row="1" x:Name="txtLastActivity"></TextBox>
+                                    </Grid>
+                                    <Grid Grid.Column="2">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="16"></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Label Content="{DynamicResource company.log.header.nextactivity}" Style="{StaticResource HeaderLabel}"></Label>
+                                        <TextBox Grid.Row="1" x:Name="txtNextActivity"></TextBox>
+                                    </Grid>
+                                </Grid>
+                                <Label Grid.Row="2" Content="{DynamicResource company.header.companylog}" Style="{StaticResource HeaderLabel}"></Label>
+                                <DataGrid x:Name="dgCompanyLog" Grid.Row="3">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Id" Binding="{Binding Id}" Visibility="Collapsed"></DataGridTextColumn>
+                                        <DataGridTextColumn Width="100" Header="{DynamicResource company.log.column.header.occurrence}" Binding="{Binding Occurrence}"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="{DynamicResource company.log.column.header.message}" Binding="{Binding Message}"></DataGridTextColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
                 </TabControl>
             </Grid>
             <Label Grid.Row="7" Background="{DynamicResource dialog.bordercolor}"></Label>

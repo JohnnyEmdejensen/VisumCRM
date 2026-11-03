@@ -81,6 +81,7 @@ namespace VisumCRM.Client.Wpf.Dialogs
             if (license != null)
             {
                 App.Repositories = new Repository.Repositories(license.LicenseKey);
+
                 var user = App.Repositories.UserRepository.GetByLogin(txtLogin.Text);
                 if (user != null)
                 {

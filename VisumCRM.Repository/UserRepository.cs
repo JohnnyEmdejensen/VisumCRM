@@ -35,6 +35,34 @@ namespace VisumCRM.Repository
             if (_context == null) return null;
             return _context.Users.Where(x => !x.IsDeleted && x.LicenseKey == _license && x.SecurityLevel != 999).ToList();
         }
+        public List<Entity.User>? GetAllSpecial()
+        {
+            if (_context == null) return null;
+            var records = _context.Users.Where(x => !x.IsDeleted && x.LicenseKey == _license).Select(c => new { c.Id, c.Firstname, c.Middlename, c.Surname, c.Birthday, c.Email, c.LastVisit, c.LocationId, c.Mobile, c.Phone, c.Picture, c.SecurityLevel, c.TimeUsed });
+
+            List<Entity.User> list = new();
+            foreach (var item in records)
+            {
+                Entity.User user = new Entity.User
+                {
+                    Id = item.Id,
+                    Birthday = item.Birthday,
+                    Email = item.Email,
+                    Firstname = item.Firstname,
+                    LastVisit = item.LastVisit,
+                    LocationId = item.LocationId,
+                    Middlename = item.Middlename,
+                    Mobile = item.Mobile,
+                    Phone = item.Phone,
+                    Picture = item.Picture,
+                    SecurityLevel = item.SecurityLevel,
+                    Surname = item.Surname,
+                    TimeUsed = item.TimeUsed
+                };
+                list.Add(user);
+            }
+            return list;
+        }
         public Entity.User? Create(Entity.User? Source)
         {
             if (_context == null || Source == null) return null;

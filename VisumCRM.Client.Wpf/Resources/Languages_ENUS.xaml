@@ -61,6 +61,13 @@
     <system:String x:Key="company.header.email">EMAIL</system:String>
     <system:String x:Key="company.header.website">WEBSITE</system:String>
     <system:String x:Key="company.header.salesperson">SALESPERSON</system:String>
+    <system:String x:Key="company.header.branches">BRANCHES</system:String>
+    <system:String x:Key="company.header.targetgroups">TARGETGROUPS</system:String>
+    <system:String x:Key="company.log.header.nextactivity">NEXT ACTIVITY</system:String>
+    <system:String x:Key="company.log.header.lastactivity">LAST ACTIVITY</system:String>
+    <system:String x:Key="company.header.companylog">COMPANY LOG</system:String>
+    <system:String x:Key="company.log.column.header.message">Message</system:String>
+    <system:String x:Key="company.log.column.header.occurrence">Occurrence</system:String>
 
 
     <system:String x:Key="text.translate.floor">floor</system:String>

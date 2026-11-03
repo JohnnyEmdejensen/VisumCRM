@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Controls;
 
 namespace VisumCRM.Client.Wpf.Internals
 {
@@ -59,7 +60,39 @@ namespace VisumCRM.Client.Wpf.Internals
             return result;
         }
 
-
+        public void FillSalespersonControl(ComboBox Ctrl)
+        {
+            Ctrl.BeginInit();
+            if (App.DataShare.UserCollection != null && App.DataShare.UserCollection.Count > 0)
+                Ctrl.ItemsSource = App.DataShare.UserCollection.OrderBy(x => x.Fullname).ToList();
+            else
+                Ctrl.ItemsSource = App.DataShare.UserCollection;
+            Ctrl.DisplayMemberPath = "Fullname";
+            Ctrl.SelectedValuePath = "Id";
+            Ctrl.EndInit();
+        }
+        public void FillCountryControl(ComboBox Ctrl)
+        {
+            Ctrl.BeginInit();
+            if (App.DataShare.CountryCollection != null && App.DataShare.CountryCollection.Count > 0)
+                Ctrl.ItemsSource = App.DataShare.CountryCollection.OrderBy(x => x.Name).ToList();
+            else
+                Ctrl.ItemsSource = App.DataShare.CountryCollection;
+            Ctrl.DisplayMemberPath = "Name";
+            Ctrl.SelectedValuePath = "Id";
+            Ctrl.EndInit();
+        }
+        public void FillTargetgroupControl(ComboBox Ctrl)
+        {
+            Ctrl.BeginInit();
+            if (App.DataShare.TargetgroupCollection != null && App.DataShare.TargetgroupCollection.Count > 0)
+                Ctrl.ItemsSource = App.DataShare.TargetgroupCollection.OrderBy(x => x.Value).ToList();
+            else
+                Ctrl.ItemsSource = App.DataShare.TargetgroupCollection;
+            Ctrl.DisplayMemberPath = "Value";
+            Ctrl.SelectedValuePath = "Id";
+            Ctrl.EndInit();
+        }
     }
 
 }
