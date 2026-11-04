@@ -320,17 +320,17 @@ namespace VisumCRM.Client.Wpf.Internals
 
         private void TargetgroupRepossitory_TargetgroupUpdated(object sender, Repository.TargetgroupEventArgs e)
         {
-
+            GetTargetgroups();
         }
 
         private void TargetgroupRepossitory_TargetgroupDeleted(object sender, Repository.TargetgroupEventArgs e)
         {
-
+            GetTargetgroups();
         }
 
         private void TargetgroupRepossitory_TargetgroupCreated(object sender, Repository.TargetgroupEventArgs e)
         {
-
+            GetTargetgroups();
         }
 
         private void BrancheRepository_BrancheDelete(object sender, Repository.BrancheEventArgs e)

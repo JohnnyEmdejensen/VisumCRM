@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.AccessControl;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using VisumCRM.Entity;
 
 namespace VisumCRM.Client.Wpf.Internals
 {
@@ -125,7 +127,28 @@ namespace VisumCRM.Client.Wpf.Internals
                 }
             }
         }
+        public long ConvertDatetimeToLong(DateTime value)
+        {
+            var str = string.Format("{0:0000}{1:00}{2:00}{3:00}{4:00}{5:00}", value.Year, value.Month, value.Day, value.Hour, value.Minute,value.Second);
+            return Convert.ToInt64(str);
+        }
 
+        public void LogWriter(int LogType, string Message, long RecordId)
+        {
+            if (App.AppShare.CurrentUser != null)
+            {
+                var log = new Entity.Workinglog
+                {
+                    LogType = LogType,
+                    LogTime = App.ToolsHelper.ConvertDatetimeToLong(DateTime.Now),
+                    RecordId = RecordId,
+                    Message = Message,
+                    UserId = App.AppShare.CurrentUser.Id
+                };
+                App.Repositories.WorkinglogRepository.Create(log);
+            }
+
+        }
     }
 
 }

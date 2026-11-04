@@ -34,6 +34,14 @@ namespace VisumCRM.Client.Wpf.Dialogs
             FillControls();
         }
 
+        private List<Entity.Branche>? ApplyFilter(List<Branche>? Branshes)
+        {
+            if (Branshes == null) return null;
+            if (!string.IsNullOrEmpty(txtFilter.Text))
+                return Branshes.Where(x => x.Key.ToLower().Contains(txtFilter.Text.ToLower()) || x.Value.ToLower().Contains(txtFilter.Text.ToLower())).ToList();
+            else
+                return Branshes;
+        }
         private void DoAdd()
         {
             _branche = new();
@@ -47,7 +55,26 @@ namespace VisumCRM.Client.Wpf.Dialogs
         }
         private void DoDelete()
         {
-
+            _branche = DataContext as Entity.Branche;
+            string? message = App.Current.Resources["messagebox.message.suretodeletethisbranche"].ToString();
+            string? title = App.Current.Resources["messagebox.title.deletebranche"].ToString();
+            if (message != null && title != null && _branche != null)
+            {
+                ImageSource src = new BitmapImage(new Uri("/Images/delete_24.png", UriKind.Relative));
+                imgDialogState.Source = src;
+                if (MessageBox.Show(string.Format(message.Replace("|", Environment.NewLine), _branche.Value ), title, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    _branche = App.Repositories.BrancheRepository.Delete(_branche.Id);
+                    if (_branche != null)
+                    {
+                        App.ToolsHelper.LogWriter(0, "The user has updated the branch.", _branche.Id);
+                    }
+                }
+                _branche = null;
+                DataContext = _branche;
+                SetGui();
+            }
+            imgDialogState.Source = null;
         }
         private void FillControls()
         {
@@ -61,7 +88,7 @@ namespace VisumCRM.Client.Wpf.Dialogs
             using (new Internals.WorkhandlerContainer("FillBranchedControl"))
             {
                 dgBranches.BeginInit();
-                dgBranches.ItemsSource = App.DataShare.BrancheCollection;
+                dgBranches.ItemsSource = ApplyFilter( App.DataShare.BrancheCollection);
                 dgBranches.EndInit();
             }
         }
@@ -70,16 +97,27 @@ namespace VisumCRM.Client.Wpf.Dialogs
             _branche = DataContext as Entity.Branche;
             if (_branche != null)
             {
-                if (_branche.Id == 0)
+                using (new Internals.WorkhandlerContainer("DoSave"))
                 {
-                    _branche = App.Repositories.BrancheRepository.Create(_branche);
+                    if (_branche.Id == 0)
+                    {
+                        _branche = App.Repositories.BrancheRepository.Create(_branche);
+                        if (_branche != null)
+                        {
+                            App.ToolsHelper.LogWriter(0, "The user has updated the branch.", _branche.Id);
+                        }
+                    }
+                    else
+                    {
+                        _branche = App.Repositories.BrancheRepository.Update(_branche);
+                        if (_branche != null)
+                        {
+                            App.ToolsHelper.LogWriter(0, "The user has updated the branch.", _branche.Id);
+                        }
+                    }
+                    DataContext = _branche;
+                    SetGui();
                 }
-                else
-                {
-                    _branche = App.Repositories.BrancheRepository.Update(_branche);
-                }
-                DataContext = _branche;
-                SetGui();
             }
             if (CloseAfter)
             {
@@ -143,18 +181,30 @@ namespace VisumCRM.Client.Wpf.Dialogs
             }
             if (Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
             {
-                if (e.Key == Key.S)
+                if (e.Key == Key.S && btnAdd.IsEnabled)
                 {
+                    e.Handled = true;
+                    btnSave.Focus();
                     DoSave(false);
                 }
-                if (e.Key == Key.N)
+                if (e.Key == Key.D && btnDelete.IsEnabled)
                 {
+                    e.Handled = true;
+                    btnDelete.Focus();
+                    DoDelete();
+                }
+                if (e.Key == Key.N && btnAdd.IsEnabled)
+                {
+                    e.Handled = true;
+                    btnAdd.Focus();
                     DoAdd();
                 }
                 if (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift))
                 {
-                    if (e.Key == Key.S)
+                    if (e.Key == Key.S && btnSaveClose.IsEnabled)
                     {
+                        e.Handled = true;
+                        btnSaveClose.Focus();
                         DoSave(true);
                     }
                 }
@@ -250,5 +300,9 @@ namespace VisumCRM.Client.Wpf.Dialogs
             dgBranches.Columns[2].Width = width - 64 - 2; 
         }
 
+        private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            FillBranchedControl();
+        }
     }
 }

@@ -26,6 +26,7 @@ namespace VisumCRM.Repository
             ContactpersonRepository = new ContactpersonRepository(_context, LicenseKey);
             BrancheRepository = new BrancheRepository(_context, LicenseKey);
             TargetgroupRepossitory = new TargetgroupRepossitory(_context, LicenseKey);
+            WorkinglogRepository = new WorkinglogRepository(_context, LicenseKey);
         }
 
         public UserRepository UserRepository { get; private set; }
@@ -37,5 +38,6 @@ namespace VisumCRM.Repository
         public ContactpersonRepository ContactpersonRepository { get; private set; }
         public BrancheRepository BrancheRepository { get; set; }
         public TargetgroupRepossitory TargetgroupRepossitory { get; set; }
+        public WorkinglogRepository WorkinglogRepository { get; set; }
     }
 }

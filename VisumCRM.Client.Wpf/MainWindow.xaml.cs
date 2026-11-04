@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VisumCRM.Client.Wpf.Internals;
+using VisumCRM.Entity;
 
 namespace VisumCRM.Client.Wpf
 {
@@ -97,7 +98,9 @@ namespace VisumCRM.Client.Wpf
 
         private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
         {
-            _clock.Enabled = false;            
+            _clock.Enabled = false;
+            if (App.AppShare.CurrentUser != null)
+                App.ToolsHelper.LogWriter(0, "The user has left the syetm.", App.AppShare.CurrentUser.Id);
             _settings.Save();
         }
 

@@ -97,11 +97,14 @@
     <system:String x:Key="branche.tab.header.branches">Branches</system:String>
     <system:String x:Key="branche.header.key">Key</system:String>
     <system:String x:Key="branche.header.value">Value</system:String>
+    <system:String x:Key="branche.header.filter">Filter:</system:String>
 
 
     <system:String x:Key="text.translate.floor">floor</system:String>
 
     <system:String x:Key="messagebox.message.nousersexists">First, create a new user.|The user should have highest privileges (9).</system:String>
     <system:String x:Key="messagebox.title.nousersexists">No users found.</system:String>
+    <system:String x:Key="messagebox.message.suretodeletethisbranche">Are you sure to delete this branche?|{0}</system:String>
+    <system:String x:Key="messagebox.title.deletebranche">Delete branche</system:String>
 
 </ResourceDictionary>

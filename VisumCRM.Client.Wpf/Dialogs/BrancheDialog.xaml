@@ -129,8 +129,10 @@
                                     <RowDefinition Height="3"></RowDefinition>
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                    
+                                <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Label Width="8"></Label>
+                                    <Label Padding="0 0 8 0" Content="{DynamicResource branche.header.filter}"></Label>
+                                    <TextBox x:Name="txtFilter" TextChanged="txtFilter_TextChanged" Width="120" ></TextBox>
                                 </StackPanel>
                                 <Label Grid.Row="1" Background="{DynamicResource dialog.bordercolor}"></Label>
                                 <DataGrid x:Name="dgBranches" Grid.Row="2" SelectionChanged="dgBranches_SelectionChanged">

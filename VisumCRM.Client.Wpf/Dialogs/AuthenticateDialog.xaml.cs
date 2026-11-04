@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using VisumCRM.Entity;
 
 namespace VisumCRM.Client.Wpf.Dialogs
 {
@@ -89,6 +90,7 @@ namespace VisumCRM.Client.Wpf.Dialogs
                     if (txtPassword.Password.Equals(user.Password, StringComparison.CurrentCultureIgnoreCase))
                     {
                         App.AppShare.CurrentUser = user;
+                        App.ToolsHelper.LogWriter(0, "The user has sucessfully loged into the system.", user.Id);
                         App.EventHelper.RaiseAuthenticationSuccess();
                         Close();
                     }

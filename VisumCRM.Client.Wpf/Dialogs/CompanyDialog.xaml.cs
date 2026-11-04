@@ -182,8 +182,10 @@ namespace VisumCRM.Client.Wpf.Dialogs
         }
 
         private void CompanyDialog_ContentRendered(object? sender, EventArgs e)
-        {
+        {            
             _company = DataContext as Entity.Company;
+            if (_company != null)
+                App.ToolsHelper.LogWriter(1, "The user has viewed the company details.", _company.Id);
             SetGui();
             ViewDetails();
         }

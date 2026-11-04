@@ -513,6 +513,48 @@ namespace VisumCRM.Data.Migrations
 
                     b.ToTable("Users");
                 });
+
+            modelBuilder.Entity("VisumCRM.Entity.Workinglog", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("Created")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("LicenseKey")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long>("LogTime")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("LogType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)");
+
+                    b.Property<long>("RecordId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("Updated")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Workinglogs");
+                });
 #pragma warning restore 612, 618
         }
     }
