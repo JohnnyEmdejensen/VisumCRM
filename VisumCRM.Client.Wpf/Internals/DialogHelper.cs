@@ -1,11 +1,36 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 
 namespace VisumCRM.Client.Wpf.Internals
 {
     public class DialogHelper
     {
+        private bool CompanyAlreadyOpen(Entity.Company Company)
+        {
+            bool result = false;
+            foreach (var dialog in App.Current.Windows)
+            {
+                if (dialog is Dialogs.CompanyDialog)
+                {
+                    var form = dialog as Dialogs.CompanyDialog;
+                    if (form != null)
+                    {
+                        var company = form.DataContext as Entity.Company;
+                        if (company != null && company.Id == Company.Id)
+                        {
+                            result = true;
+                            form.Topmost = true;
+                            Thread.Sleep(500);
+                            form.Topmost = false;
+                        }
+                    }
+                }
+            }
+            return result;
+        }
         public void ShowBranche(Entity.Branche? Branche)
         {
             Dialogs.BrancheDialog frm = new Dialogs.BrancheDialog()
@@ -16,11 +41,26 @@ namespace VisumCRM.Client.Wpf.Internals
         }
         public void ShowCompany(Entity.Company? Company)
         {
-            Dialogs.CompanyDialog frm = new Dialogs.CompanyDialog
+            if (Company != null)
             {
-                DataContext = Company,
-            };
-            frm.Show();
+                Dialogs.CompanyDialog dialog = new();
+                if (!CompanyAlreadyOpen(Company))
+                {
+                    Dialogs.CompanyDialog frm = new Dialogs.CompanyDialog
+                    {
+                        DataContext = Company,
+                    };
+                    frm.Show();
+                }
+            }
+            else
+            {
+                Dialogs.CompanyDialog frm = new Dialogs.CompanyDialog
+                {
+                    DataContext = Company,
+                };
+                frm.Show();
+            }
         }
         public void ShowAuthenticate()
         {
