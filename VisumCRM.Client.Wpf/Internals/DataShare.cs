@@ -226,7 +226,12 @@ namespace VisumCRM.Client.Wpf.Internals
         {
             using (new Internals.WorkhandlerContainer("GetBranches"))
             {
-                BrancheCollection = App.Repositories.BrancheRepository.GetAll();
+                var records = App.Repositories.BrancheRepository.GetAll();
+                if (records != null && records.Count > 0)
+                {
+                    records = records.OrderBy(x => x.Key).ToList();
+                }
+                BrancheCollection = records;
                 App.EventHelper.RaiseBrancheCollectionChangedEvent();
             }
         }
@@ -235,7 +240,12 @@ namespace VisumCRM.Client.Wpf.Internals
         {
             using (new Internals.WorkhandlerContainer("GetTargetgroups"))
             {
-                TargetgroupCollection = App.Repositories.TargetgroupRepossitory.GetAll();
+                var records = App.Repositories.TargetgroupRepossitory.GetAll();
+                if (records != null && records.Count > 0)
+                {
+                    records = records.OrderBy(x => x.Key).ToList();
+                }
+                TargetgroupCollection = records;
                 App.EventHelper.RaiseTargetgroupCollectionChangedEvent();
             }
         }

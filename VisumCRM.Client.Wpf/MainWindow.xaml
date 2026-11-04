@@ -35,17 +35,21 @@
             </Grid>
             <Label Grid.Row="1" Background="{DynamicResource desktop.bordercolor}"></Label>
             <Ribbon Grid.Row="2">
-                <RibbonTab Header="HOME" IsSelected="True">
-                    <RibbonGroup Header="Creations">
-                        <RibbonMenuButton Label="Create New..." LargeImageSource="/Images/document_new_32.png" SmallImageSource="/Images/document_new_16.png">
-                            <RibbonMenuItem x:Name="mnuCreateCompany" Click="mnuCreateCompany_Click" Header="Company" ImageSource="/Images/factory_24.png" Height="24"></RibbonMenuItem>
-                            <RibbonMenuItem Header="Contactperson" ImageSource="/Images/businessmen_24.png" Height="24"></RibbonMenuItem>
-                            <RibbonMenuItem x:Name="mnuCreateUser" Click="mnuCreateUser_Click" Header="User" ImageSource="/Images/users1_24.png" Height="24"></RibbonMenuItem>
+                <RibbonTab Header="{DynamicResource ribbon.tab.header.home}" IsSelected="True">
+                    <RibbonGroup Header="{DynamicResource ribbon.home.group.header.creations}">
+                        <RibbonMenuButton Label="{DynamicResource ribbon.home.menubutton.header.createnew}" LargeImageSource="/Images/document_new_32.png" SmallImageSource="/Images/document_new_16.png">
+                            <RibbonMenuItem x:Name="mnuCreateCompany" Click="mnuCreateCompany_Click" Header="{DynamicResource ribbon.home.menuitem.header.company}" ImageSource="/Images/factory_24.png" Height="24"></RibbonMenuItem>
+                            <RibbonMenuItem x:Name="mnuContactperson" Click="mnuContactperson_Click" Header="{DynamicResource ribbon.home.menuitem.header.contactperson}" ImageSource="/Images/businessmen_24.png" Height="24"></RibbonMenuItem>
+                            <RibbonMenuItem x:Name="mnuCreateUser" Click="mnuCreateUser_Click" Header="{DynamicResource ribbon.home.menuitem.header.user}" ImageSource="/Images/users1_24.png" Height="24"></RibbonMenuItem>
                         </RibbonMenuButton>
-                        <RibbonButton x:Name="btnCreateCompany" Click="mnuCreateCompany_Click" Label="Create company" LargeImageSource="/Images/factory_new_32.png" SmallImageSource="/Images/factory_new_16.png"></RibbonButton>
+                        <RibbonButton x:Name="btnCreateCompany" Click="mnuCreateCompany_Click" Label="{DynamicResource ribbon.home.button.header.createcompany}" LargeImageSource="/Images/factory_new_32.png" SmallImageSource="/Images/factory_new_16.png"></RibbonButton>
                     </RibbonGroup>
                 </RibbonTab>
-                <RibbonTab Header="Settings"></RibbonTab>
+                <RibbonTab Header="{DynamicResource ribbon.tab.header.settings}">
+                    <RibbonGroup Header="{DynamicResource ribbon.settings.group.header.systemdata}">
+                        <RibbonButton x:Name="btnBranches" Click="btnBranches_Click" Label="{DynamicResource ribbon.settings.button.header.branches}" LargeImageSource="/Images/bell_32.png" SmallImageSource="/Images/bell_16.png"></RibbonButton>
+                    </RibbonGroup>
+                </RibbonTab>
             </Ribbon>
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>

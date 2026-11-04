@@ -219,5 +219,15 @@ namespace VisumCRM.Client.Wpf
         {
 
         }
+
+        private void mnuContactperson_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnBranches_Click(object sender, RoutedEventArgs e)
+        {
+            App.DialogHelper.ShowBranche(null);
+        }
     }
 }

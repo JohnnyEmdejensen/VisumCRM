@@ -14,6 +14,18 @@
     <system:String x:Key="desktop.relations.header.contactpersons">Contactpersons</system:String>
     <system:String x:Key="desktop.relations.header.activities">Activities</system:String>
 
+    <system:String x:Key="ribbon.tab.header.home">HOME</system:String>
+    <system:String x:Key="ribbon.tab.header.settings">Settings</system:String>
+    <system:String x:Key="ribbon.home.group.header.creations">Creations</system:String>
+    <system:String x:Key="ribbon.home.menubutton.header.createnew">Create new</system:String>
+    <system:String x:Key="ribbon.home.menuitem.header.company">Company</system:String>
+    <system:String x:Key="ribbon.home.menuitem.header.contactperson">Contactperson</system:String>
+    <system:String x:Key="ribbon.home.menuitem.header.user">User</system:String>
+    <system:String x:Key="ribbon.home.button.header.createcompany">Create company</system:String>
+
+    <system:String x:Key="ribbon.settings.group.header.systemdata">System data</system:String>
+    <system:String x:Key="ribbon.settings.button.header.branches">Branches</system:String>
+
     <system:String x:Key="grid.companies.column.header.number">Number</system:String>
     <system:String x:Key="grid.companies.column.header.name">Name</system:String>
     <system:String x:Key="grid.companies.column.header.address">Address</system:String>
