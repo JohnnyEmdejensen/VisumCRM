@@ -6,6 +6,14 @@ namespace VisumCRM.Client.Wpf.Internals
 {
     public class DialogHelper
     {
+        public void ShowBranche(Entity.Branche? Branche)
+        {
+            Dialogs.BrancheDialog frm = new Dialogs.BrancheDialog()
+            {
+                DataContext = Branche,
+            };
+            frm.Show();
+        }
         public void ShowCompany(Entity.Company? Company)
         {
             Dialogs.CompanyDialog frm = new Dialogs.CompanyDialog

@@ -27,6 +27,7 @@ namespace VisumCRM.Client.Wpf.Dialogs
             ContentRendered += CompanyDialog_ContentRendered;
             Closing += CompanyDialog_Closing;
             KeyDown += CompanyDialog_KeyDown;
+            App.EventHelper.BrancheCollectionChanged += EventHelper_BrancheCollectionChanged;
             imgDialogState.Source = null;
             _settings.Load();
             FillControls();
@@ -100,7 +101,10 @@ namespace VisumCRM.Client.Wpf.Dialogs
 
         private void FillBrancheControl()
         {
-
+            using (new Internals.WorkhandlerContainer("FillBrancheControl"))
+            {
+                App.ToolsHelper.FillBrancheControl(cboBranches);
+            }
         }
         private void FillCountryControl()
         {
@@ -148,6 +152,21 @@ namespace VisumCRM.Client.Wpf.Dialogs
             }
         }
 
+        private void ViewDetails()
+        {
+            _company = DataContext as Entity.Company;
+            if (_company == null || App.DataShare.LocationModelCollection == null) return;
+            var location = App.DataShare.LocationModelCollection.FirstOrDefault(x => x.Id == _company.LocationId);
+            if (location == null) return;
+            txtStreet.Text = location.Street;
+            txtHouse.Text = location.House;
+            txtFloor.Text = location.Floor;
+            txtFloor.Text = location.Door;
+            txtZipcode.Text = location.Zipcode;
+            txtCity.Text = location.City;
+            cboCountry.SelectedValue = location.CountryId;
+        }
+
         private void CompanyDialog_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
@@ -166,6 +185,7 @@ namespace VisumCRM.Client.Wpf.Dialogs
         {
             _company = DataContext as Entity.Company;
             SetGui();
+            ViewDetails();
         }
 
 
@@ -217,6 +237,24 @@ namespace VisumCRM.Client.Wpf.Dialogs
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             DoDelete();
+        }
+
+        private void Branche_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var branche = new Entity.Branche();
+            App.DialogHelper.ShowBranche(branche);
+        }
+
+        private void Targetgroup_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+        private void EventHelper_BrancheCollectionChanged(object? sender, EventArgs e)
+        {
+            using (new Internals.WorkhandlerContainer("EventHelper_BrancheCollectionChanged"))
+            {
+                FillBrancheControl();
+            }
         }
     }
 }

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace VisumCRM.Client.Wpf.Internals
 {
@@ -60,6 +62,17 @@ namespace VisumCRM.Client.Wpf.Internals
             return result;
         }
 
+        public void FillBrancheControl(ComboBox Ctrl)
+        {
+            Ctrl.BeginInit();
+            if (App.DataShare.BrancheCollection != null && App.DataShare.BrancheCollection.Count > 0)
+                Ctrl.ItemsSource = App.DataShare.BrancheCollection.OrderBy(x => x.Value).ToList();
+            else
+                Ctrl.ItemsSource = App.DataShare.BrancheCollection;
+            Ctrl.DisplayMemberPath = "Value";
+            Ctrl.SelectedValuePath = "Id";
+            Ctrl.EndInit();
+        }
         public void FillSalespersonControl(ComboBox Ctrl)
         {
             Ctrl.BeginInit();
@@ -93,6 +106,26 @@ namespace VisumCRM.Client.Wpf.Internals
             Ctrl.SelectedValuePath = "Id";
             Ctrl.EndInit();
         }
+        public IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+        {
+            if (depObj == null) yield break;
+
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
+
+                if (child is T t)
+                {
+                    yield return t;
+                }
+
+                foreach (T childOfChild in FindVisualChildren<T>(child))
+                {
+                    yield return childOfChild;
+                }
+            }
+        }
+
     }
 
 }

@@ -22,7 +22,6 @@ public partial class App : Application
 
         public App()
         {
-            DataShare.ResumeEvents();
             if (Clipboard.ContainsText())
             {
                 var firsttimeLicense = Clipboard.GetText();

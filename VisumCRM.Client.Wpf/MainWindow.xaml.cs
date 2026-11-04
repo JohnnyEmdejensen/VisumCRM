@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VisumCRM.Client.Wpf.Internals;
 
 namespace VisumCRM.Client.Wpf
 {
@@ -34,9 +35,10 @@ namespace VisumCRM.Client.Wpf
             App.EventHelper.AuthenticationSuccess += EventHelper_AuthenticationSuccess;
             App.EventHelper.CompanyModelCollectionChanged += EventHelper_CompanyModelCollectionChanged;
             dgCompanies.SizeChanged += DgCompanies_SizeChanged;
+            dgCompanies.SelectionChanged += DgCompanies_SelectionChanged;
+            dgCompanies.MouseDoubleClick += DgCompanies_MouseDoubleClick;
             _settings.Load();
         }
-
 
         private void FetchAllData() 
         {
@@ -156,6 +158,8 @@ namespace VisumCRM.Client.Wpf
         {
             if (App.AppShare.CurrentUser != null)
             {
+                App.DataShare.ResumeEvents();
+
                 lblUser.Content = App.AppShare.CurrentUser.Fullname;
                 App.AppShare.CurrentDatabase = App.Repositories.Databasename;
                 lblDatabase.Content = App.AppShare.CurrentDatabase;
@@ -201,7 +205,19 @@ namespace VisumCRM.Client.Wpf
         private void DgCompanies_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             var width = dgCompanies.ActualWidth;
-            dgCompanies.Columns[2].Width = width - 100 - 120 - 54 - 120 - 120 - 80 - 80 - 80 - 32;
+            dgCompanies.Columns[2].Width = width - 100 - 120 - 54 - 120 - 120 - 80 - 80 - 80 - 2;
+        }
+        private void DgCompanies_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var item = dgCompanies.SelectedItem as Models.CompanyModel;
+            if (item == null || App.DataShare.CompanyCollection == null) return;
+            var company = App.DataShare.CompanyCollection.FirstOrDefault(x => x.Id == item.Id);
+            App.DialogHelper.ShowCompany(company);
+        }
+
+        private void DgCompanies_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

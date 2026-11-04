@@ -299,7 +299,7 @@
                                     <RowDefinition Height="16"></RowDefinition>
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <Label Content="{DynamicResource company.header.branches}" Style="{StaticResource HeaderLabel}"></Label>
+                                <Label Content="{DynamicResource company.header.branches}" MouseDown="Branche_MouseDown" Style="{StaticResource HeaderLabelClickAble}"></Label>
                                 <ComboBox Grid.Row="1" x:Name="cboBranches" SelectedValue="{Binding BrancheId}"></ComboBox>
                             </Grid>
                             <Grid Grid.Row="4">
@@ -307,7 +307,7 @@
                                     <RowDefinition Height="16"></RowDefinition>
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <Label Content="{DynamicResource company.header.targetgroups}" Style="{StaticResource HeaderLabel}"></Label>
+                                <Label Content="{DynamicResource company.header.targetgroups}" MouseDown="Targetgroup_MouseDown" Style="{StaticResource HeaderLabelClickAble}"></Label>
                                 <ComboBox Grid.Row="1" x:Name="cboTargetgroups" SelectedValue="{Binding TargetgroupId}"></ComboBox>
                             </Grid>
                         </Grid>

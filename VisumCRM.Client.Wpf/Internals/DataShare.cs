@@ -325,17 +325,17 @@ namespace VisumCRM.Client.Wpf.Internals
 
         private void BrancheRepository_BrancheDelete(object sender, Repository.BrancheEventArgs e)
         {
-
+            GetBranches();
         }
 
         private void BrancheRepository_BrancheCreated(object sender, Repository.BrancheEventArgs e)
         {
-
+            GetBranches();
         }
 
         private void BrancheRepository_BrancheUpdate(object sender, Repository.BrancheEventArgs e)
         {
-
+            GetBranches();
         }
 
         private void EventHelper_ContactpersonCollectionChanged(object? sender, EventArgs e)

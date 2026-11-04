@@ -13,6 +13,10 @@
     <None Remove="Images\add_24.png" />
     <None Remove="Images\add_32.png" />
     <None Remove="Images\add_48.png" />
+    <None Remove="Images\bell_16.png" />
+    <None Remove="Images\bell_24.png" />
+    <None Remove="Images\bell_32.png" />
+    <None Remove="Images\bell_48.png" />
     <None Remove="Images\briefcase_16.png" />
     <None Remove="Images\briefcase_24.png" />
     <None Remove="Images\briefcase_32.png" />
@@ -140,6 +144,10 @@
     <Resource Include="Images\add_24.png" />
     <Resource Include="Images\add_32.png" />
     <Resource Include="Images\add_48.png" />
+    <Resource Include="Images\bell_16.png" />
+    <Resource Include="Images\bell_24.png" />
+    <Resource Include="Images\bell_32.png" />
+    <Resource Include="Images\bell_48.png" />
     <Resource Include="Images\briefcase_16.png" />
     <Resource Include="Images\briefcase_24.png" />
     <Resource Include="Images\briefcase_32.png" />
