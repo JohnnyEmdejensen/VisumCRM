@@ -132,6 +132,25 @@ namespace VisumCRM.Client.Wpf.Internals
             var str = string.Format("{0:0000}{1:00}{2:00}{3:00}{4:00}{5:00}", value.Year, value.Month, value.Day, value.Hour, value.Minute,value.Second);
             return Convert.ToInt64(str);
         }
+        public DateTime ConvertLongToDateTime(long Value)
+        {
+            DateTime result = DateTime.MinValue;
+            string str = Value.ToString();
+            string year = "";
+            string month = "";
+            string day = "";
+            string hour = "";
+            string minute = "";
+            string secound = "";
+            year = str.Substring(0, 4);
+            month = str.Substring(4, 2);
+            day = str.Substring(6, 2);
+            hour = str.Substring(8, 2);
+            minute = str.Substring(10, 2);
+            secound = str.Substring(12, 2);
+            result = new DateTime(Convert.ToInt32(year), Convert.ToInt32(month), Convert.ToInt32(day), Convert.ToInt32(hour), Convert.ToInt32(minute), Convert.ToInt32(secound));
+            return result;
+        }
 
         public void LogWriter(int LogType, string Message, long RecordId)
         {

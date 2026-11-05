@@ -110,8 +110,8 @@
                                 <Label Width="2"></Label>
                                 <Label Content="{DynamicResource desktop.panel.header.output}" Style="{StaticResource panel.header}"></Label>
                             </StackPanel>
-                            <TabControl Grid.Row="2">
-                                <TabItem Header="{DynamicResource desktop.output.header.dashboard}">
+                            <TabControl x:Name="tabOutput" Grid.Row="2">
+                                <TabItem x:Name="pageDashboard" Header="{DynamicResource desktop.output.header.dashboard}">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="1"></RowDefinition>
@@ -134,7 +134,7 @@
                                         </StackPanel>
                                     </Grid>
                                 </TabItem>
-                                <TabItem Header="{DynamicResource desktop.output.header.companies}">
+                                <TabItem x:Name="pageCompanies" Header="{DynamicResource desktop.output.header.companies}">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="1"></RowDefinition>
@@ -168,7 +168,7 @@
                                         <StackPanel Grid.Row="5" Orientation="Horizontal"></StackPanel>
                                     </Grid>
                                 </TabItem>
-                                <TabItem Header="{DynamicResource desktop.output.header.activities}">
+                                <TabItem x:Name="pageactivities" Header="{DynamicResource desktop.output.header.activities}">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="1"></RowDefinition>

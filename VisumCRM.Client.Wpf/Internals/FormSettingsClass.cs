@@ -11,10 +11,21 @@ namespace VisumCRM.Client.Wpf.Internals
     {
         private Window _dialog;
         private DirectoryInfo _dir;
+        public List<string>? _values;
 
         public FormSettingsClass(Window Dialog)
         {
             _dialog = Dialog;
+            _dir = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Emdesoft Developments\\VisumCRM");
+            if (!_dir.Exists)
+            {
+                _dir.Create();
+            }
+        }
+        public FormSettingsClass(Window Dialog, List<string> Values)
+        {
+            _dialog = Dialog;
+            _values = Values;
             _dir = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Emdesoft Developments\\VisumCRM");
             if (!_dir.Exists)
             {
@@ -37,6 +48,7 @@ namespace VisumCRM.Client.Wpf.Internals
                 var info = Newtonsoft.Json.JsonConvert.DeserializeObject<Internals.DialogInfo>(content);
                 if (info != null)
                 {
+                    _values = info.Values;
                     if (info.IsMaxed)
                     {
                         _dialog.WindowState = WindowState.Maximized;
@@ -67,6 +79,7 @@ namespace VisumCRM.Client.Wpf.Internals
                 Width = _dialog.Width,
                 Height = _dialog.Height,
                 IsMaxed = _dialog.WindowState == WindowState.Maximized,
+                Values = _values
             };
             var content = Newtonsoft.Json.JsonConvert.SerializeObject(info);
             using (StreamWriter sw = new StreamWriter(file.FullName))

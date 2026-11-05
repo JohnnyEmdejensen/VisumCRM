@@ -11,5 +11,6 @@ namespace VisumCRM.Client.Wpf.Internals
         public double Width { get; set; }
         public double Height { get; set; }
         public bool IsMaxed { get; set; }
+        public List<string>? Values { get; set; }
     }
 }

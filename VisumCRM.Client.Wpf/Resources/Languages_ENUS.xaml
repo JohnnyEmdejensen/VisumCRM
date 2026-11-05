@@ -92,6 +92,7 @@
     <system:String x:Key="company.header.companylog">COMPANY LOG</system:String>
     <system:String x:Key="company.log.column.header.message">Message</system:String>
     <system:String x:Key="company.log.column.header.occurrence">Occurrence</system:String>
+    <system:String x:Key="company.log.column.header.username">Username</system:String>
 
     <system:String x:Key="branche.header.title">Branche Informations</system:String>
     <system:String x:Key="branche.tab.header.branches">Branches</system:String>
@@ -106,5 +107,7 @@
     <system:String x:Key="messagebox.title.nousersexists">No users found.</system:String>
     <system:String x:Key="messagebox.message.suretodeletethisbranche">Are you sure to delete this branche?|{0}</system:String>
     <system:String x:Key="messagebox.title.deletebranche">Delete branche</system:String>
+    <system:String x:Key="messagebox.message.suretodeletethiscompany">Are you sure to delete this company?|{0}</system:String>
+    <system:String x:Key="messagebox.title.deletecompany">Delete company</system:String>
 
 </ResourceDictionary>

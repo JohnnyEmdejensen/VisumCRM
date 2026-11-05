@@ -376,7 +376,8 @@
                                 <DataGrid x:Name="dgCompanyLog" Grid.Row="3">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Id" Binding="{Binding Id}" Visibility="Collapsed"></DataGridTextColumn>
-                                        <DataGridTextColumn Width="100" Header="{DynamicResource company.log.column.header.occurrence}" Binding="{Binding Occurrence}"></DataGridTextColumn>
+                                        <DataGridTextColumn Width="120" Header="{DynamicResource company.log.column.header.username}" Binding="{Binding UserName}"></DataGridTextColumn>
+                                        <DataGridTextColumn Width="100" Header="{DynamicResource company.log.column.header.occurrence}" Binding="{Binding FormattetTime}"></DataGridTextColumn>
                                         <DataGridTextColumn Header="{DynamicResource company.log.column.header.message}" Binding="{Binding Message}"></DataGridTextColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>

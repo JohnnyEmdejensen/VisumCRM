@@ -39,6 +39,21 @@ namespace VisumCRM.Client.Wpf
             dgCompanies.SelectionChanged += DgCompanies_SelectionChanged;
             dgCompanies.MouseDoubleClick += DgCompanies_MouseDoubleClick;
             _settings.Load();
+            pageDashboard.IsSelected = true;
+            if (_settings._values != null)
+            {
+                foreach (string item in _settings._values)
+                {
+                    if (item.StartsWith("ActiveTab:"))
+                    {
+                        var value = item.Replace("ActiveTab:", "");
+                        if (value == "Companies")
+                            pageCompanies.IsSelected = true;
+                        if (value == "Activities")
+                            pageCompanies.IsSelected = true;
+                    }
+                }
+            }
         }
 
         private void FetchAllData() 
@@ -101,6 +116,14 @@ namespace VisumCRM.Client.Wpf
             _clock.Enabled = false;
             if (App.AppShare.CurrentUser != null)
                 App.ToolsHelper.LogWriter(0, "The user has left the syetm.", App.AppShare.CurrentUser.Id);
+            List<string> values = new List<string>();
+            string activeTab = "Dashboard";
+            if (pageCompanies.IsSelected)
+                activeTab = "Companies";
+            if (pageactivities.IsSelected)
+                activeTab = "Activities";
+            values.Add("ActiveTab:" + activeTab);
+            _settings = new FormSettingsClass(this, values);
             _settings.Save();
         }
 

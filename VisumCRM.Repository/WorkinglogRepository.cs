@@ -28,17 +28,17 @@ namespace VisumCRM.Repository
         public List<Entity.Workinglog>? GetAllUserLog(long UserId)
         {
             if (_context == null) return null;
-            return _context.Workinglogs.Where(x => x.RecordId == UserId && !x.IsDeleted && x.LicenseKey == _license).ToList();
+            return _context.Workinglogs.Where(x => x.LogType == 0 && x.RecordId == UserId && !x.IsDeleted && x.LicenseKey == _license).ToList();
         }
         public List<Entity.Workinglog>? GetAllCompanyLog(long CompanyId)
         {
             if (_context == null) return null;
-            return _context.Workinglogs.Where(x => x.RecordId == CompanyId && !x.IsDeleted && x.LicenseKey == _license).ToList();
+            return _context.Workinglogs.Where(x => x.LogType == 1 && x.RecordId == CompanyId && !x.IsDeleted && x.LicenseKey == _license).ToList();
         }
         public List<Entity.Workinglog>? GetAllContactpersonLog(long ContactpersonId)
         {
             if (_context == null) return null;
-            return _context.Workinglogs.Where(x => x.RecordId == ContactpersonId && !x.IsDeleted && x.LicenseKey == _license).ToList();
+            return _context.Workinglogs.Where(x => x.LogType == 2 && x.RecordId == ContactpersonId && !x.IsDeleted && x.LicenseKey == _license).ToList();
         }
         public Entity.Workinglog? Create(Entity.Workinglog? Source)
         {

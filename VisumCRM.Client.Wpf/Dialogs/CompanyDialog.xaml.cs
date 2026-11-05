@@ -20,6 +20,7 @@ namespace VisumCRM.Client.Wpf.Dialogs
     {
         private Entity.Company? _company;
         private Internals.FormSettingsClass _settings;
+        private List<Entity.Workinglog>? _logs;
         public CompanyDialog()
         {
             InitializeComponent();
@@ -31,6 +32,7 @@ namespace VisumCRM.Client.Wpf.Dialogs
             imgDialogState.Source = null;
             _settings.Load();
             FillControls();
+            dgCompanyLog.SizeChanged += DgCompanyLog_SizeChanged;
         }
 
 
@@ -47,7 +49,27 @@ namespace VisumCRM.Client.Wpf.Dialogs
         }
         private void DoDelete()
         {
-
+            _company = DataContext as Entity.Company;
+            if (_company != null)
+            {
+                string? message = App.Current.Resources["messagebox.message.suretodeletethiscompany"].ToString();
+                string? title = App.Current.Resources["messagebox.title.deletecompany"].ToString();
+                if (message != null && title != null)
+                {
+                    if(MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        _company = App.Repositories.CompanyRepository.Delete(_company.Id);
+                        if (_company != null)
+                        {
+                            App.ToolsHelper.LogWriter(0, "The user has marked the company deleted.", _company.Id);
+                        }
+                    }
+                    _company = null;
+                    DataContext = _company;
+                    SetGui();
+                    ViewDetails();
+                }
+            }
         }
         private void DoSave(bool CloseAfter)
         {
@@ -60,10 +82,20 @@ namespace VisumCRM.Client.Wpf.Dialogs
                 if (_company.Id == 0)
                 {
                     _company = App.Repositories.CompanyRepository.Create(_company);
+                    if (_company != null)
+                    {
+                        App.ToolsHelper.LogWriter(0, "The user has created the company.", _company.Id);
+                        App.ToolsHelper.LogWriter(1, "Created", _company.Id);
+                    }
                 }
                 else
                 {
                     _company = App.Repositories.CompanyRepository.Update(_company);
+                    if (_company != null)
+                    {
+                        App.ToolsHelper.LogWriter(0, "The user has updated the company.", _company.Id);
+                        App.ToolsHelper.LogWriter(1, "Updated.", _company.Id);
+                    }
                 }
                 DataContext = _company;
                 SetGui();
@@ -185,7 +217,36 @@ namespace VisumCRM.Client.Wpf.Dialogs
         {            
             _company = DataContext as Entity.Company;
             if (_company != null)
+            {
+                _logs = App.Repositories.WorkinglogRepository.GetAllCompanyLog(_company.Id);
+                List<Models.WorkingLogModel> logs = new List<Models.WorkingLogModel>();
+                if (_logs != null)
+                {
+                    _logs = _logs.OrderByDescending(x => x.LogTime).ToList();
+                    foreach (var log in _logs)
+                    {
+                        Models.WorkingLogModel wl = new Models.WorkingLogModel
+                        {
+                            FormattetTime = App.ToolsHelper.ConvertLongToDateTime(log.LogTime),
+                            Message = log.Message,
+                        };
+                        if (App.DataShare.UserCollection != null)
+                        {
+                            var user = App.DataShare.UserCollection.FirstOrDefault(x => x.Id == log.UserId);
+                            if (user != null)
+                            {
+                                user.SetFullName();
+                                wl.UserName = user.Fullname ?? "";
+                            }
+                        }
+                        logs.Add(wl);
+                    }
+                }
+                dgCompanyLog.BeginInit();
+                dgCompanyLog.ItemsSource = logs;
+                dgCompanyLog.EndInit();
                 App.ToolsHelper.LogWriter(1, "The user has viewed the company details.", _company.Id);
+            }
             SetGui();
             ViewDetails();
         }
@@ -257,6 +318,11 @@ namespace VisumCRM.Client.Wpf.Dialogs
             {
                 FillBrancheControl();
             }
+        }
+        private void DgCompanyLog_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var width = dgCompanyLog.ActualWidth;
+            dgCompanyLog.Columns[3].Width = width - 120 - 100 - 32;
         }
     }
 }
