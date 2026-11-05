@@ -35,6 +35,7 @@ namespace VisumCRM.Client.Wpf
             App.EventHelper.AuthenticationCancled += EventHelper_AuthenticationCancled;
             App.EventHelper.AuthenticationSuccess += EventHelper_AuthenticationSuccess;
             App.EventHelper.CompanyModelCollectionChanged += EventHelper_CompanyModelCollectionChanged;
+            App.EventHelper.CurrentCompanyChanged += EventHelper_CurrentCompanyChanged;
             dgCompanies.SizeChanged += DgCompanies_SizeChanged;
             dgCompanies.SelectionChanged += DgCompanies_SelectionChanged;
             dgCompanies.MouseDoubleClick += DgCompanies_MouseDoubleClick;
@@ -243,7 +244,13 @@ namespace VisumCRM.Client.Wpf
 
         private void DgCompanies_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            var item = dgCompanies.SelectedItem as Models.CompanyModel;
+            if (item != null && App.DataShare.CompanyCollection != null)
+            {
+                App.AppShare.CurrentCompany = App.DataShare.CompanyCollection.FirstOrDefault(x => x.Id == item.Id);
+                if (App.AppShare.CurrentCompany != null)
+                    App.EventHelper.RaiseCurrentCompanyChangedEvent();
+            }
         }
 
         private void mnuContactperson_Click(object sender, RoutedEventArgs e)
@@ -254,6 +261,11 @@ namespace VisumCRM.Client.Wpf
         private void btnBranches_Click(object sender, RoutedEventArgs e)
         {
             App.DialogHelper.ShowBranche(null);
+        }
+        private void EventHelper_CurrentCompanyChanged(object? sender, EventArgs e)
+        {
+            if (App.AppShare.CurrentCompany == null) return;
+            lblActiveCompany.Content = App.AppShare.CurrentCompany.Name;
         }
     }
 }

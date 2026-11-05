@@ -302,7 +302,7 @@
                         <Label Grid.Row="1" Grid.Column="1" Background="{DynamicResource desktop.bordercolor}"></Label>
                     </Grid>
                     <Label Content="Database: "></Label>
-                    <Label x:Name="lblDatabase" Content=""></Label>
+                    <Label x:Name="lblDatabase" FontWeight="Bold" Content=""></Label>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="8"></ColumnDefinition>
@@ -317,7 +317,7 @@
                         <Label Grid.Row="1" Grid.Column="1" Background="{DynamicResource desktop.bordercolor}"></Label>
                     </Grid>
                     <Label Content="User: "></Label>
-                    <Label x:Name="lblUser" Content=""></Label>
+                    <Label x:Name="lblUser" FontWeight="Bold" Content=""></Label>
 
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -333,7 +333,7 @@
                         <Label Grid.Row="1" Grid.Column="1" Background="{DynamicResource desktop.bordercolor}"></Label>
                     </Grid>
                     <Label Content="Company: "></Label>
-                    <Label x:Name="lblActiveCompany"></Label>
+                    <Label x:Name="lblActiveCompany" FontWeight="Bold"></Label>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="8"></ColumnDefinition>
@@ -348,7 +348,7 @@
                         <Label Grid.Row="1" Grid.Column="1" Background="{DynamicResource desktop.bordercolor}"></Label>
                     </Grid>
                     <Label Content="Contactperson: "></Label>
-                    <Label x:Name="lblActiveContactperson"></Label>
+                    <Label x:Name="lblActiveContactperson" FontWeight="Bold"></Label>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="8"></ColumnDefinition>

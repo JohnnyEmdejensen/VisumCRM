@@ -127,6 +127,7 @@ namespace VisumCRM.Client.Wpf.Internals
                 }
             }
         }
+      
         public long ConvertDatetimeToLong(DateTime value)
         {
             var str = string.Format("{0:0000}{1:00}{2:00}{3:00}{4:00}{5:00}", value.Year, value.Month, value.Day, value.Hour, value.Minute,value.Second);

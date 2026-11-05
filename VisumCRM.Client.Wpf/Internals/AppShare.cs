@@ -8,6 +8,8 @@ namespace VisumCRM.Client.Wpf.Internals
     {
         public string? CurrentDatabase { get; set; }
         public Entity.User? CurrentUser { get; set; }
+        public Entity.Company? CurrentCompany { get; set; }
+        public Entity.Contactperson? CurrentContactperson{ get; set; }
         public List<WorkerItem> WorkerItems { get; set; } = new List<WorkerItem>();
     }
 }
