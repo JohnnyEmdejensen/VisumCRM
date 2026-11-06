@@ -21,6 +21,7 @@ namespace VisumCRM.Client.Wpf.Dialogs
         private Entity.Company? _company;
         private Internals.FormSettingsClass _settings;
         private List<Entity.Workinglog>? _logs;
+        private IEnumerable<TextBox>? _textboxes;
         public CompanyDialog()
         {
             InitializeComponent();
@@ -146,6 +147,16 @@ namespace VisumCRM.Client.Wpf.Dialogs
             }
         }
 
+        private void SetEnvironments()
+        {
+            _textboxes = App.ToolsHelper.FindVisualChildren<TextBox>(this);
+            foreach (var ctrl in _textboxes)
+            {
+                ctrl.GotFocus += Ctrl_GotFocus;
+            }
+        }
+
+
         private void SetGui()
         {
             _company = DataContext as Entity.Company;
@@ -214,7 +225,8 @@ namespace VisumCRM.Client.Wpf.Dialogs
         }
 
         private void CompanyDialog_ContentRendered(object? sender, EventArgs e)
-        {            
+        {
+            SetEnvironments();
             _company = DataContext as Entity.Company;
             if (_company != null)
             {
@@ -249,6 +261,7 @@ namespace VisumCRM.Client.Wpf.Dialogs
             }
             SetGui();
             ViewDetails();
+            if (_company != null) txtNumber.Focus();
         }
 
 
@@ -318,6 +331,12 @@ namespace VisumCRM.Client.Wpf.Dialogs
             {
                 FillBrancheControl();
             }
+        }
+        private void Ctrl_GotFocus(object sender, RoutedEventArgs e)
+        {
+            var ctrl = sender as TextBox;
+            if (ctrl == null) return;
+            ctrl.SelectAll();
         }
         private void DgCompanyLog_SizeChanged(object sender, SizeChangedEventArgs e)
         {

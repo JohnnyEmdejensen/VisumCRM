@@ -38,7 +38,7 @@ namespace VisumCRM.Repository
             ContactpersonCreated?.Invoke(this, new ContactpersonEventArgs(Source));
             return Source;
         }
-        public Entity.Contactperson? Delete(Entity.Contactperson? Source)
+        public Entity.Contactperson? Update(Entity.Contactperson? Source)
         {
             if (_context == null || Source == null) return null;
             var record = Get(Source.Id);

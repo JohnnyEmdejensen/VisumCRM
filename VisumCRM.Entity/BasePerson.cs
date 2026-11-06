@@ -26,5 +26,13 @@ namespace VisumCRM.Entity
 
         [NotMapped]
         public string? Fullname { get; set; }
+
+        public void SetFullname()
+        {
+            var s = Firstname;
+            if (!string.IsNullOrEmpty(Middlename)) s += " " + Middlename;
+            s += Surname;
+            Fullname = s;
+        }
     }
 }

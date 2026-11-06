@@ -8,6 +8,7 @@ namespace VisumCRM.Client.Wpf.Internals
 {
     public class DialogHelper
     {
+
         private bool CompanyAlreadyOpen(Entity.Company Company)
         {
             bool result = false;
@@ -30,6 +31,15 @@ namespace VisumCRM.Client.Wpf.Internals
                 }
             }
             return result;
+        }
+
+        public void ShowContactperson(Entity.Contactperson? Contactperson)
+        {
+            Dialogs.ContatcpersonDialog frm = new Dialogs.ContatcpersonDialog()
+            {
+                DataContext = Contactperson,
+            };
+            frm.Show();
         }
         public void ShowBranche(Entity.Branche? Branche)
         {

@@ -150,6 +150,9 @@ namespace VisumCRM.Data.Migrations
                         .HasMaxLength(512)
                         .HasColumnType("nvarchar(512)");
 
+                    b.Property<long>("EmployeerId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Firstname")
                         .IsRequired()
                         .HasMaxLength(128)
@@ -178,6 +181,9 @@ namespace VisumCRM.Data.Migrations
 
                     b.Property<byte[]>("Picture")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<long>("SalespersonId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Surname")
                         .IsRequired()

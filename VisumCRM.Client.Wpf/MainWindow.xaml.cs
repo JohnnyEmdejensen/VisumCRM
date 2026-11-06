@@ -255,7 +255,8 @@ namespace VisumCRM.Client.Wpf
 
         private void mnuContactperson_Click(object sender, RoutedEventArgs e)
         {
-
+            Entity.Contactperson contactperson = new();
+            App.DialogHelper.ShowContactperson(contactperson);
         }
 
         private void btnBranches_Click(object sender, RoutedEventArgs e)

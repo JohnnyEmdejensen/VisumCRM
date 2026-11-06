@@ -94,6 +94,26 @@
     <system:String x:Key="company.log.column.header.occurrence">Occurrence</system:String>
     <system:String x:Key="company.log.column.header.username">Username</system:String>
 
+    <system:String x:Key="contatcperson.header.title">Contatcperson Informations</system:String>
+    <system:String x:Key="contatcperson.tab.header.contactperson">Contatcperson</system:String>
+    <system:String x:Key="contatcperson.tab.header.log">Log</system:String>
+    <system:String x:Key="contactperson.header.firstname">FIRSTNAME</system:String>
+    <system:String x:Key="contactperson.header.middlename">MIDDLENAME</system:String>
+    <system:String x:Key="contactperson.header.surname">SURNAME</system:String>
+    <system:String x:Key="contactperson.header.street">STREET</system:String>
+    <system:String x:Key="contactperson.header.house">HOUSE</system:String>
+    <system:String x:Key="contactperson.header.floor">FLOOR</system:String>
+    <system:String x:Key="contactperson.header.door">DOOR</system:String>
+    <system:String x:Key="contactperson.header.zipcode">ZIPCODE</system:String>
+    <system:String x:Key="contactperson.header.city">CITY</system:String>
+    <system:String x:Key="contactperson.header.country">COUNTRY</system:String>
+    <system:String x:Key="contactperson.header.phone">PHONE</system:String>
+    <system:String x:Key="contactperson.header.mobile">MOBILE</system:String>
+    <system:String x:Key="contactperson.header.email">EMAIL</system:String>
+    <system:String x:Key="contactperson.header.salesperson">SALESPERSON</system:String>
+    <system:String x:Key="contactperson.header.employer">EMPLOYER</system:String>
+    <system:String x:Key="contactperson.header.birthday">BIRTHDAY</system:String>
+
     <system:String x:Key="branche.header.title">Branche Informations</system:String>
     <system:String x:Key="branche.tab.header.branches">Branches</system:String>
     <system:String x:Key="branche.header.key">Key</system:String>
@@ -109,5 +129,7 @@
     <system:String x:Key="messagebox.title.deletebranche">Delete branche</system:String>
     <system:String x:Key="messagebox.message.suretodeletethiscompany">Are you sure to delete this company?|{0}</system:String>
     <system:String x:Key="messagebox.title.deletecompany">Delete company</system:String>
+    <system:String x:Key="messagebox.message.suretodeletethiscontactperson">Are you sure to delete this contactperson?|{0}</system:String>
+    <system:String x:Key="messagebox.title.deletecontatcperson">Delete contactperson</system:String>
 
 </ResourceDictionary>

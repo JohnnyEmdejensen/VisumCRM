@@ -75,6 +75,17 @@ namespace VisumCRM.Client.Wpf.Internals
             Ctrl.SelectedValuePath = "Id";
             Ctrl.EndInit();
         }
+        public void FillEmployeeControl(ComboBox Ctrl)
+        {
+            Ctrl.BeginInit();
+            if (App.DataShare.CompanyCollection != null && App.DataShare.CompanyCollection.Count > 0)
+                Ctrl.ItemsSource = App.DataShare.CompanyCollection.OrderBy(x => x.Name).ToList();
+            else
+                Ctrl.ItemsSource = App.DataShare.CompanyCollection;
+            Ctrl.DisplayMemberPath = "Name";
+            Ctrl.SelectedValuePath = "Id";
+            Ctrl.EndInit();
+        }
         public void FillSalespersonControl(ComboBox Ctrl)
         {
             Ctrl.BeginInit();
