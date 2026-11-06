@@ -29,9 +29,9 @@ namespace VisumCRM.Entity
 
         public void SetFullname()
         {
-            var s = Firstname;
-            if (!string.IsNullOrEmpty(Middlename)) s += " " + Middlename;
-            s += Surname;
+            var s = Firstname.Trim();
+            if (!string.IsNullOrEmpty(Middlename)) s += " " + Middlename.Trim();
+            s += " " + Surname.Trim();
             Fullname = s;
         }
     }

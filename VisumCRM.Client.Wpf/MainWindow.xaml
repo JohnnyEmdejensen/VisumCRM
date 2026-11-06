@@ -209,9 +209,16 @@
                                             <Label Content="{DynamicResource desktop.panel.header.relations}" Style="{StaticResource panel.header}"></Label>
                                         </StackPanel>
                                         <Label Grid.Row="1" Background="{DynamicResource desktop.bordercolor}"></Label>
-                                        <Grid Grid.Row="2">
-                                            
-                                        </Grid>
+                                        <DataGrid x:Name="dgContactpersons" Grid.Row="2">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Visibility="Collapsed"></DataGridTextColumn>
+                                                <DataGridTextColumn Header="{DynamicResource grid.contactpersons.column.header.name}" Binding="{Binding Fullname}"></DataGridTextColumn>
+                                                <DataGridTextColumn Width="80" Header="{DynamicResource grid.contactpersons.column.header.mobile}" Binding="{Binding Mobile}"></DataGridTextColumn>
+                                                <DataGridTextColumn Width="80" Header="{DynamicResource grid.contactpersons.column.header.phone}" Binding="{Binding Phone}"></DataGridTextColumn>
+                                                <DataGridTextColumn Width="180" Header="{DynamicResource grid.contactpersons.column.header.email}" Binding="{Binding Email}"></DataGridTextColumn>
+                                                <DataGridTextColumn Width="140" Header="{DynamicResource grid.contactpersons.column.header.email}" Binding="{Binding EmployeeName}"></DataGridTextColumn>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
                                         <Label Grid.Row="3" Background="{DynamicResource desktop.bordercolor}"></Label>
                                     </Grid>
                                 </TabItem>

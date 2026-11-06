@@ -35,8 +35,10 @@ namespace VisumCRM.Client.Wpf
             App.EventHelper.AuthenticationCancled += EventHelper_AuthenticationCancled;
             App.EventHelper.AuthenticationSuccess += EventHelper_AuthenticationSuccess;
             App.EventHelper.CompanyModelCollectionChanged += EventHelper_CompanyModelCollectionChanged;
+            App.EventHelper.ContactpersonModelCollectionChanged += EventHelper_ContactpersonModelCollectionChanged;
             App.EventHelper.CurrentCompanyChanged += EventHelper_CurrentCompanyChanged;
             dgCompanies.SizeChanged += DgCompanies_SizeChanged;
+            dgContactpersons.SizeChanged += DgContactpersons_SizeChanged;
             dgCompanies.SelectionChanged += DgCompanies_SelectionChanged;
             dgCompanies.MouseDoubleClick += DgCompanies_MouseDoubleClick;
             _settings.Load();
@@ -56,6 +58,7 @@ namespace VisumCRM.Client.Wpf
                 }
             }
         }
+
 
         private void FetchAllData() 
         {
@@ -220,6 +223,13 @@ namespace VisumCRM.Client.Wpf
         {
             App.DialogHelper.ShowCompany(new Entity.Company());
         }
+        private void EventHelper_ContactpersonModelCollectionChanged(object? sender, EventArgs e)
+        {
+            dgContactpersons.BeginInit();
+            dgContactpersons.ItemsSource = App.DataShare.ContactpersonModelCollection;
+            dgContactpersons.EndInit();
+        }
+
         private void EventHelper_CompanyModelCollectionChanged(object? sender, EventArgs e)
         {
             using (new Internals.WorkhandlerContainer("EventHelper_CompanyModelCollectionChanged"))
@@ -251,6 +261,11 @@ namespace VisumCRM.Client.Wpf
                 if (App.AppShare.CurrentCompany != null)
                     App.EventHelper.RaiseCurrentCompanyChangedEvent();
             }
+        }
+        private void DgContactpersons_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var width = dgContactpersons.ActualWidth;
+            dgContactpersons.Columns[1].Width = width - 80 - 80 - 180 - 140 - 2;
         }
 
         private void mnuContactperson_Click(object sender, RoutedEventArgs e)

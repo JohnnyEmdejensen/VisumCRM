@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
 using System.Text;
@@ -19,7 +20,7 @@ namespace VisumCRM.Client.Wpf.Internals
         public List<Models.KeyValueModel>? BrancheModelCollection { get; set; }
         public List<Models.KeyValueModel>? TargetgroupModelCollection { get; set; }
         public List<Models.CompanyModel>? CompanyModelCollection { get; set; }
-        
+        public List<Models.ContactpersonModel>? ContactpersonModelCollection { get; set; }
         public DataShare()
         {
 
@@ -68,6 +69,69 @@ namespace VisumCRM.Client.Wpf.Internals
                     TargetgroupModelCollection = TargetgroupModelCollection.OrderBy(x => x.Value).ToList();
                 }
             }
+        }
+        private void BuildContactpersonModel()
+        {
+            if (ContactpersonCollection == null || ContactpersonCollection.Count == 0) return;
+            using (new Internals.WorkhandlerContainer("BuildContactpersonModel"))
+            {
+                ContactpersonModelCollection = new();
+                foreach (var contactperson in ContactpersonCollection)
+                {
+                    contactperson.SetFullname();
+                    var c = new Models.ContactpersonModel
+                    {
+                        Birthday = contactperson.Birthday,
+                        Email = contactperson.Email,
+                        EmployeerId = contactperson.EmployeerId,
+                        Firstname = contactperson.Firstname,
+                        LocationId = contactperson.LocationId,
+                        Fullname = contactperson.Fullname,
+                        Middlename = contactperson.Middlename,
+                        Mobile = contactperson.Mobile,
+                        Phone = contactperson.Phone,
+                        Picture = contactperson.Picture,
+                        SalespersonId = contactperson.SalespersonId,
+                        Surname = contactperson.Surname,
+                        Id = contactperson.Id,
+                    };
+                    if (App.DataShare.LocationModelCollection != null)
+                    {
+                        var location = App.DataShare.LocationModelCollection.FirstOrDefault(x => x.Id == contactperson.LocationId);
+                        if (location != null)
+                        {
+                            location.SetAddress();
+                            c.Address = location.Address;
+                            c.Zipcode = location.Zipcode;
+                            c.City = location.City;
+                            c.Country = location.CountryName;
+                        }
+                    }
+                    if (App.DataShare.UserCollection != null)
+                    {
+                        var user = App.DataShare.UserCollection.FirstOrDefault(x => x.Id == contactperson.SalespersonId);
+                        if (user != null)
+                        {
+                            user.SetFullname();
+                            c.SalespersonName = user.Fullname;
+                        }
+                    }
+                    if (App.DataShare.CompanyCollection != null)
+                    {
+                        var company = App.DataShare.CompanyCollection.FirstOrDefault(x => x.Id == contactperson.EmployeerId);
+                        if (company != null)
+                        {
+                            c.EmployeeName = company.Name;
+                        }
+                    }
+                    ContactpersonModelCollection.Add(c);
+                }
+                if (ContactpersonModelCollection != null)
+                {
+                    ContactpersonModelCollection = ContactpersonModelCollection.OrderBy(x => x.Fullname).ToList();                    
+                }
+            }
+            App.EventHelper.RaiseContactpersonModelCollectionChangedEvent();
         }
         private void BuildCompanyModel()
         {
@@ -350,7 +414,7 @@ namespace VisumCRM.Client.Wpf.Internals
 
         private void EventHelper_ContactpersonCollectionChanged(object? sender, EventArgs e)
         {
-
+            BuildContactpersonModel();
         }
 
         private void EventHelper_CompanyCollectionChanged(object? sender, EventArgs e)
