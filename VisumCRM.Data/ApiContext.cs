@@ -38,5 +38,6 @@ namespace VisumCRM.Data
         public DbSet<Entity.Branche> Branches { get; set; }
         public DbSet<Entity.Targetgroup> Targetgroups { get; set; }
         public DbSet<Entity.Workinglog> Workinglogs { get; set; }
+        public DbSet<Entity.Jobtitle> Jobtitles { get; set; }
     }
 }

@@ -21,6 +21,8 @@ namespace VisumCRM.Client.Wpf.Internals
         public List<Models.KeyValueModel>? TargetgroupModelCollection { get; set; }
         public List<Models.CompanyModel>? CompanyModelCollection { get; set; }
         public List<Models.ContactpersonModel>? ContactpersonModelCollection { get; set; }
+        public List<Entity.Jobtitle>? JobtitleCollection{ get; set; }
+
         public DataShare()
         {
 
@@ -250,6 +252,7 @@ namespace VisumCRM.Client.Wpf.Internals
                 GetUsers();
                 GetBranches();
                 GetTargetgroups();
+                GetJobtitles();
                 GetCompanies();
                 GetContactpersons();
             }
@@ -313,6 +316,19 @@ namespace VisumCRM.Client.Wpf.Internals
                 App.EventHelper.RaiseTargetgroupCollectionChangedEvent();
             }
         }
+        public void GetJobtitles()
+        {
+            using (new Internals.WorkhandlerContainer("GetJobtitles"))
+            {
+                var records = App.Repositories.JobtitleRepository.GetAll();
+                if (records != null && records.Count > 0)
+                {
+                    records = records.OrderBy(x => x.Value).ToList();
+                }
+                JobtitleCollection = records;
+                App.EventHelper.RaiseJobtitleConnectionChangedEvent();
+            }
+        }
         public void GetCompanies()
         {
             using (new Internals.WorkhandlerContainer("GetCompanies"))
@@ -356,6 +372,9 @@ namespace VisumCRM.Client.Wpf.Internals
             App.Repositories.TargetgroupRepossitory.TargetgroupCreated += TargetgroupRepossitory_TargetgroupCreated;
             App.Repositories.TargetgroupRepossitory.TargetgroupDeleted += TargetgroupRepossitory_TargetgroupDeleted;
             App.Repositories.TargetgroupRepossitory.TargetgroupUpdated += TargetgroupRepossitory_TargetgroupUpdated;
+            App.Repositories.JobtitleRepository.JobtitleCreated += JobtitleRepository_JobtitleCreated;
+            App.Repositories.JobtitleRepository.JobtitleDeleted += JobtitleRepository_JobtitleDeleted;
+            App.Repositories.JobtitleRepository.JobtitleUpdated += JobtitleRepository_JobtitleUpdated;
 
             App.EventHelper.CountryCollectionChanged += EventHelper_CountryCollectionChanged;
             App.EventHelper.PostalzoneColloectionChanged += EventHelper_PostalzoneColloectionChanged;
@@ -396,6 +415,21 @@ namespace VisumCRM.Client.Wpf.Internals
         {
             GetTargetgroups();
         }
+        private void JobtitleRepository_JobtitleUpdated(object sender, Repository.JobtitleEventArgs e)
+        {
+            GetJobtitles();
+        }
+
+        private void JobtitleRepository_JobtitleDeleted(object sender, Repository.JobtitleEventArgs e)
+        {
+            GetJobtitles();
+        }
+
+        private void JobtitleRepository_JobtitleCreated(object sender, Repository.JobtitleEventArgs e)
+        {
+            GetJobtitles();
+        }
+
 
         private void BrancheRepository_BrancheDelete(object sender, Repository.BrancheEventArgs e)
         {
