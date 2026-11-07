@@ -115,6 +115,10 @@
     <None Remove="Images\proff_48.png" />
     <None Remove="Images\restore.png" />
     <None Remove="Images\restore_pas.png" />
+    <None Remove="Images\screwdriver_16.png" />
+    <None Remove="Images\screwdriver_24.png" />
+    <None Remove="Images\screwdriver_32.png" />
+    <None Remove="Images\screwdriver_48.png" />
     <None Remove="Images\telephone_16.png" />
     <None Remove="Images\telephone_24.png" />
     <None Remove="Images\telephone_32.png" />
@@ -246,6 +250,10 @@
     <Resource Include="Images\proff_48.png" />
     <Resource Include="Images\restore.png" />
     <Resource Include="Images\restore_pas.png" />
+    <Resource Include="Images\screwdriver_16.png" />
+    <Resource Include="Images\screwdriver_24.png" />
+    <Resource Include="Images\screwdriver_32.png" />
+    <Resource Include="Images\screwdriver_48.png" />
     <Resource Include="Images\telephone_16.png" />
     <Resource Include="Images\telephone_24.png" />
     <Resource Include="Images\telephone_32.png" />

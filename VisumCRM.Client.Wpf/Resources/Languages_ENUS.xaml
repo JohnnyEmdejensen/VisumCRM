@@ -37,6 +37,8 @@
     <system:String x:Key="grid.companies.column.header.targetgroup">Targetgroup</system:String>
     <system:String x:Key="grid.branches.column.header.key">Key</system:String>
     <system:String x:Key="grid.branches.column.header.value">Value</system:String>
+    <system:String x:Key="grid.jobtitles.column.header.key">Key</system:String>
+    <system:String x:Key="grid.jobtitles.column.header.value">Value</system:String>
 
     <system:String x:Key="grid.contactpersons.column.header.name">Name</system:String>
     <system:String x:Key="grid.contactpersons.column.header.mobile">Mobile</system:String>
@@ -116,6 +118,7 @@
     <system:String x:Key="contactperson.header.phone">PHONE</system:String>
     <system:String x:Key="contactperson.header.mobile">MOBILE</system:String>
     <system:String x:Key="contactperson.header.email">EMAIL</system:String>
+    <system:String x:Key="contactperson.header.jobtitle">JOBTITLE</system:String>
     <system:String x:Key="contactperson.header.salesperson">SALESPERSON</system:String>
     <system:String x:Key="contactperson.header.employer">EMPLOYER</system:String>
     <system:String x:Key="contactperson.header.birthday">BIRTHDAY</system:String>
@@ -125,6 +128,12 @@
     <system:String x:Key="branche.header.key">Key</system:String>
     <system:String x:Key="branche.header.value">Value</system:String>
     <system:String x:Key="branche.header.filter">Filter:</system:String>
+
+    <system:String x:Key="jobtitle.header.title">Jobtitle Informations</system:String>
+    <system:String x:Key="jobtitle.tab.header.jobtitles">Jobtitles</system:String>
+    <system:String x:Key="jobtitle.header.key">Key</system:String>
+    <system:String x:Key="jobtitle.header.value">Value</system:String>
+    <system:String x:Key="jobtitle.header.filter">Filter:</system:String>
 
 
     <system:String x:Key="text.translate.floor">floor</system:String>

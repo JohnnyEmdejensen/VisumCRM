@@ -317,5 +317,11 @@ namespace VisumCRM.Client.Wpf.Dialogs
         {
             DoDelete();
         }
+
+        private void lblJobtitle_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var jobtitle = new Entity.Jobtitle();
+            App.DialogHelper.ShowJobtitle(jobtitle);
+        }
     }
 }

@@ -49,6 +49,14 @@ namespace VisumCRM.Client.Wpf.Internals
             };
             frm.Show();
         }
+        public void ShowJobtitle(Entity.Jobtitle? Jobtitle)
+        {
+            Dialogs.JobtitleDialog frm = new Dialogs.JobtitleDialog()
+            {
+                DataContext = Jobtitle,
+            };
+            frm.Show();
+        }
         public void ShowCompany(Entity.Company? Company)
         {
             if (Company != null)

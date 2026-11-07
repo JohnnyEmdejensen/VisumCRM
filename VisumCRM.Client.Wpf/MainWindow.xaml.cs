@@ -40,7 +40,9 @@ namespace VisumCRM.Client.Wpf
             dgCompanies.SizeChanged += DgCompanies_SizeChanged;
             dgContactpersons.SizeChanged += DgContactpersons_SizeChanged;
             dgCompanies.SelectionChanged += DgCompanies_SelectionChanged;
+            dgContactpersons.SelectionChanged += DgContactpersons_SelectionChanged;
             dgCompanies.MouseDoubleClick += DgCompanies_MouseDoubleClick;
+            dgContactpersons.MouseDoubleClick += DgContactpersons_MouseDoubleClick;
             _settings.Load();
             pageDashboard.IsSelected = true;
             if (_settings._values != null)
@@ -252,6 +254,13 @@ namespace VisumCRM.Client.Wpf
             App.DialogHelper.ShowCompany(company);
         }
 
+        private void DgContactpersons_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var item = dgContactpersons.SelectedItem as Models.ContactpersonModel;
+            if (item == null || App.DataShare.ContactpersonCollection == null) return;
+            var contactperson = App.DataShare.ContactpersonCollection.FirstOrDefault(x => x.Id == item.Id);
+            App.DialogHelper.ShowContactperson(contactperson);
+        }
         private void DgCompanies_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = dgCompanies.SelectedItem as Models.CompanyModel;
@@ -260,6 +269,17 @@ namespace VisumCRM.Client.Wpf
                 App.AppShare.CurrentCompany = App.DataShare.CompanyCollection.FirstOrDefault(x => x.Id == item.Id);
                 if (App.AppShare.CurrentCompany != null)
                     App.EventHelper.RaiseCurrentCompanyChangedEvent();
+            }
+        }
+
+        private void DgContactpersons_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = dgContactpersons.SelectedItem as Models.ContactpersonModel;
+            if (item != null && App.DataShare.ContactpersonCollection != null)
+            {
+                App.AppShare.CurrentContactperson = App.DataShare.ContactpersonCollection.FirstOrDefault(x => x.Id == item.Id);
+                if (App.AppShare.CurrentContactperson != null)
+                    App.EventHelper.RaiseCurrentContactpersonChangedEvent();
             }
         }
         private void DgContactpersons_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -278,10 +298,15 @@ namespace VisumCRM.Client.Wpf
         {
             App.DialogHelper.ShowBranche(null);
         }
+        private void btnJobtitles_Click(object sender, RoutedEventArgs e)
+        {
+            App.DialogHelper.ShowJobtitle(null);
+        }
         private void EventHelper_CurrentCompanyChanged(object? sender, EventArgs e)
         {
             if (App.AppShare.CurrentCompany == null) return;
             lblActiveCompany.Content = App.AppShare.CurrentCompany.Name;
         }
+
     }
 }

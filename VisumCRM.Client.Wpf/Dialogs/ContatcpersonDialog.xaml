@@ -241,6 +241,14 @@
                         <Label Content="{DynamicResource contactperson.header.email}" Style="{StaticResource HeaderLabel}"></Label>
                         <TextBox Grid.Row="1" Text="{Binding Path=Email}" MaxLength="16" ></TextBox>
                     </Grid>
+                    <Grid Grid.Row="16">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="16"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label x:Name="lblJobtitle" Content="{DynamicResource contactperson.header.jobtitle}" Style="{StaticResource HeaderLabelClickAble}" MouseDown="lblJobtitle_MouseDown"></Label>
+                        <ComboBox x:Name="cboJobtitle" Grid.Row="1" SelectedValue="{Binding Path=JobtitleId}"></ComboBox>
+                    </Grid>
 
                 </Grid>
                 <GridSplitter Grid.Column="1"></GridSplitter>

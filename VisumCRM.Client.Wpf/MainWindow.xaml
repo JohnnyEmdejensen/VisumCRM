@@ -48,6 +48,7 @@
                 <RibbonTab Header="{DynamicResource ribbon.tab.header.settings}">
                     <RibbonGroup Header="{DynamicResource ribbon.settings.group.header.systemdata}">
                         <RibbonButton x:Name="btnBranches" Click="btnBranches_Click" Label="{DynamicResource ribbon.settings.button.header.branches}" LargeImageSource="/Images/bell_32.png" SmallImageSource="/Images/bell_16.png"></RibbonButton>
+                        <RibbonButton x:Name="btnJobtitles" Click="btnJobtitles_Click" Label="{DynamicResource ribbon.settings.button.header.branches}" LargeImageSource="/Images/screwdriver_32.png" SmallImageSource="/Images/screwdriver_16.png"></RibbonButton>
                     </RibbonGroup>
                 </RibbonTab>
             </Ribbon>
