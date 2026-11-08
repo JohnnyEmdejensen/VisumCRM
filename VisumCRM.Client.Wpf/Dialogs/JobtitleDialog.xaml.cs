@@ -27,14 +27,26 @@ namespace VisumCRM.Client.Wpf.Dialogs
             ContentRendered += JobtitleDialog_ContentRendered;
             Closing += JobtitleDialog_Closing;
             KeyDown += JobtitleDialog_KeyDown;
-            dgJobtitles.SizeChanged += DgJobtitles_SizeChanged;
+            dgJobtitles.SizeChanged += DgJobtitles_SizeChanged;            
             _settings.Load();
+        }
+
+        private List<Entity.Jobtitle>? ApplyFilter(List<Jobtitle>? Jobtitles)
+        {
+            if (Jobtitles == null) return null;
+            if (!string.IsNullOrEmpty(txtFilter.Text))
+                return Jobtitles.Where(x => x.Key.ToLower().Contains(txtFilter.Text.ToLower()) || x.Value.ToLower().Contains(txtFilter.Text.ToLower())).ToList();
+            else
+                return Jobtitles;
         }
 
 
         private void DoAdd()
         {
-
+            _jobtitle = new Jobtitle();
+            DataContext = _jobtitle;
+            SetGui();
+            txtKey.Focus();
         }
         private void DoClose()
         {
@@ -42,10 +54,53 @@ namespace VisumCRM.Client.Wpf.Dialogs
         }
         private void DoDelete()
         {
-
+            _jobtitle = DataContext as Entity.Jobtitle;
+            string? message = App.Current.Resources["messagebox.message.suretodeletethisjobtitle"].ToString();
+            string? title = App.Current.Resources["messagebox.title.deletejobtitle"].ToString();
+            if (message != null && title != null && _jobtitle != null)
+            {
+                ImageSource src = new BitmapImage(new Uri("/Images/delete_24.png", UriKind.Relative));
+                imgDialogState.Source = src;
+                if (MessageBox.Show(string.Format( message.Replace("|", Environment.NewLine), _jobtitle.Value), title, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    _jobtitle = App.Repositories.JobtitleRepository.Delete(_jobtitle.Id);
+                    if (_jobtitle != null)
+                    {
+                        App.ToolsHelper.LogWriter(0, "The user has marked the jobtitle deleted.", _jobtitle.Id);
+                    }
+                    _jobtitle = null;
+                    DataContext = _jobtitle;
+                    SetGui();
+                }
+            }
+            imgDialogState.Source = null;
         }
         private void DoSave(bool CloseAfter)
         {
+            _jobtitle = DataContext as Entity.Jobtitle;
+            if (_jobtitle != null)
+            {
+                if (_jobtitle.Id == 0)
+                {
+                    _jobtitle = App.Repositories.JobtitleRepository.Create(_jobtitle);
+                }
+                else
+                {
+                    _jobtitle = App.Repositories.JobtitleRepository.Create(_jobtitle);
+                }
+                DataContext = _jobtitle;
+                SetGui();
+            }
+        }
+
+        private void FillJobtitleControl()
+        {
+            using (new Internals.WorkhandlerContainer("FillJobtitleControl"))
+            {
+                dgJobtitles.BeginInit();
+                dgJobtitles.ItemsSource = ApplyFilter(App.DataShare.JobtitleCollection);
+                dgJobtitles.EndInit();
+            }
 
         }
 
@@ -159,7 +214,10 @@ namespace VisumCRM.Client.Wpf.Dialogs
 
         private void dgJobtitles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            _jobtitle = dgJobtitles.SelectedItem as Entity.Jobtitle;
+            DataContext = _jobtitle;
+            SetGui();
+            txtKey.Focus();
         }
         private void DgJobtitles_SizeChanged(object sender, SizeChangedEventArgs e)
         {
@@ -169,6 +227,7 @@ namespace VisumCRM.Client.Wpf.Dialogs
 
         private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
+            FillJobtitleControl();
 
         }
     }

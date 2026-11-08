@@ -146,5 +146,7 @@
     <system:String x:Key="messagebox.title.deletecompany">Delete company</system:String>
     <system:String x:Key="messagebox.message.suretodeletethiscontactperson">Are you sure to delete this contactperson?|{0}</system:String>
     <system:String x:Key="messagebox.title.deletecontatcperson">Delete contactperson</system:String>
+    <system:String x:Key="messagebox.message.suretodeletethisjobtitle">Are you sure to delete this jobtitle?|{0}</system:String>
+    <system:String x:Key="messagebox.title.deletejobtitle">Delete jobtitle</system:String>
 
 </ResourceDictionary>

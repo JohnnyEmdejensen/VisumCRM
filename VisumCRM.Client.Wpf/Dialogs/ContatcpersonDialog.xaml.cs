@@ -119,6 +119,7 @@ namespace VisumCRM.Client.Wpf.Dialogs
                 FillCountryControl();
                 FillSalespersonControl();
                 FillEmployeeControl();
+                FillJobtitleControl();
             }
         }
         private void FillCountryControl()
@@ -133,6 +134,13 @@ namespace VisumCRM.Client.Wpf.Dialogs
             using (new Internals.WorkhandlerContainer("FillSalespersonControl"))
             {
                 App.ToolsHelper.FillSalespersonControl(cboSalespersons);
+            }
+        }
+        private void FillJobtitleControl()
+        {
+            using (new Internals.WorkhandlerContainer("FillJobtitleControl"))
+            {
+                App.ToolsHelper.FillJobtitleControl(cboJobtitle);
             }
         }
         private void FillEmployeeControl()

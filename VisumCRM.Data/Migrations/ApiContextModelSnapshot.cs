@@ -161,6 +161,9 @@ namespace VisumCRM.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<long>("JobtitleId")
+                        .HasColumnType("bigint");
+
                     b.Property<Guid>("LicenseKey")
                         .HasColumnType("uniqueidentifier");
 

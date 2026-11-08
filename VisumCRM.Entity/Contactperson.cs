@@ -8,6 +8,6 @@ namespace VisumCRM.Entity
     {
         public long SalespersonId { get; set; }
         public long EmployeerId { get; set; }
-
+        public long JobtitleId { get; set; }
     }
 }
