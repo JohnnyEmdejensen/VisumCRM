@@ -149,4 +149,7 @@
     <system:String x:Key="messagebox.message.suretodeletethisjobtitle">Are you sure to delete this jobtitle?|{0}</system:String>
     <system:String x:Key="messagebox.title.deletejobtitle">Delete jobtitle</system:String>
 
+    <system:String x:Key="messagebox.message.suretocancelthecompanycreation">Are you sure to cancel the company creation?</system:String>
+    <system:String x:Key="messagebox.title.cancelcompanycreation">Cancel company</system:String>
+
 </ResourceDictionary>

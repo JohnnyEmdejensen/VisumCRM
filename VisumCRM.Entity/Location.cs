@@ -23,5 +23,22 @@ namespace VisumCRM.Entity
 
         [NotMapped]
         public string? Address { get; set; }
+
+        public void SetAddress()
+        {
+            Address = Street + " " + House;
+            if (!string.IsNullOrEmpty(Floor))
+            {
+                Address += ", " + Floor;
+            }
+            if (!string.IsNullOrEmpty(Door))
+            {
+                Address += ". " + Door + ".";
+            }
+            else
+            {
+                Address += ". sal";
+            }
+        }
     }
 }

@@ -104,7 +104,7 @@ namespace VisumCRM.Client.Wpf.Dialogs
                         _branche = App.Repositories.BrancheRepository.Create(_branche);
                         if (_branche != null)
                         {
-                            App.ToolsHelper.LogWriter(0, "The user has updated the branch.", _branche.Id);
+                            App.ToolsHelper.LogWriter(0, "The user has created the branch.", _branche.Id);
                         }
                     }
                     else

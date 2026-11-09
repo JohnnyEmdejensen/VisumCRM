@@ -40,13 +40,36 @@ namespace VisumCRM.Client.Wpf.Dialogs
         private void DoAdd()
         {
             _company = new Company();
+            if (App.AppShare.CurrentUser != null)
+            {
+                _company.SalespersonId = App.AppShare.CurrentUser.Id;
+            }
             DataContext = _company;
             SetGui();
+            ViewDetails();
             txtNumber.Focus();
         }
         private void DoClose()
         {
-            Close();
+            bool allow = true;
+            _company = DataContext as Entity.Company;
+            if (_company != null)
+            {
+                if (_company.Id == 0)
+                {
+                    var message = App.Current.Resources["messagebox.message.suretocancelthecompanycreation"].ToString();
+                    var title = App.Current.Resources["messagebox.title.cancelcompanycreation"].ToString();
+                    if (message != null && title != null)
+                    {
+                        if (MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+                        {
+                            allow = false;
+                        }
+                    }
+                }
+            }
+            if (allow)
+                Close();
         }
         private void DoDelete()
         {
@@ -197,6 +220,13 @@ namespace VisumCRM.Client.Wpf.Dialogs
 
         private void ViewDetails()
         {
+            txtStreet.Text = "";
+            txtHouse.Text = "";
+            txtFloor.Text = "";
+            txtFloor.Text = "";
+            txtZipcode.Text = "";
+            txtCity.Text = "";
+            cboCountry.SelectedValue = null;
             _company = DataContext as Entity.Company;
             if (_company == null || App.DataShare.LocationModelCollection == null) return;
             var location = App.DataShare.LocationModelCollection.FirstOrDefault(x => x.Id == _company.LocationId);
@@ -217,6 +247,31 @@ namespace VisumCRM.Client.Wpf.Dialogs
                 e.Handled = true;
                 DoClose();
             }
+            if (Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+            {
+                if (e.Key == Key.N)
+                {
+                    e.Handled = true;
+                    btnAdd.Focus();
+                    DoAdd();
+                }
+                if (e.Key == Key.D)
+                {
+                    e.Handled = true;
+                    DoDelete();
+                }
+                if (e.Key == Key.S)
+                {
+                    DoSave(false);
+                }
+                if (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift))
+                {
+                    if (e.Key == Key.S)
+                    {
+                        DoSave(true);
+                    }
+                }
+            }
         }
 
         private void CompanyDialog_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
@@ -230,6 +285,12 @@ namespace VisumCRM.Client.Wpf.Dialogs
             _company = DataContext as Entity.Company;
             if (_company != null)
             {
+                lblName.Content = _company.Name;
+                lblAddress.Content = App.ToolsHelper.GetAddress(_company.LocationId);
+                lblPostalzone.Content = App.ToolsHelper.GetPostalzone(_company.LocationId);
+                lblPhone.Content = "Phone: " + _company.Phone;
+                lblPhone2.Content = "Phone: " + _company.Phone2;
+                lblEmail.Content = "Email: " + _company.Email;
                 _logs = App.Repositories.WorkinglogRepository.GetAllCompanyLog(_company.Id);
                 List<Models.WorkingLogModel> logs = new List<Models.WorkingLogModel>();
                 if (_logs != null)

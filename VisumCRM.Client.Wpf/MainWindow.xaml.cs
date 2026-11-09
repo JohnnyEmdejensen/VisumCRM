@@ -37,6 +37,7 @@ namespace VisumCRM.Client.Wpf
             App.EventHelper.CompanyModelCollectionChanged += EventHelper_CompanyModelCollectionChanged;
             App.EventHelper.ContactpersonModelCollectionChanged += EventHelper_ContactpersonModelCollectionChanged;
             App.EventHelper.CurrentCompanyChanged += EventHelper_CurrentCompanyChanged;
+            App.EventHelper.CurrentContactpersonChanged += EventHelper_CurrentContactpersonChanged;
             dgCompanies.SizeChanged += DgCompanies_SizeChanged;
             dgContactpersons.SizeChanged += DgContactpersons_SizeChanged;
             dgCompanies.SelectionChanged += DgCompanies_SelectionChanged;
@@ -61,7 +62,16 @@ namespace VisumCRM.Client.Wpf
             }
         }
 
-
+        private List<Models.ContactpersonModel>? ApplyContactpersonFilter(List<Models.ContactpersonModel>? Contactpersons)
+        {            
+            List<Models.ContactpersonModel>? result = App.DataShare.ContactpersonModelCollection;
+            if (App.DataShare.ContactpersonModelCollection != null)
+            {
+                if (App.AppShare.CurrentCompany != null && result != null)
+                    result = result.Where(x => x.EmployeerId == App.AppShare.CurrentCompany.Id).ToList();
+            }
+            return result;
+        }
         private void FetchAllData() 
         {
             using (new Internals.WorkhandlerContainer("FetchAllData"))
@@ -227,9 +237,12 @@ namespace VisumCRM.Client.Wpf
         }
         private void EventHelper_ContactpersonModelCollectionChanged(object? sender, EventArgs e)
         {
-            dgContactpersons.BeginInit();
-            dgContactpersons.ItemsSource = App.DataShare.ContactpersonModelCollection;
-            dgContactpersons.EndInit();
+            using (new Internals.WorkhandlerContainer("EventHelper_ContactpersonModelCollectionChanged"))
+            {
+                dgContactpersons.BeginInit();
+                dgContactpersons.ItemsSource = ApplyContactpersonFilter(App.DataShare.ContactpersonModelCollection);
+                dgContactpersons.EndInit();
+            }
         }
 
         private void EventHelper_CompanyModelCollectionChanged(object? sender, EventArgs e)
@@ -291,6 +304,7 @@ namespace VisumCRM.Client.Wpf
         private void mnuContactperson_Click(object sender, RoutedEventArgs e)
         {
             Entity.Contactperson contactperson = new();
+            if (App.AppShare.CurrentCompany != null) contactperson.EmployeerId = App.AppShare.CurrentCompany.Id;
             App.DialogHelper.ShowContactperson(contactperson);
         }
 
@@ -306,6 +320,18 @@ namespace VisumCRM.Client.Wpf
         {
             if (App.AppShare.CurrentCompany == null) return;
             lblActiveCompany.Content = App.AppShare.CurrentCompany.Name;
+            using (new Internals.WorkhandlerContainer("EventHelper_CurrentCompanyChanged"))
+            {
+                dgContactpersons.BeginInit();
+                dgContactpersons.ItemsSource = ApplyContactpersonFilter(App.DataShare.ContactpersonModelCollection);
+                dgContactpersons.EndInit();
+            }
+
+        }
+        private void EventHelper_CurrentContactpersonChanged(object? sender, EventArgs e)
+        {
+            if (App.AppShare.CurrentContactperson == null) return;
+            lblActiveContactperson.Content = App.AppShare.CurrentContactperson.Fullname;
         }
 
     }

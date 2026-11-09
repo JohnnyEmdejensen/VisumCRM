@@ -217,7 +217,7 @@
                                                 <DataGridTextColumn Width="80" Header="{DynamicResource grid.contactpersons.column.header.mobile}" Binding="{Binding Mobile}"></DataGridTextColumn>
                                                 <DataGridTextColumn Width="80" Header="{DynamicResource grid.contactpersons.column.header.phone}" Binding="{Binding Phone}"></DataGridTextColumn>
                                                 <DataGridTextColumn Width="180" Header="{DynamicResource grid.contactpersons.column.header.email}" Binding="{Binding Email}"></DataGridTextColumn>
-                                                <DataGridTextColumn Width="140" Header="{DynamicResource grid.contactpersons.column.header.email}" Binding="{Binding EmployeeName}"></DataGridTextColumn>
+                                                <DataGridTextColumn Width="140" Header="{DynamicResource grid.contactpersons.column.header.employee}" Binding="{Binding EmployeeName}"></DataGridTextColumn>
                                             </DataGrid.Columns>
                                         </DataGrid>
                                         <Label Grid.Row="3" Background="{DynamicResource desktop.bordercolor}"></Label>

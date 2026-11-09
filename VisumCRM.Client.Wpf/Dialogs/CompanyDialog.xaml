@@ -42,8 +42,34 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition Width="60"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
-
+                <Grid Grid.Column="0" Margin="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="8"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="8"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Grid.ColumnSpan="3" Margin="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label x:Name="lblName" Grid.Row="0" Padding="0" Content="" FontWeight="Bold"></Label>
+                        <Label x:Name="lblAddress" Grid.Row="1" Padding="8,0" Content=""></Label>
+                        <Label x:Name="lblPostalzone" Grid.Row="2" Padding="8,00" Content=""></Label>
+                    </Grid>
+                    <Grid Grid.Column="4" Margin="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label x:Name="lblPhone" Grid.Row="0" Content="" Padding="0"></Label>
+                        <Label x:Name="lblPhone2" Grid.Row="1" Content="" Padding="0"></Label>
+                        <Label x:Name="lblEmail" Grid.Row="2" Content="" Padding="0"></Label>
+                    </Grid>
                 </Grid>
                 <Canvas Grid.Column="2" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Canvas.Left>0</Canvas.Left>

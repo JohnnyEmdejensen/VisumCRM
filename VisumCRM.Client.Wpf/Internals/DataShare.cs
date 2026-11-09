@@ -27,6 +27,45 @@ namespace VisumCRM.Client.Wpf.Internals
         {
 
         }
+        public void ResumeEvents()
+        {
+            App.Repositories.CountryRepository.CountryCreated += CountryRepository_CountryCreated;
+            App.Repositories.CountryRepository.CountryDeleted += CountryRepository_CountryDeleted;
+            App.Repositories.CountryRepository.CountryUpdated += CountryRepository_CountryUpdated;
+            App.Repositories.LocationRepository.LocationCreated += LocationRepository_LocationCreated;
+            App.Repositories.LocationRepository.LocationDeleted += LocationRepository_LocationDeleted;
+            App.Repositories.LocationRepository.LocationUpdated += LocationRepository_LocationUpdated;
+            App.Repositories.PostalzoneRepository.PostalzoneCreated += PostalzoneRepository_PostalzoneCreated;
+            App.Repositories.PostalzoneRepository.PostalzoneDeleted += PostalzoneRepository_PostalzoneDeleted;
+            App.Repositories.PostalzoneRepository.PostalzoneUpdated += PostalzoneRepository_PostalzoneUpdated;
+            App.Repositories.UserRepository.UserCreated += UserRepository_UserCreated;
+            App.Repositories.UserRepository.UserDeleted += UserRepository_UserDeleted;
+            App.Repositories.UserRepository.UserUpdated += UserRepository_UserUpdated;
+            App.Repositories.CompanyRepository.CompanyCreated += CompanyRepository_CompanyCreated;
+            App.Repositories.CompanyRepository.CompanyDeleted += CompanyRepository_CompanyDeleted;
+            App.Repositories.CompanyRepository.CompanyUpdated += CompanyRepository_CompanyUpdated;
+            App.Repositories.ContactpersonRepository.ContactpersonCreated += ContactpersonRepository_ContactpersonCreated;
+            App.Repositories.ContactpersonRepository.ContactpersonDeleted += ContactpersonRepository_ContactpersonDeleted;
+            App.Repositories.ContactpersonRepository.ContactpersonUpdated += ContactpersonRepository_ContactpersonUpdated;
+            App.Repositories.BrancheRepository.BrancheUpdate += BrancheRepository_BrancheUpdate;
+            App.Repositories.BrancheRepository.BrancheCreated += BrancheRepository_BrancheCreated;
+            App.Repositories.BrancheRepository.BrancheDelete += BrancheRepository_BrancheDelete;
+            App.Repositories.TargetgroupRepossitory.TargetgroupCreated += TargetgroupRepossitory_TargetgroupCreated;
+            App.Repositories.TargetgroupRepossitory.TargetgroupDeleted += TargetgroupRepossitory_TargetgroupDeleted;
+            App.Repositories.TargetgroupRepossitory.TargetgroupUpdated += TargetgroupRepossitory_TargetgroupUpdated;
+            App.Repositories.JobtitleRepository.JobtitleCreated += JobtitleRepository_JobtitleCreated;
+            App.Repositories.JobtitleRepository.JobtitleDeleted += JobtitleRepository_JobtitleDeleted;
+            App.Repositories.JobtitleRepository.JobtitleUpdated += JobtitleRepository_JobtitleUpdated;
+
+            App.EventHelper.CountryCollectionChanged += EventHelper_CountryCollectionChanged;
+            App.EventHelper.PostalzoneColloectionChanged += EventHelper_PostalzoneColloectionChanged;
+            App.EventHelper.LocationCollectionChanged += EventHelper_LocationCollectionChanged;
+            App.EventHelper.CompanyCollectionChanged += EventHelper_CompanyCollectionChanged;
+            App.EventHelper.ContactpersonCollectionChanged += EventHelper_ContactpersonCollectionChanged;
+            App.EventHelper.BrancheCollectionChanged += EventHelper_BrancheCollectionChanged;
+            App.EventHelper.TargetgroupCollectionChanged += EventHelper_TargetgroupCollectionChanged;
+            App.EventHelper.UserCollectionChanged += EventHelper_UserCollectionChanged;
+        }
 
         private void BuildBrancheModel()
         {
@@ -326,7 +365,7 @@ namespace VisumCRM.Client.Wpf.Internals
                     records = records.OrderBy(x => x.Value).ToList();
                 }
                 JobtitleCollection = records;
-                App.EventHelper.RaiseJobtitleConnectionChangedEvent();
+                App.EventHelper.RaiseJobtitleCollectionChangedEvent();
             }
         }
         public void GetCompanies()
@@ -346,49 +385,10 @@ namespace VisumCRM.Client.Wpf.Internals
             }
         }
 
-        public void ResumeEvents()
-        {
-            App.Repositories.CountryRepository.CountryCreated += CountryRepository_CountryCreated;
-            App.Repositories.CountryRepository.CountryDeleted += CountryRepository_CountryDeleted;
-            App.Repositories.CountryRepository.CountryUpdated += CountryRepository_CountryUpdated;
-            App.Repositories.LocationRepository.LocationCreated += LocationRepository_LocationCreated;
-            App.Repositories.LocationRepository.LocationDeleted += LocationRepository_LocationDeleted;
-            App.Repositories.LocationRepository.LocationUpdated += LocationRepository_LocationUpdated;
-            App.Repositories.PostalzoneRepository.PostalzoneCreated += PostalzoneRepository_PostalzoneCreated;
-            App.Repositories.PostalzoneRepository.PostalzoneDeleted += PostalzoneRepository_PostalzoneDeleted;
-            App.Repositories.PostalzoneRepository.PostalzoneUpdated += PostalzoneRepository_PostalzoneUpdated;
-            App.Repositories.UserRepository.UserCreated += UserRepository_UserCreated;
-            App.Repositories.UserRepository.UserDeleted += UserRepository_UserDeleted;
-            App.Repositories.UserRepository.UserUpdated += UserRepository_UserUpdated;
-            App.Repositories.CompanyRepository.CompanyCreated += CompanyRepository_CompanyCreated;
-            App.Repositories.CompanyRepository.CompanyDeleted += CompanyRepository_CompanyDeleted;
-            App.Repositories.CompanyRepository.CompanyUpdated += CompanyRepository_CompanyUpdated;
-            App.Repositories.ContactpersonRepository.ContactpersonCreated += ContactpersonRepository_ContactpersonCreated;
-            App.Repositories.ContactpersonRepository.ContactpersonDeleted += ContactpersonRepository_ContactpersonDeleted;
-            App.Repositories.ContactpersonRepository.ContactpersonUpdated += ContactpersonRepository_ContactpersonUpdated;
-            App.Repositories.BrancheRepository.BrancheUpdate += BrancheRepository_BrancheUpdate;
-            App.Repositories.BrancheRepository.BrancheCreated += BrancheRepository_BrancheCreated;
-            App.Repositories.BrancheRepository.BrancheDelete += BrancheRepository_BrancheDelete;
-            App.Repositories.TargetgroupRepossitory.TargetgroupCreated += TargetgroupRepossitory_TargetgroupCreated;
-            App.Repositories.TargetgroupRepossitory.TargetgroupDeleted += TargetgroupRepossitory_TargetgroupDeleted;
-            App.Repositories.TargetgroupRepossitory.TargetgroupUpdated += TargetgroupRepossitory_TargetgroupUpdated;
-            App.Repositories.JobtitleRepository.JobtitleCreated += JobtitleRepository_JobtitleCreated;
-            App.Repositories.JobtitleRepository.JobtitleDeleted += JobtitleRepository_JobtitleDeleted;
-            App.Repositories.JobtitleRepository.JobtitleUpdated += JobtitleRepository_JobtitleUpdated;
-
-            App.EventHelper.CountryCollectionChanged += EventHelper_CountryCollectionChanged;
-            App.EventHelper.PostalzoneColloectionChanged += EventHelper_PostalzoneColloectionChanged;
-            App.EventHelper.LocationCollectionChanged += EventHelper_LocationCollectionChanged;
-            App.EventHelper.CompanyCollectionChanged += EventHelper_CompanyCollectionChanged;
-            App.EventHelper.ContactpersonCollectionChanged += EventHelper_ContactpersonCollectionChanged;
-            App.EventHelper.BrancheCollectionChanged += EventHelper_BrancheCollectionChanged;
-            App.EventHelper.TargetgroupCollectionChanged += EventHelper_TargetgroupCollectionChanged;
-            App.EventHelper.UserCollectionChanged += EventHelper_UserCollectionChanged;
-        }
 
         private void EventHelper_UserCollectionChanged(object? sender, EventArgs e)
         {
-
+            
         }
 
         private void EventHelper_TargetgroupCollectionChanged(object? sender, EventArgs e)
@@ -473,91 +473,92 @@ namespace VisumCRM.Client.Wpf.Internals
 
         private void ContactpersonRepository_ContactpersonUpdated(object sender, Repository.ContactpersonEventArgs e)
         {
-
+            GetContactpersons();
         }
 
         private void ContactpersonRepository_ContactpersonDeleted(object sender, Repository.ContactpersonEventArgs e)
         {
-
+            GetContactpersons();
         }
 
         private void ContactpersonRepository_ContactpersonCreated(object sender, Repository.ContactpersonEventArgs e)
         {
-
+            GetContactpersons();
         }
 
         private void CompanyRepository_CompanyUpdated(object sender, Repository.CompanyEventArgs e)
         {
-
+            GetCompanies();
         }
 
         private void CompanyRepository_CompanyDeleted(object sender, Repository.CompanyEventArgs e)
         {
-
+            GetCompanies();
         }
 
         private void CompanyRepository_CompanyCreated(object sender, Repository.CompanyEventArgs e)
         {
-
+            GetCompanies();
         }
 
         private void UserRepository_UserUpdated(object sender, Repository.UserEventArgs e)
         {
+            GetUsers();
         }
 
         private void UserRepository_UserDeleted(object sender, Repository.UserEventArgs e)
         {
-
+            GetUsers();
         }
 
         private void UserRepository_UserCreated(object sender, Repository.UserEventArgs e)
         {
-
+            GetUsers();
         }
 
         private void PostalzoneRepository_PostalzoneUpdated(object sender, Repository.PostalzoneEventArgs e)
         {
-
+            GetPostalzones();
         }
 
         private void PostalzoneRepository_PostalzoneDeleted(object sender, Repository.PostalzoneEventArgs e)
         {
-
+            GetPostalzones();
         }
 
         private void PostalzoneRepository_PostalzoneCreated(object sender, Repository.PostalzoneEventArgs e)
         {
-
+            GetPostalzones();
         }
 
         private void LocationRepository_LocationUpdated(object sender, Repository.LocationEventArgs e)
         {
-
+            GetLocations();
         }
 
         private void LocationRepository_LocationDeleted(object sender, Repository.LocationEventArgs e)
         {
-
+            GetLocations();
         }
 
         private void LocationRepository_LocationCreated(object sender, Repository.LocationEventArgs e)
         {
-
+            GetLocations();
         }
 
         private void CountryRepository_CountryUpdated(object sender, Repository.CountryEventArgs e)
         {
-
+            GetCountries();
         }
 
         private void CountryRepository_CountryDeleted(object sender, Repository.CountryEventArgs e)
         {
-
+            GetCountries();
         }
 
         private void CountryRepository_CountryCreated(object sender, Repository.CountryEventArgs e)
         {
-
+            GetCountries();
         }
     }
 }

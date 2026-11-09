@@ -27,9 +27,12 @@ namespace VisumCRM.Client.Wpf.Dialogs
             ContentRendered += JobtitleDialog_ContentRendered;
             Closing += JobtitleDialog_Closing;
             KeyDown += JobtitleDialog_KeyDown;
-            dgJobtitles.SizeChanged += DgJobtitles_SizeChanged;            
+            dgJobtitles.SizeChanged += DgJobtitles_SizeChanged;
+            App.EventHelper.JobtitleCollectionChanged += EventHelper_JobtitleCollectionChanged;
+            FillJobtitleControl();
             _settings.Load();
         }
+
 
         private List<Entity.Jobtitle>? ApplyFilter(List<Jobtitle>? Jobtitles)
         {
@@ -83,10 +86,14 @@ namespace VisumCRM.Client.Wpf.Dialogs
                 if (_jobtitle.Id == 0)
                 {
                     _jobtitle = App.Repositories.JobtitleRepository.Create(_jobtitle);
+                    if (_jobtitle != null)
+                        App.ToolsHelper.LogWriter(0, "The user has created the jobtitle.", _jobtitle.Id);
                 }
                 else
                 {
                     _jobtitle = App.Repositories.JobtitleRepository.Create(_jobtitle);
+                    if (_jobtitle != null)
+                        App.ToolsHelper.LogWriter(0, "The user has updated the jobtitle.", _jobtitle.Id);
                 }
                 DataContext = _jobtitle;
                 SetGui();
@@ -229,6 +236,10 @@ namespace VisumCRM.Client.Wpf.Dialogs
         {
             FillJobtitleControl();
 
+        }
+        private void EventHelper_JobtitleCollectionChanged(object? sender, EventArgs e)
+        {
+            FillJobtitleControl();
         }
     }
 }

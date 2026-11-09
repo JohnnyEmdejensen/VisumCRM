@@ -191,6 +191,37 @@ namespace VisumCRM.Client.Wpf.Internals
             }
 
         }
+        public string GetAddress(long locationId)
+        {
+            string result = "";
+            if (App.DataShare.LocationCollection != null)
+            {
+                var location = App.DataShare.LocationCollection.FirstOrDefault(x => x.Id == locationId);
+                if (location != null)
+                {
+                    location.SetAddress();
+                    result = location.Address ?? "";
+                }
+            }
+            return result;
+        }
+        public string GetPostalzone(long LocationId)
+        {
+            string result = "";
+            if (App.DataShare.LocationCollection != null && App.DataShare.PostalzoneCollection != null)
+            {
+                var location = App.DataShare.LocationCollection.FirstOrDefault(x => x.Id == LocationId);
+                if (location != null)
+                {
+                    var pz = App.DataShare.PostalzoneCollection.FirstOrDefault(x => x.Id == location.PostalzoneId);
+                    if (pz != null)
+                    {
+                        result += pz.Zipcode + "  " + pz.City;
+                    }
+                }
+            }
+            return result;
+        }
     }
 
 }

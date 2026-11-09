@@ -22,16 +22,16 @@ namespace VisumCRM.Client.Wpf.Internals
         public event DefaultHandler? CompanyModelCollectionChanged;
         public event DefaultHandler? CurrentCompanyChanged;
         public event DefaultHandler? ContactpersonModelCollectionChanged;
-        public event DefaultHandler? JobtitleConnectionChanged;
+        public event DefaultHandler? JobtitleCollectionChanged;
         public event DefaultHandler? CurrentContactpersonChanged;
 
         public void RaiseCurrentContactpersonChangedEvent()
         {
             CurrentContactpersonChanged?.Invoke(this, EventArgs.Empty);
         }
-        public void RaiseJobtitleConnectionChangedEvent()
+        public void RaiseJobtitleCollectionChangedEvent()
         {
-            JobtitleConnectionChanged?.Invoke(this, EventArgs.Empty);
+            JobtitleCollectionChanged?.Invoke(this, EventArgs.Empty);
         }
         public void RaiseContactpersonModelCollectionChangedEvent()
         {

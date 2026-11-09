@@ -28,9 +28,11 @@ namespace VisumCRM.Client.Wpf.Dialogs
             ContentRendered += ContatcpersonDialog_ContentRendered;
             Closing += ContatcpersonDialog_Closing;
             KeyDown += ContatcpersonDialog_KeyDown;
+            App.EventHelper.JobtitleCollectionChanged += EventHelper_JobtitleCollectionChanged;
             FillControls();
             _settings.Load();
         }
+
 
         private void DoAdd()
         {
@@ -330,6 +332,10 @@ namespace VisumCRM.Client.Wpf.Dialogs
         {
             var jobtitle = new Entity.Jobtitle();
             App.DialogHelper.ShowJobtitle(jobtitle);
+        }
+        private void EventHelper_JobtitleCollectionChanged(object? sender, EventArgs e)
+        {
+            FillJobtitleControl();
         }
     }
 }
