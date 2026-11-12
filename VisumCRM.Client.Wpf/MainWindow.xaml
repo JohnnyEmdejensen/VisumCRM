@@ -44,6 +44,14 @@
                         </RibbonMenuButton>
                         <RibbonButton x:Name="btnCreateCompany" Click="mnuCreateCompany_Click" Label="{DynamicResource ribbon.home.button.header.createcompany}" LargeImageSource="/Images/factory_new_32.png" SmallImageSource="/Images/factory_new_16.png"></RibbonButton>
                     </RibbonGroup>
+                    <RibbonGroup Header="{DynamicResource ribbon.home.group.header.views}">
+                        <RibbonToggleButton x:Name="tglDashboard" Click="tglDashboard_Click" Label="{DynamicResource ribbon.home.button.header.viewdashboard}" IsChecked="True" SmallImageSource="/Images/gauge_16.png" LargeImageSource="/Images/gauge_32.png"></RibbonToggleButton>
+                        <RibbonToggleButton x:Name="tglCompanies" Click="tglCompanies_Click" Label="{DynamicResource ribbon.home.button.header.viewcompanies}" IsChecked="True" SmallImageSource="/Images/factory_view_32.png" LargeImageSource="/Images/factory_view_32.png"></RibbonToggleButton>
+                        <RibbonToggleButton x:Name="tglActivities" Click="tglActivities_Click" Label="{DynamicResource ribbon.home.button.header.viewactivities}" IsChecked="True" SmallImageSource="/Images/clipboard_16.png" LargeImageSource="/Images/clipboard_32.png"></RibbonToggleButton>
+                    </RibbonGroup>
+                    <RibbonGroup Header="{DynamicResource ribbon.home.group.header.actions}">
+                        <RibbonButton x:Name="btnActionWebsite" Click="btnActionWebsite_Click" IsEnabled="False" Label="{DynamicResource ribbon.home.button.header.website}" LargeImageSource="/Images/earth_32.png" SmallImageSource="/Images/earth_16.png"></RibbonButton>
+                    </RibbonGroup>
                 </RibbonTab>
                 <RibbonTab Header="{DynamicResource ribbon.tab.header.settings}">
                     <RibbonGroup Header="{DynamicResource ribbon.settings.group.header.systemdata}">
@@ -113,7 +121,7 @@
                             </StackPanel>
                             <TabControl x:Name="tabOutput" Grid.Row="2">
                                 <TabItem x:Name="pageDashboard" Header="{DynamicResource desktop.output.header.dashboard}">
-                                    <Grid>
+                                    <Grid x:Name="grdDashboard">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="1"></RowDefinition>
                                             <RowDefinition Height="25"></RowDefinition>
@@ -136,7 +144,7 @@
                                     </Grid>
                                 </TabItem>
                                 <TabItem x:Name="pageCompanies" Header="{DynamicResource desktop.output.header.companies}">
-                                    <Grid>
+                                    <Grid x:Name="grdCompanies">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="1"></RowDefinition>
                                             <RowDefinition Height="25"></RowDefinition>
@@ -170,7 +178,7 @@
                                     </Grid>
                                 </TabItem>
                                 <TabItem x:Name="pageactivities" Header="{DynamicResource desktop.output.header.activities}">
-                                    <Grid>
+                                    <Grid x:Name="grdActivities">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="1"></RowDefinition>
                                             <RowDefinition Height="25"></RowDefinition>

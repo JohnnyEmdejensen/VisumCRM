@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Security.AccessControl;
 using System.Text;
@@ -13,6 +14,23 @@ namespace VisumCRM.Client.Wpf.Internals
 {
     public class ToolsHelper
     {
+        public void OpenWebsite(string url)
+        {
+            try
+            {
+                var startInfo = new ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true
+                };
+
+                Process.Start(startInfo);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to open URL: {ex.Message}");
+            }
+        }
         public bool ParseAddress(string Address, out string Street, out string House, out string? Floor, out string? Door)
         {
             bool result = false;

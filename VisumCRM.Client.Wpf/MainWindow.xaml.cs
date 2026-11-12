@@ -318,8 +318,13 @@ namespace VisumCRM.Client.Wpf
         }
         private void EventHelper_CurrentCompanyChanged(object? sender, EventArgs e)
         {
+            btnActionWebsite.IsEnabled = false;
             if (App.AppShare.CurrentCompany == null) return;
             lblActiveCompany.Content = App.AppShare.CurrentCompany.Name;
+            if (!string.IsNullOrEmpty(App.AppShare.CurrentCompany.Website))
+            {
+                btnActionWebsite.IsEnabled = true;
+            }
             using (new Internals.WorkhandlerContainer("EventHelper_CurrentCompanyChanged"))
             {
                 dgContactpersons.BeginInit();
@@ -334,5 +339,57 @@ namespace VisumCRM.Client.Wpf
             lblActiveContactperson.Content = App.AppShare.CurrentContactperson.Fullname;
         }
 
+        private void btnActionWebsite_Click(object sender, RoutedEventArgs e)
+        {
+            if (App.AppShare.CurrentCompany != null && !string.IsNullOrEmpty( App.AppShare.CurrentCompany.Website))
+            {
+                App.ToolsHelper.OpenWebsite(App.AppShare.CurrentCompany.Website);
+            }
+        }
+
+        private void tglDashboard_Click(object sender, RoutedEventArgs e)
+        {
+            if (!tglDashboard.IsChecked.HasValue) return;
+            if (tglDashboard.IsChecked.Value)
+            {
+                pageDashboard.Visibility = Visibility.Visible;
+                grdDashboard.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                pageDashboard.Visibility = Visibility.Collapsed;
+                grdDashboard.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void tglCompanies_Click(object sender, RoutedEventArgs e)
+        {
+            if (!tglCompanies.IsChecked.HasValue) return;
+            if (tglCompanies.IsChecked.Value)
+            {
+                pageCompanies.Visibility = Visibility.Visible;
+                grdCompanies.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                pageCompanies.Visibility = Visibility.Collapsed;
+                grdCompanies.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void tglActivities_Click(object sender, RoutedEventArgs e)
+        {
+            if (!tglActivities.IsChecked.HasValue) return;
+            if (tglActivities.IsChecked.Value)
+            {
+                pageactivities.Visibility = Visibility.Visible;
+                grdActivities.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                pageactivities.Visibility = Visibility.Collapsed;
+                grdActivities.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }
