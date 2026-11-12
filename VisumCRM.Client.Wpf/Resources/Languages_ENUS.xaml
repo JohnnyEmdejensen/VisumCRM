@@ -43,6 +43,7 @@
     <system:String x:Key="grid.contactpersons.column.header.name">Name</system:String>
     <system:String x:Key="grid.contactpersons.column.header.mobile">Mobile</system:String>
     <system:String x:Key="grid.contactpersons.column.header.phone">Phone</system:String>
+    <system:String x:Key="grid.contactpersons.column.header.jobtitle">Jobtitle</system:String>
     <system:String x:Key="grid.contactpersons.column.header.email">Email</system:String>
     <system:String x:Key="grid.contactpersons.column.header.employee">Employee</system:String>
 
@@ -95,6 +96,8 @@
     <system:String x:Key="company.header.salesperson">SALESPERSON</system:String>
     <system:String x:Key="company.header.branches">BRANCHES</system:String>
     <system:String x:Key="company.header.targetgroups">TARGETGROUPS</system:String>
+    <system:String x:Key="company.header.employees">EMPLOYEES</system:String>
+    <system:String x:Key="company.header.founded">FOUNDED</system:String>
     <system:String x:Key="company.log.header.nextactivity">NEXT ACTIVITY</system:String>
     <system:String x:Key="company.log.header.lastactivity">LAST ACTIVITY</system:String>
     <system:String x:Key="company.header.companylog">COMPANY LOG</system:String>
@@ -151,5 +154,8 @@
 
     <system:String x:Key="messagebox.message.suretocancelthecompanycreation">Are you sure to cancel the company creation?</system:String>
     <system:String x:Key="messagebox.title.cancelcompanycreation">Cancel company</system:String>
+
+    <system:String x:Key="messagebox.message.theimportedcvrdatacontainspersondate">The CVR importdate contains person data.|Do you want to create these contactpersons?</system:String>
+    <system:String x:Key="messagebox.title.cvrdatahascontactperson">Create contactperson</system:String>
 
 </ResourceDictionary>

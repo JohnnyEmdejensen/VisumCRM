@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,7 +10,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using VisumCRM.Entity;
 
 namespace VisumCRM.Client.Wpf.Dialogs
 {
@@ -18,6 +18,7 @@ namespace VisumCRM.Client.Wpf.Dialogs
     /// </summary>
     public partial class CompanyDialog : Window
     {
+        private CVRData? _cvrdata = null;
         private Entity.Company? _company;
         private Internals.FormSettingsClass _settings;
         private List<Entity.Workinglog>? _logs;
@@ -39,7 +40,7 @@ namespace VisumCRM.Client.Wpf.Dialogs
 
         private void DoAdd()
         {
-            _company = new Company();
+            _company = new Entity.Company();
             if (App.AppShare.CurrentUser != null)
             {
                 _company.SalespersonId = App.AppShare.CurrentUser.Id;
@@ -122,6 +123,69 @@ namespace VisumCRM.Client.Wpf.Dialogs
                     }
                 }
                 DataContext = _company;
+                if (_cvrdata != null && _cvrdata.direktion != null && _cvrdata.direktion.Count > 0 && _company != null)
+                {
+                    string message = App.Current.Resources["messagebox.message.theimportedcvrdatacontainspersondate"].ToString() ?? "";
+                    string title = App.Current.Resources["messagebox.title.cvrdatahascontactperson"].ToString() ?? "";
+                    if (MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        List<Entity.Contactperson> contactpersons = new();
+                        foreach (var person in _cvrdata.direktion)
+                        {
+                            var contactperson = new Entity.Contactperson();
+                            contactperson.EmployeerId = _company.Id;
+                            if (person.name != null)
+                            {
+                                var parts = person.name.Split(' ');
+                                if (parts.Length > 0)
+                                {
+                                    if (parts.Length == 1)
+                                    {
+                                        contactperson.Firstname = parts[0];
+                                    }
+                                    if (parts.Length == 2)
+                                    {
+                                        contactperson.Firstname = parts[0];
+                                        contactperson.Surname = parts[1];
+                                    }
+                                    if (parts.Length >= 3 )
+                                    {
+                                        for (int i = 1; i < parts.Length - 1; i++)
+                                        {
+                                            if (!string.IsNullOrEmpty(contactperson.Middlename))
+                                            {
+                                                contactperson.Middlename += " " + parts[i];
+                                            }
+                                            else
+                                            {
+                                                contactperson.Middlename = parts[i];
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (!string.IsNullOrEmpty(person.address) && !string.IsNullOrEmpty(person.zipcode) && !string.IsNullOrEmpty(person.city))
+                            {
+                                string street = "";
+                                string house = "";
+                                string? floor;
+                                string? door;
+                                if (App.ToolsHelper.ParseAddress(person.address, out street, out house, out floor, out door))
+                                {
+                                    contactperson.LocationId = App.ToolsHelper.ParseLocation("Danamrk", person.zipcode, person.city, street, house, floor, door);
+                                }
+                            }
+                            contactpersons.Add(contactperson);
+                        }
+                        if (contactpersons.Count > 0)
+                        {
+                            foreach (var item in contactpersons)
+                            {
+                                var newItem = App.Repositories.ContactpersonRepository.Create(item);
+                            }
+                        }
+                    }
+                }
                 SetGui();
             }
             if (CloseAfter)
@@ -403,6 +467,67 @@ namespace VisumCRM.Client.Wpf.Dialogs
         {
             var width = dgCompanyLog.ActualWidth;
             dgCompanyLog.Columns[3].Width = width - 120 - 100 - 32;
+        }
+
+        private void btnCVR_Click(object sender, RoutedEventArgs e)
+        {
+            _company = DataContext as Entity.Company;
+            if (!string.IsNullOrEmpty(txtTaxnumber.Text))
+            {
+                var api = new CVRRegister();
+                var result = api.GetCompany(txtTaxnumber.Text);
+                if (_company != null && result != null)
+                {
+                    _cvrdata = result;
+                    if (_company.Id == 0 && !btnAdd.IsEnabled)
+                    {
+                        _company = new();
+                        if (App.AppShare.CurrentUser != null)
+                        {
+                            _company.SalespersonId = App.AppShare.CurrentUser.Id;
+                        }
+                        _company.Name = result.name ?? "";
+                        txtStreet.Text = result.address;
+                        txtZipcode.Text = result.zipcode;
+                        txtCity.Text = result.city;
+                        _company.Website = result.website;
+                        _company.Email = result.email;
+                        _company.Phone = result.phone;
+                        _company.Taxnumber = result.vat ?? "";
+                        _company.Founded = App.ToolsHelper.FormatStringDateToLongDate(result.startdate);
+                        if (result.employees.HasValue)
+                            _company.Employees = result.employees.Value;
+                        if (result.country != null && result.country == "DK" && App.DataShare.CountryCollection != null)
+                        {
+                            var item = App.DataShare.CountryCollection.FirstOrDefault(x => x.Name == "Danmark");
+                            if (item != null)
+                                cboCountry.SelectedValue = item.Id;
+                        }
+                        if (App.DataShare.BrancheCollection != null && result.industrycode.HasValue)
+                        {
+                            var branche = App.DataShare.BrancheCollection.FirstOrDefault(x => x.Key == result.industrycode.Value.ToString());
+                            if (branche == null)
+                            {
+                                branche = new();
+                                branche.Key = result.industrycode.Value.ToString();
+                                branche.Value = result.industrydesc ?? "";
+                                branche = App.Repositories.BrancheRepository.Create(branche);
+                            }
+                            if (branche != null)
+                            {
+                                _company.BrancheId = branche.Id;
+                            }
+                        }
+                        _company.SetVisualDates();
+                        txtFounded.Text = _company.VisualFundedDate;
+                        DataContext = _company;
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
         }
     }
 }

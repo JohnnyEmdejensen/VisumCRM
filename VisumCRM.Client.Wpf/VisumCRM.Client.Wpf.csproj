@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>user_headset.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -131,6 +132,10 @@
     <None Remove="Images\view_24.png" />
     <None Remove="Images\view_32.png" />
     <None Remove="Images\view_48.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="user_headset.ico" />
   </ItemGroup>
 
   <ItemGroup>

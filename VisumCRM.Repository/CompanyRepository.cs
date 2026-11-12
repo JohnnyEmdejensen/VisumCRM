@@ -55,6 +55,8 @@ namespace VisumCRM.Repository
             record.Phone2 = Source.Phone2;
             record.Taxnumber = Source.Taxnumber;
             record.Website = Source.Website;
+            record.Founded = Source.Founded;
+            record.Employees = Source.Employees;
             _context.SaveChanges();
             CompanyUpdated?.Invoke(this, new CompanyEventArgs(record));
             return record;

@@ -75,6 +75,12 @@ namespace VisumCRM.Data.Migrations
                         .HasMaxLength(512)
                         .HasColumnType("nvarchar(512)");
 
+                    b.Property<int?>("Employees")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("Founded")
+                        .HasColumnType("bigint");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 

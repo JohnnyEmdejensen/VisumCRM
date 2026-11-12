@@ -298,7 +298,7 @@ namespace VisumCRM.Client.Wpf
         private void DgContactpersons_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             var width = dgContactpersons.ActualWidth;
-            dgContactpersons.Columns[1].Width = width - 80 - 80 - 180 - 140 - 2;
+            dgContactpersons.Columns[1].Width = width - 80 - 80 - 180 - 180 - 140 - 2;
         }
 
         private void mnuContactperson_Click(object sender, RoutedEventArgs e)

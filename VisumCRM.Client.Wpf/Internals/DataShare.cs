@@ -165,6 +165,14 @@ namespace VisumCRM.Client.Wpf.Internals
                             c.EmployeeName = company.Name;
                         }
                     }
+                    if (App.DataShare.JobtitleCollection != null)
+                    {
+                        var jobtitle = App.DataShare.JobtitleCollection.FirstOrDefault(x => x.Id == contactperson.JobtitleId);
+                        if (jobtitle != null)
+                        {
+                            c.JobTitleName = jobtitle.Value;
+                        }
+                    }
                     ContactpersonModelCollection.Add(c);
                 }
                 if (ContactpersonModelCollection != null)

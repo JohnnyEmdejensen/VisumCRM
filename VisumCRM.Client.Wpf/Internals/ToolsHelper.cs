@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Security.AccessControl;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -12,6 +13,82 @@ namespace VisumCRM.Client.Wpf.Internals
 {
     public class ToolsHelper
     {
+        public bool ParseAddress(string Address, out string Street, out string House, out string? Floor, out string? Door)
+        {
+            bool result = false;
+            Street = "";
+            House = "";
+            Floor = null;
+            Door = null;
+            var parts = Address.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < parts.Length; i++)
+            {
+                if (!PartHasNumber(parts[i]))
+                {
+                    if (Street != "")
+                        Street += " " + parts[i];
+                    else
+                        Street = parts[i];
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(House))
+                    {
+                        House = parts[i].Replace(",", "").Replace(".", "");
+                        continue;
+                    }
+                }
+                // if house part is set, the rest must be floo and door.
+                if (!string.IsNullOrEmpty(House))
+                {
+                    if (Floor == null)
+                    {
+                        Floor = parts[i].Replace(".", "").Replace(",", "");
+                    }
+                    else
+                    {
+                        if (Door == null)
+                        {
+                            Door = parts[i].Replace(".", "").Replace(",", "");
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+        private bool PartHasNumber(string AddressPart)
+        {
+            if (string.IsNullOrEmpty(AddressPart)) return false;
+            return AddressPart.Any(char.IsDigit);
+        }
+        public long? FormatStringDateToLongDate(string? Value)
+        {
+            long? result = null;
+            if (Value != null)
+            {
+                if (Value.Contains("-"))
+                {
+                    var parts = Value.Split('-');
+                    if (parts.Length == 3)
+                    {
+                        result = Convert.ToInt64(string.Format("{0:0000}{1:00}{2:00}000000", parts[0], parts[1], parts[2]));
+                    }
+                    if (parts.Length == 2)
+                    {
+                        result = Convert.ToInt64(string.Format("{0:0000}{1:00}01000000", parts[0], parts[1]));
+                    }
+                    if (parts.Length == 1)
+                    {
+                        result = Convert.ToInt64(string.Format("{0:0000}0101000000", parts[0]));
+                    }
+                }
+                else
+                {
+
+                }
+            }
+            return result;
+        }
         public long? ParseLocation(string Countryname, string Zipcode, string City, string Street, string House, string? Floor = null, string? Door = null, string? State = null)
         {
             long? result = null;

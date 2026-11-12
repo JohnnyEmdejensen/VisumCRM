@@ -28,6 +28,7 @@ namespace VisumCRM.Client.Wpf.Models
         public string? City { get; set; }
         public string? Country { get; set; }
 
+        public string? JobTitleName { get; set; }
         public string? Fullname { get; set; }
     }
 }
