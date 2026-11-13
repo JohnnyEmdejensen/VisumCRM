@@ -10,10 +10,13 @@ namespace VisumCRM.Repository
         private Data.ApiContext? _context;
         public string? Databasename { get; private set; }
 
-        public Repositories(Guid LicenseKey)
+        public Repositories(Guid LicenseKey, string? ConnectionString = null)
         {
             Data.ApiContextFactory factory = new();
-            _context = factory.CreateDbContext(null);
+            if (ConnectionString == null)
+                _context = factory.CreateDbContext(null);
+            else
+                _context = factory.CreateDbContext(new string[] { ConnectionString });
 
             Databasename = _context.Database.GetDbConnection().Database;
 

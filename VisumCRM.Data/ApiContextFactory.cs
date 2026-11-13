@@ -11,6 +11,10 @@ namespace VisumCRM.Data
         public ApiContext CreateDbContext(string[]? args)
         {
             string connectionstring = "Server=localhost\\SQLEXPRESS;Database=VisumCRM;Trusted_Connection=True;TrustServerCertificate=True;";
+            if (args != null && args.Length > 0)
+            {
+                connectionstring = args[0];
+            }
             var optionsBuilder = new DbContextOptionsBuilder<ApiContext>();
             optionsBuilder.UseSqlServer(connectionstring);
             return new ApiContext(optionsBuilder.Options);

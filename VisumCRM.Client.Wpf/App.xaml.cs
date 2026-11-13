@@ -19,6 +19,8 @@ public partial class App : Application
         public static DialogHelper DialogHelper = new();
         public static Repository.Repositories Repositories = new(Guid.Empty);
         public static Internals.DataShare DataShare = new();
+        public static Internals.ApplicationSettings AppSettings = new();
+        public static string ConnectionString = "";
 
         public App()
         {
@@ -30,7 +32,19 @@ public partial class App : Application
                     LicenseInMemory = Newtonsoft.Json.JsonConvert.DeserializeObject<Internals.LicenseInMemory>(firsttimeLicense);
                 }
             }
-        }   
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            AppSettings.Load();
+        }
+
+        protected override void OnLoadCompleted(NavigationEventArgs e)
+        {
+            base.OnLoadCompleted(e);
+
+        }
 
     }
 

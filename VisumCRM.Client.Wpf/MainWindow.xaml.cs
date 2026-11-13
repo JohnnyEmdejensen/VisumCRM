@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -105,7 +106,7 @@ namespace VisumCRM.Client.Wpf
                 lic = App.Repositories.LicenseRepository.Create(lic);
                 if (lic != null)
                 {
-                    App.Repositories = new Repository.Repositories(lic.LicenseKey);
+                    App.Repositories = new Repository.Repositories(lic.LicenseKey, App.ConnectionString);
                 }
                 Entity.User? usr = new Entity.User()
                 {
@@ -150,6 +151,10 @@ namespace VisumCRM.Client.Wpf
 
         private void MainWindow_ContentRendered(object? sender, EventArgs e)
         {
+            //Data.ApiContextFactory factory = new Data.ApiContextFactory();
+            //var dbcontext = factory.CreateDbContext(new string[] { "Server=localhost\\SQLEXPRESS;Database=VisumCRM_test;Trusted_Connection=True;TrustServerCertificate=True;" });
+            //dbcontext.Database.Migrate();
+
             StartFirstTimeGuide();
             if (App.AppShare.CurrentUser == null)
             {
