@@ -30,7 +30,9 @@
     <system:String x:Key="ribbon.home.group.header.actions">Actions</system:String>
 
     <system:String x:Key="ribbon.settings.group.header.systemdata">System data</system:String>
+    <system:String x:Key="ribbon.settings.group.header.configuration">Configuration</system:String>
     <system:String x:Key="ribbon.settings.button.header.branches">Branches</system:String>
+    <system:String x:Key="ribbon.settings.button.header.appsettings">Application settings</system:String>
 
     <system:String x:Key="grid.companies.column.header.number">Number</system:String>
     <system:String x:Key="grid.companies.column.header.name">Name</system:String>
@@ -144,6 +146,25 @@
     <system:String x:Key="jobtitle.header.value">Value</system:String>
     <system:String x:Key="jobtitle.header.filter">Filter:</system:String>
 
+    <system:String x:Key="appsettings.header.title">Application settings</system:String>
+    <system:String x:Key="appsettings.tab.header.application">Application</system:String>
+    <system:String x:Key="appsettings.tab.header.database">Database</system:String>
+    <system:String x:Key="appsettings.button.header.ok">OK</system:String>
+    <system:String x:Key="appsettings.button.header.cancel">Cancel</system:String>
+    <system:String x:Key="appsettings.header.publicdocumentfolder">Public documentfolder</system:String>
+    <system:String x:Key="appsettings.header.privatedocumentfolder">Private documentfolder</system:String>
+    <system:String x:Key="appsettings.header.themes">Themes</system:String>
+    <system:String x:Key="appsettings.header.languages">Languages</system:String>
+    <system:String x:Key="appsettings.header.useautocompanynumber">Use auto companynumber</system:String>
+    <system:String x:Key="appsettings.header.serverpath">Server path</system:String>
+    <system:String x:Key="appsettings.header.databasename">Database name</system:String>
+    <system:String x:Key="appsettings.header.usetrustedconnection">Use trusted connection</system:String>
+    <system:String x:Key="appsettings.header.trustcertificate">Trust certificate</system:String>
+    <system:String x:Key="appsettings.header.login">Login</system:String>
+    <system:String x:Key="appsettings.header.password">Password</system:String>
+    <system:String x:Key="appsettings.header.databasecreation">Database creation</system:String>
+    <system:String x:Key="appsettings.header.createdatebase">Create database</system:String>
+
 
     <system:String x:Key="text.translate.floor">floor</system:String>
 
@@ -163,5 +184,14 @@
 
     <system:String x:Key="messagebox.message.theimportedcvrdatacontainspersondate">The CVR importdate contains person data.|Do you want to create these contactpersons?</system:String>
     <system:String x:Key="messagebox.title.cvrdatahascontactperson">Create contactperson</system:String>
+
+    <system:String x:Key="messagebox.message.theappsttingsismissinginformation">The application settings is missing some informations.</system:String>
+    <system:String x:Key="messagebox.title.saveappsettings">Save appsettings</system:String>
+
+    <system:String x:Key="folderdialog.message.getfoldertostorepublicfiles">Get the folder to store the public files.</system:String>
+    <system:String x:Key="folderdialog.title.getpublicfolder">Get public folder</system:String>
+            
+    <system:String x:Key="folderdialog.message.getfoldertostoreprivatefiles">Get the folder to store the private files.</system:String>
+    <system:String x:Key="folderdialog.title.getprivatefolder">Get private folder</system:String>
 
 </ResourceDictionary>

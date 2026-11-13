@@ -68,6 +68,10 @@
     <None Remove="Images\earth_location_24.png" />
     <None Remove="Images\earth_location_32.png" />
     <None Remove="Images\earth_location_48.png" />
+    <None Remove="Images\environment_16.png" />
+    <None Remove="Images\environment_24.png" />
+    <None Remove="Images\environment_32.png" />
+    <None Remove="Images\environment_48.png" />
     <None Remove="Images\exit_16.png" />
     <None Remove="Images\exit_24.png" />
     <None Remove="Images\exit_32.png" />
@@ -207,6 +211,10 @@
     <Resource Include="Images\earth_location_24.png" />
     <Resource Include="Images\earth_location_32.png" />
     <Resource Include="Images\earth_location_48.png" />
+    <Resource Include="Images\environment_16.png" />
+    <Resource Include="Images\environment_24.png" />
+    <Resource Include="Images\environment_32.png" />
+    <Resource Include="Images\environment_48.png" />
     <Resource Include="Images\exit_16.png" />
     <Resource Include="Images\exit_24.png" />
     <Resource Include="Images\exit_32.png" />

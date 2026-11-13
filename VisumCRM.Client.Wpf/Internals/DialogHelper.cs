@@ -9,28 +9,13 @@ namespace VisumCRM.Client.Wpf.Internals
     public class DialogHelper
     {
 
-        private bool CompanyAlreadyOpen(Entity.Company Company)
+        public void ShowAppsettingsDialog()
         {
-            bool result = false;
-            foreach (var dialog in App.Current.Windows)
+            Dialogs.AppSettingsDialog frm = new Dialogs.AppSettingsDialog()
             {
-                if (dialog is Dialogs.CompanyDialog)
-                {
-                    var form = dialog as Dialogs.CompanyDialog;
-                    if (form != null)
-                    {
-                        var company = form.DataContext as Entity.Company;
-                        if (company != null && company.Id == Company.Id)
-                        {
-                            result = true;
-                            form.Topmost = true;
-                            Thread.Sleep(500);
-                            form.Topmost = false;
-                        }
-                    }
-                }
-            }
-            return result;
+
+            };
+            frm.Show();
         }
 
         public void ShowContactperson(Entity.Contactperson? Contactperson)
@@ -92,6 +77,29 @@ namespace VisumCRM.Client.Wpf.Internals
                 DataContext = User,
             };
             frm.Show();
+        }
+        private bool CompanyAlreadyOpen(Entity.Company Company)
+        {
+            bool result = false;
+            foreach (var dialog in App.Current.Windows)
+            {
+                if (dialog is Dialogs.CompanyDialog)
+                {
+                    var form = dialog as Dialogs.CompanyDialog;
+                    if (form != null)
+                    {
+                        var company = form.DataContext as Entity.Company;
+                        if (company != null && company.Id == Company.Id)
+                        {
+                            result = true;
+                            form.Topmost = true;
+                            Thread.Sleep(500);
+                            form.Topmost = false;
+                        }
+                    }
+                }
+            }
+            return result;
         }
     }
 }

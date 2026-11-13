@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,16 +10,20 @@ namespace VisumCRM.Repository
     {
         private Data.ApiContext? _context;
         public string? Databasename { get; private set; }
-
+        public DatabaseFacade DatabaseObject;
         public Repositories(Guid LicenseKey, string? ConnectionString = null)
         {
+
             Data.ApiContextFactory factory = new();
             if (ConnectionString == null)
                 _context = factory.CreateDbContext(null);
             else
                 _context = factory.CreateDbContext(new string[] { ConnectionString });
+            DatabaseObject = _context.Database;
 
             Databasename = _context.Database.GetDbConnection().Database;
+
+            
 
             UserRepository = new UserRepository(_context, LicenseKey);
             CountryRepository = new CountryRepository(_context, LicenseKey);

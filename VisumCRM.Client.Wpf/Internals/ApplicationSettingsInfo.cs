@@ -14,6 +14,8 @@ namespace VisumCRM.Client.Wpf.Internals
         public string PublicDocumentFolderPath { get; set; }
         public bool UseAutoCompanyNumber { get; set; }
         public string ServerPath { get; set; }
+        public string? Login { get; set; }
+        public string? Password { get; set; }
         public string DatabaseName { get; set; }
         public bool TrustedConnection { get; set; }
         public bool TrustServerCertificate { get; set; }

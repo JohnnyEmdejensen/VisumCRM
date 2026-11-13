@@ -396,5 +396,10 @@ namespace VisumCRM.Client.Wpf
                 grdActivities.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void btnAppSettings_Click(object sender, RoutedEventArgs e)
+        {
+            App.DialogHelper.ShowAppsettingsDialog();
+        }
     }
 }
