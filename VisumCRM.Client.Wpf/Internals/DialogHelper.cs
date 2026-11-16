@@ -8,7 +8,14 @@ namespace VisumCRM.Client.Wpf.Internals
 {
     public class DialogHelper
     {
-
+        public void ShowFollowuptypeDialog(Entity.Followuptype? Followuptype)
+        {
+            Dialogs.FollowuptypeDialog frm = new Dialogs.FollowuptypeDialog
+            {
+                DataContext = Followuptype,
+            };
+            frm.Show();
+        }
         public void ShowAppsettingsDialog()
         {
             Dialogs.AppSettingsDialog frm = new Dialogs.AppSettingsDialog()

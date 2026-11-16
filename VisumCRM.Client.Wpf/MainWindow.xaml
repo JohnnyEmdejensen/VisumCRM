@@ -59,7 +59,8 @@
                     </RibbonGroup>
                     <RibbonGroup Header="{DynamicResource ribbon.settings.group.header.systemdata}">
                         <RibbonButton x:Name="btnBranches" Click="btnBranches_Click" Label="{DynamicResource ribbon.settings.button.header.branches}" LargeImageSource="/Images/bell_32.png" SmallImageSource="/Images/bell_16.png"></RibbonButton>
-                        <RibbonButton x:Name="btnJobtitles" Click="btnJobtitles_Click" Label="{DynamicResource ribbon.settings.button.header.branches}" LargeImageSource="/Images/screwdriver_32.png" SmallImageSource="/Images/screwdriver_16.png"></RibbonButton>
+                        <RibbonButton x:Name="btnJobtitles" Click="btnJobtitles_Click" Label="{DynamicResource ribbon.settings.button.header.jobtitles}" LargeImageSource="/Images/screwdriver_32.png" SmallImageSource="/Images/screwdriver_16.png"></RibbonButton>
+                        <RibbonButton x:Name="btnFollowuptypes" Click="btnFollowuptypes_Click" Label="{DynamicResource ribbon.settings.button.header.followuptypes}" LargeImageSource="/Images/wrench_32.png" SmallImageSource="/Images/wrench_16.png"></RibbonButton>
                     </RibbonGroup>
                 </RibbonTab>
             </Ribbon>

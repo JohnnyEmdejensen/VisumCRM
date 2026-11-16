@@ -136,6 +136,10 @@
     <None Remove="Images\view_24.png" />
     <None Remove="Images\view_32.png" />
     <None Remove="Images\view_48.png" />
+    <None Remove="Images\wrench_16.png" />
+    <None Remove="Images\wrench_24.png" />
+    <None Remove="Images\wrench_32.png" />
+    <None Remove="Images\wrench_48.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -279,6 +283,10 @@
     <Resource Include="Images\view_24.png" />
     <Resource Include="Images\view_32.png" />
     <Resource Include="Images\view_48.png" />
+    <Resource Include="Images\wrench_16.png" />
+    <Resource Include="Images\wrench_24.png" />
+    <Resource Include="Images\wrench_32.png" />
+    <Resource Include="Images\wrench_48.png" />
   </ItemGroup>
 
 </Project>

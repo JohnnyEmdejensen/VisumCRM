@@ -32,6 +32,8 @@
     <system:String x:Key="ribbon.settings.group.header.systemdata">System data</system:String>
     <system:String x:Key="ribbon.settings.group.header.configuration">Configuration</system:String>
     <system:String x:Key="ribbon.settings.button.header.branches">Branches</system:String>
+    <system:String x:Key="ribbon.settings.button.header.jobtitles">Jobtitles</system:String>
+    <system:String x:Key="ribbon.settings.button.header.followuptypes">Followuptypes</system:String>
     <system:String x:Key="ribbon.settings.button.header.appsettings">Application settings</system:String>
 
     <system:String x:Key="grid.companies.column.header.number">Number</system:String>
@@ -136,6 +138,7 @@
 
     <system:String x:Key="branche.header.title">Branche Informations</system:String>
     <system:String x:Key="branche.tab.header.branches">Branches</system:String>
+    <system:String x:Key="branche.tab.header.followuptypes">Followuptypes</system:String>
     <system:String x:Key="branche.header.key">Key</system:String>
     <system:String x:Key="branche.header.value">Value</system:String>
     <system:String x:Key="branche.header.filter">Filter:</system:String>
@@ -145,6 +148,8 @@
     <system:String x:Key="jobtitle.header.key">Key</system:String>
     <system:String x:Key="jobtitle.header.value">Value</system:String>
     <system:String x:Key="jobtitle.header.filter">Filter:</system:String>
+
+    <system:String x:Key="followuptype.header.title">Followuptype Informations</system:String>
 
     <system:String x:Key="appsettings.header.title">Application settings</system:String>
     <system:String x:Key="appsettings.tab.header.application">Application</system:String>
@@ -178,6 +183,8 @@
     <system:String x:Key="messagebox.title.deletecontatcperson">Delete contactperson</system:String>
     <system:String x:Key="messagebox.message.suretodeletethisjobtitle">Are you sure to delete this jobtitle?|{0}</system:String>
     <system:String x:Key="messagebox.title.deletejobtitle">Delete jobtitle</system:String>
+    <system:String x:Key="messagebox.message.suretodeletethisfollowuptype">Are you sure to delete this followuptype?|{0}</system:String>
+    <system:String x:Key="messagebox.title.deletefollowuptype">Delete followuptype</system:String>
 
     <system:String x:Key="messagebox.message.suretocancelthecompanycreation">Are you sure to cancel the company creation?</system:String>
     <system:String x:Key="messagebox.title.cancelcompanycreation">Cancel company</system:String>

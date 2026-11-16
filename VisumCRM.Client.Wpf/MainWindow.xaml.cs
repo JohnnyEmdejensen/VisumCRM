@@ -401,5 +401,10 @@ namespace VisumCRM.Client.Wpf
         {
             App.DialogHelper.ShowAppsettingsDialog();
         }
+
+        private void btnFollowuptypes_Click(object sender, RoutedEventArgs e)
+        {
+            App.DialogHelper.ShowFollowuptypeDialog(null);
+        }
     }
 }
