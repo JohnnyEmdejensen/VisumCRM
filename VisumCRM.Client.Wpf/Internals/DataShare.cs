@@ -22,7 +22,9 @@ namespace VisumCRM.Client.Wpf.Internals
         public List<Models.CompanyModel>? CompanyModelCollection { get; set; }
         public List<Models.ContactpersonModel>? ContactpersonModelCollection { get; set; }
         public List<Entity.Jobtitle>? JobtitleCollection{ get; set; }
-
+        public List<Entity.Followuptype>? FollowuptypeCollection { get; set; }
+        public List<Entity.Activity>? ActivityCollection { get; set; }
+        public List<Models.ActivityModel>? ActivityModelCollection { get; set; }
         public DataShare()
         {
 
@@ -56,6 +58,12 @@ namespace VisumCRM.Client.Wpf.Internals
             App.Repositories.JobtitleRepository.JobtitleCreated += JobtitleRepository_JobtitleCreated;
             App.Repositories.JobtitleRepository.JobtitleDeleted += JobtitleRepository_JobtitleDeleted;
             App.Repositories.JobtitleRepository.JobtitleUpdated += JobtitleRepository_JobtitleUpdated;
+            App.Repositories.FollowuptypeRepository.FollowuptypeCreated += FollowuptypeRepository_FollowuptypeCreated;
+            App.Repositories.FollowuptypeRepository.FollowuptypeDeleted += FollowuptypeRepository_FollowuptypeDeleted;
+            App.Repositories.FollowuptypeRepository.FollowuptypeUpdated += FollowuptypeRepository_FollowuptypeUpdated;
+            App.Repositories.ActivityRepository.ActivityCreated += ActivityRepository_ActivityCreated;
+            App.Repositories.ActivityRepository.ActivityDeleted += ActivityRepository_ActivityDeleted;
+            App.Repositories.ActivityRepository.ActivityUpdated += ActivityRepository_ActivityUpdated;
 
             App.EventHelper.CountryCollectionChanged += EventHelper_CountryCollectionChanged;
             App.EventHelper.PostalzoneColloectionChanged += EventHelper_PostalzoneColloectionChanged;
@@ -65,7 +73,28 @@ namespace VisumCRM.Client.Wpf.Internals
             App.EventHelper.BrancheCollectionChanged += EventHelper_BrancheCollectionChanged;
             App.EventHelper.TargetgroupCollectionChanged += EventHelper_TargetgroupCollectionChanged;
             App.EventHelper.UserCollectionChanged += EventHelper_UserCollectionChanged;
+            App.EventHelper.ActivityCollectionChanged += EventHelper_ActivityCollectionChanged;
         }
+
+
+        public void GetAllData()
+        {
+            using (new Internals.WorkhandlerContainer("GetAllData"))
+            {
+                GetCountries();
+                GetPostalzones();
+                GetLocations();
+                GetUsers();
+                GetBranches();
+                GetTargetgroups();
+                GetJobtitles();
+                GetCompanies();
+                GetContactpersons();
+                GetFollowuptypes();
+                GetActivities();
+            }
+        }
+
 
         private void BuildBrancheModel()
         {
@@ -108,6 +137,79 @@ namespace VisumCRM.Client.Wpf.Internals
                 if (TargetgroupModelCollection != null && TargetgroupModelCollection.Count > 0)
                 {
                     TargetgroupModelCollection = TargetgroupModelCollection.OrderBy(x => x.Value).ToList();
+                }
+            }
+        }
+
+        private void BuildActivityModel()
+        {
+            if (ActivityCollection == null || ActivityCollection.Count == 0) return;
+            using (new Internals.WorkhandlerContainer("BuildActivityModel"))
+            {
+                ActivityModelCollection = new();
+                foreach (var activity in ActivityCollection)
+                {
+                    var a = new Models.ActivityModel
+                    {
+                        ActivityEnd = activity.ActivityEnd,
+                        ActivityStart = activity.ActivityStart,
+                        ActivityType = activity.ActivityType,
+                        CompanyId = activity.CompanyId,
+                        Conclution = activity.Conclution,
+                        ContactpersonId = activity.ContactpersonId,
+                        FollowuptypeId = activity.FollowuptypeId,
+                        Id = activity.Id,
+                        IsComplete = activity.IsComplete,
+                        LocationId = activity.LocationId,
+                        Reason = activity.Reason,
+                        SalespersonId = activity.SalespersonId,
+                        Subject = activity.Subject,
+                        TimeBilled = activity.TimeBilled,
+                        TimeUsed = activity.TimeUsed,        
+                    };
+                    var start = App.ToolsHelper.ConvertLongToDateTime(activity.ActivityStart);
+                    a.ActivityStartText = start.ToShortDateString() + " " + start.ToShortTimeString();
+                    var end = App.ToolsHelper.ConvertLongToDateTime(activity.ActivityEnd);
+                    a.ActivityEndText = end.ToShortDateString() + " " + end.ToShortTimeString();
+                    if (App.DataShare.UserCollection != null)
+                    {
+                        var user = App.DataShare.UserCollection.FirstOrDefault(x => x.Id == activity.SalespersonId);
+                        if (user != null)
+                        {
+                            user.SetFullname();
+                            a.SalespersonName = user.Fullname;
+                        }
+                    }
+                    if (App.DataShare.CompanyCollection != null)
+                    {
+                        var company = App.DataShare.CompanyCollection.FirstOrDefault(x => x.Id == activity.CompanyId);
+                        if (company != null)
+                        {
+                            a.CompanyName = company.Name;
+                        }
+                    }
+                    if (App.DataShare.ContactpersonCollection != null)
+                    {
+                        var contact = App.DataShare.ContactpersonCollection.FirstOrDefault(x => x.Id == activity.ContactpersonId);
+                        if (contact != null)
+                        {
+                            contact.SetFullname();
+                            a.ContactpersonName = contact.Fullname;
+                        }
+                    }
+                    if (App.DataShare.LocationModelCollection != null)
+                    {
+                        var location = App.DataShare.LocationModelCollection.FirstOrDefault(x => x.Id == activity.LocationId);
+                        if (location != null)
+                        {
+                            location.SetAddress();
+                            a.Address = location.Address;
+                            a.Zipcode = location.Zipcode;
+                            a.City = location.City;
+                            a.Country = location.CountryName;
+                        }
+                    }
+                    ActivityModelCollection.Add(a);
                 }
             }
         }
@@ -289,19 +391,20 @@ namespace VisumCRM.Client.Wpf.Internals
                 App.EventHelper.RaiseLocationModelCollectionChangedEvent();
             }
         }
-        public void GetAllData()
+        public void GetFollowuptypes()
         {
-            using (new Internals.WorkhandlerContainer("GetAllData"))
+            using (new Internals.WorkhandlerContainer("GetFollowuptypes"))
             {
-                GetCountries();
-                GetPostalzones();
-                GetLocations();
-                GetUsers();
-                GetBranches();
-                GetTargetgroups();
-                GetJobtitles();
-                GetCompanies();
-                GetContactpersons();
+                FollowuptypeCollection = App.Repositories.FollowuptypeRepository.GetAll();
+                App.EventHelper.RaiseFollowuptypeCollectionChangedEvent();
+            }
+        }
+        public void GetActivities()
+        {
+            using (new Internals.WorkhandlerContainer("GetActivities"))
+            {
+                ActivityCollection = App.Repositories.ActivityRepository.GetAll();
+                App.EventHelper.RaiseActivityCollectionChangedEvent();
             }
         }
         public void GetCountries()
@@ -454,6 +557,11 @@ namespace VisumCRM.Client.Wpf.Internals
             GetBranches();
         }
 
+        private void EventHelper_ActivityCollectionChanged(object? sender, EventArgs e)
+        {
+            BuildActivityModel();
+        }
+
         private void EventHelper_ContactpersonCollectionChanged(object? sender, EventArgs e)
         {
             BuildContactpersonModel();
@@ -567,6 +675,35 @@ namespace VisumCRM.Client.Wpf.Internals
         private void CountryRepository_CountryCreated(object sender, Repository.CountryEventArgs e)
         {
             GetCountries();
+        }
+        private void ActivityRepository_ActivityUpdated(object source, Repository.ActivityEventArgs e)
+        {
+
+        }
+
+        private void ActivityRepository_ActivityDeleted(object source, Repository.ActivityEventArgs e)
+        {
+
+        }
+
+        private void ActivityRepository_ActivityCreated(object source, Repository.ActivityEventArgs e)
+        {
+
+        }
+
+        private void FollowuptypeRepository_FollowuptypeUpdated(object sender, Repository.FollowuptypeEventArgs e)
+        {
+
+        }
+
+        private void FollowuptypeRepository_FollowuptypeDeleted(object sender, Repository.FollowuptypeEventArgs e)
+        {
+
+        }
+
+        private void FollowuptypeRepository_FollowuptypeCreated(object sender, Repository.FollowuptypeEventArgs e)
+        {
+
         }
     }
 }

@@ -45,7 +45,7 @@ namespace VisumCRM.Repository
             if (record == null) return null;
             record.Key = Source.Key;
             record.Value = Source.Value;
-            _context.SaveChanges)();
+            _context.SaveChanges();
             FollowuptypeUpdated?.Invoke(this, new FollowuptypeEventArgs(record));
             return record;
         }

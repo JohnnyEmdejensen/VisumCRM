@@ -24,7 +24,17 @@ namespace VisumCRM.Client.Wpf.Internals
         public event DefaultHandler? ContactpersonModelCollectionChanged;
         public event DefaultHandler? JobtitleCollectionChanged;
         public event DefaultHandler? CurrentContactpersonChanged;
+        public event DefaultHandler? ActivityCollectionChanged;
+        public event DefaultHandler? FollowuptypeCollectionChanged;
 
+        public void RaiseFollowuptypeCollectionChangedEvent()
+        {
+            FollowuptypeCollectionChanged?.Invoke(this, EventArgs.Empty);   
+        }
+        public void RaiseActivityCollectionChangedEvent()
+        {
+            ActivityCollectionChanged?.Invoke(this, EventArgs.Empty);
+        }
         public void RaiseCurrentContactpersonChangedEvent()
         {
             CurrentContactpersonChanged?.Invoke(this, EventArgs.Empty);

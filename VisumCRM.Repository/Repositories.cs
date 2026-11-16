@@ -36,6 +36,8 @@ namespace VisumCRM.Repository
             TargetgroupRepossitory = new TargetgroupRepossitory(_context, LicenseKey);
             WorkinglogRepository = new WorkinglogRepository(_context, LicenseKey);
             JobtitleRepository = new JobtitleRepository(_context, LicenseKey);
+            FollowuptypeRepository = new FollowuptypeRepository(_context, LicenseKey);
+            ActivityRepository = new ActivityRepository(_context, LicenseKey);
         }
 
         public UserRepository UserRepository { get; private set; }
@@ -49,5 +51,7 @@ namespace VisumCRM.Repository
         public TargetgroupRepossitory TargetgroupRepossitory { get; set; }
         public WorkinglogRepository WorkinglogRepository { get; set; }
         public JobtitleRepository JobtitleRepository { get; set; }
+        public FollowuptypeRepository FollowuptypeRepository { get; set; }
+        public ActivityRepository ActivityRepository { get; set; }
     }
 }
