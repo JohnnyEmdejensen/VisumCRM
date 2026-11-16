@@ -40,5 +40,6 @@ namespace VisumCRM.Data
         public DbSet<Entity.Workinglog> Workinglogs { get; set; }
         public DbSet<Entity.Jobtitle> Jobtitles { get; set; }
         public DbSet<Entity.Activity> Activities { get; set; }
+        public DbSet<Entity.Followuptype> Followuptypes { get; set; }
     }
 }
