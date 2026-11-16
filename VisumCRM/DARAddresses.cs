@@ -10,10 +10,10 @@ namespace VisumCRM
         private static readonly HttpClient client = new HttpClient();
 
         // Husk at indsætte din egen API-nøgle fra Datafordeleren
-        private const string ApiKey = "DIN_DATAFORDELER_API_KEY";
+        private string ApiKey = VisumCRM.Core.DFSApiKey; // "DIN_DATAFORDELER_API_KEY";
 
         // Tjek Dataoversigten på Datafordeleren for nyeste versionsnummer (f.eks. v2 eller v3)
-        private const string Endpoint = $"https://datafordeler.dk{ApiKey}";
+        private static string Endpoint = $"https://datafordeler.dk/";
 
         public static async Task Main()
         {

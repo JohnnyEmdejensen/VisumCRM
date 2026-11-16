@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -246,6 +247,52 @@ namespace VisumCRM.Client.Wpf.Dialogs
         private void cboThemes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void btnCreateDatabase_Click(object sender, RoutedEventArgs e)
+        {
+            if (!AnythingMissing() && txtDatabaseName.Text != App.Repositories.Databasename && App.AppShare.CurrentUser != null)
+            {
+                string oldConnection = App.ConnectionString;
+                App.ConnectionString = "Server=" + txtServerPath.Text + ";Database=" + txtDatabaseName.Text + ";Trusted_Connection=True;TrustServerCertificate=True;";
+                App.Repositories = new Repository.Repositories(App.AppShare.CurrentUser.LicenseKey, App.ConnectionString);
+                App.Repositories.DatabaseObject.Migrate();
+                if (App.Repositories.DatabaseObject.CanConnect())
+                {
+                    var message = App.Current.Resources["messagebox.message.newdatabasecreatedandmasterusercreated"].ToString();
+                    var title = App.Current.Resources["messagebox.title.newdatabasecreation"].ToString();
+                    if (message != null && title != null)
+                    {
+                        if (MessageBox.Show(message.Replace("|", Environment.NewLine), title, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                        {
+                            App.AppSettings.Info.ServerPath = txtServerPath.Text;
+                            App.AppSettings.Info.DatabaseName = txtDatabaseName.Text;
+                            App.AppSettings.Save();
+                            message = App.Current.Resources["messagebox.message.newdatabasepreparedrestart"].ToString();
+                            title = App.Current.Resources["messagebox.title.restartapplication"].ToString();
+                            if (message != null && title != null)
+                            {
+                                MessageBox.Show(message.Replace("|", Environment.NewLine), title, MessageBoxButton.OK, MessageBoxImage.Information);
+                                Application.Current.Shutdown();
+                            }
+                        }
+                        else
+                        {
+                            App.ConnectionString = oldConnection;
+                            App.Repositories = new Repository.Repositories(App.AppShare.CurrentUser.LicenseKey, App.ConnectionString);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void txtDatabaseName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            btnCreateDatabase.IsEnabled = false;
+            if (!string.IsNullOrEmpty(txtDatabaseName.Text) && txtDatabaseName.Text != App.Repositories.Databasename)
+            {
+                btnCreateDatabase.IsEnabled = true;
+            }
         }
     }
 }

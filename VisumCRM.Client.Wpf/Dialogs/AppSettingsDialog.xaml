@@ -128,7 +128,7 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="{DynamicResource appsettings.tab.header.database}">
-                    <Grid>
+                    <Grid Margin="8">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="36"></RowDefinition>
                             <RowDefinition Height="8"></RowDefinition>
@@ -154,7 +154,7 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <Label Content="{DynamicResource appsettings.header.databasename}" Style="{StaticResource HeaderLabel}"></Label>
-                            <TextBox Grid.Row="1" x:Name="txtDatabaseName"></TextBox>
+                            <TextBox Grid.Row="1" x:Name="txtDatabaseName" TextChanged="txtDatabaseName_TextChanged"></TextBox>
                         </Grid>
                         <Grid Grid.Row="4">
                             <Grid.ColumnDefinitions>
@@ -208,7 +208,7 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <Label Content="{DynamicResource appsettings.header.databasecreation}" Style="{StaticResource HeaderLabel}"></Label>
-                            <Button x:Name="btnCreateDatabase" IsEnabled="False" Content="{DynamicResource appsettings.header.createdatebase}" Padding="8 0 8 0" Height="23" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"></Button>
+                            <Button x:Name="btnCreateDatabase" Click="btnCreateDatabase_Click" IsEnabled="False" Content="{DynamicResource appsettings.header.createdatebase}" Padding="8 0 8 0" Height="23" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"></Button>
                         </Grid>
                     </Grid>
                 </TabItem>

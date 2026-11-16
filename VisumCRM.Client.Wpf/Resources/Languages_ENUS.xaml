@@ -187,6 +187,10 @@
 
     <system:String x:Key="messagebox.message.theappsttingsismissinginformation">The application settings is missing some informations.</system:String>
     <system:String x:Key="messagebox.title.saveappsettings">Save appsettings</system:String>
+    <system:String x:Key="messagebox.message.newdatabasecreatedandmasterusercreated">The new database has bee created.|Do you want to continue using the new database?</system:String>
+    <system:String x:Key="messagebox.title.newdatabasecreation">New database created</system:String>
+    <system:String x:Key="messagebox.message.newdatabasepreparedrestart">The new database settings has been saved.|Restart the application.</system:String>
+    <system:String x:Key="messagebox.title.restartapplication">New database created</system:String>
 
     <system:String x:Key="folderdialog.message.getfoldertostorepublicfiles">Get the folder to store the public files.</system:String>
     <system:String x:Key="folderdialog.title.getpublicfolder">Get public folder</system:String>

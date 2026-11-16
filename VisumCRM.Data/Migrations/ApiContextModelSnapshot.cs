@@ -22,6 +22,78 @@ namespace VisumCRM.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("VisumCRM.Entity.Activity", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("ActivityEnd")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ActivityStart")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("ActivityType")
+                        .HasColumnType("int");
+
+                    b.Property<long>("CompanyId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Conclution")
+                        .HasMaxLength(4096)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("ContactpersonId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Created")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("FollowuptypeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsComplete")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("LicenseKey")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long?>("LocationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasMaxLength(4096)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("SalespersonId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
+
+                    b.Property<long?>("TimeBilled")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("TimeUsed")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("Updated")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Activities");
+                });
+
             modelBuilder.Entity("VisumCRM.Entity.Branche", b =>
                 {
                     b.Property<long>("Id")
