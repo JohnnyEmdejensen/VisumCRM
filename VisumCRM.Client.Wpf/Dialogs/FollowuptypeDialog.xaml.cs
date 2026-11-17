@@ -18,6 +18,8 @@ namespace VisumCRM.Client.Wpf.Dialogs
     /// </summary>
     public partial class FollowuptypeDialog : Window
     {
+        private IEnumerable<TextBox>? _textboxes;
+
         private Internals.FormSettingsClass _settings;
         private Entity.Followuptype? _followuptype;
         public FollowuptypeDialog()
@@ -27,6 +29,7 @@ namespace VisumCRM.Client.Wpf.Dialogs
             ContentRendered += FollowuptypeDialog_ContentRendered;
             Closing += FollowuptypeDialog_Closing;
             KeyDown += FollowuptypeDialog_KeyDown;
+            FillControls();
             _settings.Load();
         }
 
@@ -88,7 +91,30 @@ namespace VisumCRM.Client.Wpf.Dialogs
                 DoClose();
             }
         }
-
+        private void FillControls()
+        {
+            using (new Internals.WorkhandlerContainer("FillControls"))
+            {
+                FillFollowupsControl();
+            }
+        }
+        private void FillFollowupsControl()
+        {
+            using (new Internals.WorkhandlerContainer("FillFollowupsControl"))
+            {
+                dgFollowupTypes.BeginInit();
+                dgFollowupTypes.ItemsSource = App.DataShare.FollowuptypeCollection;
+                dgFollowupTypes.EndInit();
+            }
+        }
+        private void SetEnvironments()
+        {
+            _textboxes = App.ToolsHelper.FindVisualChildren<TextBox>(this);
+            foreach (var ctrl in _textboxes)
+            {
+                ctrl.GotFocus += Ctrl_GotFocus;
+            }
+        }
         private void SetGui()
         {
             _followuptype = DataContext as Entity.Followuptype;
@@ -133,6 +159,30 @@ namespace VisumCRM.Client.Wpf.Dialogs
                 e.Handled = true;
                 DoClose();
             }
+            if (Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+            {
+                if (e.Key == Key.S)
+                {
+                    e.Handled = true;
+                    btnSave.Focus();
+                    DoSave(false);
+                }
+                if (e.Key == Key.N)
+                {
+                    e.Handled = true;
+                    btnAdd.Focus();
+                    DoAdd();
+                }
+                if (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift))
+                {
+                    if (e.Key == Key.S)
+                    {
+                        e.Handled = true;
+                        btnSave.Focus();
+                        DoSave(true);
+                    }
+                }
+            }
         }
 
         private void FollowuptypeDialog_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
@@ -144,6 +194,7 @@ namespace VisumCRM.Client.Wpf.Dialogs
         {
             _followuptype = DataContext as Entity.Followuptype;
             SetGui();
+            SetEnvironments();
         }
 
 
@@ -196,10 +247,20 @@ namespace VisumCRM.Client.Wpf.Dialogs
         {
             DoDelete();
         }
+        private void Ctrl_GotFocus(object sender, RoutedEventArgs e)
+        {
+            var item = sender as TextBox;
+            if (item != null)
+            {
+                item.SelectAll();
+            }
+        }
 
         private void dgFollowupTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            _followuptype = dgFollowupTypes.SelectedItem as Entity.Followuptype;
+            DataContext = _followuptype;
+            txtKey.Focus();
         }
 
         private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)

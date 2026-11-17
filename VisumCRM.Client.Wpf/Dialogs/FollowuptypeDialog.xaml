@@ -138,8 +138,8 @@
                                 <DataGrid x:Name="dgFollowupTypes" Grid.Row="2" SelectionChanged="dgFollowupTypes_SelectionChanged">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Id" Binding="{Binding Id}" Visibility="Collapsed"></DataGridTextColumn>
-                                        <DataGridTextColumn Width="64" Header="{DynamicResource grid.branches.column.header.key}" Binding="{Binding Key}"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="{DynamicResource grid.branches.column.header.value}" Binding="{Binding Value}"></DataGridTextColumn>
+                                        <DataGridTextColumn Width="64" Header="{DynamicResource grid.followuptypes.column.header.key}" Binding="{Binding Key}"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="{DynamicResource grid.followuptypes.column.header.value}" Binding="{Binding Value}"></DataGridTextColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>

@@ -49,6 +49,8 @@
     <system:String x:Key="grid.branches.column.header.value">Value</system:String>
     <system:String x:Key="grid.jobtitles.column.header.key">Key</system:String>
     <system:String x:Key="grid.jobtitles.column.header.value">Value</system:String>
+    <system:String x:Key="grid.followuptypes.column.header.key">Key</system:String>
+    <system:String x:Key="grid.followuptypes.column.header.value">Value</system:String>
 
     <system:String x:Key="grid.contactpersons.column.header.name">Name</system:String>
     <system:String x:Key="grid.contactpersons.column.header.mobile">Mobile</system:String>

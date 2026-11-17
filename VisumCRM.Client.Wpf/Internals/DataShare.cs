@@ -395,7 +395,12 @@ namespace VisumCRM.Client.Wpf.Internals
         {
             using (new Internals.WorkhandlerContainer("GetFollowuptypes"))
             {
-                FollowuptypeCollection = App.Repositories.FollowuptypeRepository.GetAll();
+                var records = App.Repositories.FollowuptypeRepository.GetAll();
+                if (records != null)
+                {
+                    records = records.OrderBy(x => x.Key).ToList();
+                }
+                FollowuptypeCollection = records;
                 App.EventHelper.RaiseFollowuptypeCollectionChangedEvent();
             }
         }
